@@ -4,7 +4,10 @@ call plug#begin()
 " VISUALS
 
 " Color scheme
+" This color scheme does not have treesitter support
 Plug 'https://github.com/joshdick/onedark.vim'
+" But this one does
+Plug 'https://github.com/navarasu/onedark.nvim'
 
 " Icons
 Plug 'https://github.com/kyazdani42/nvim-web-devicons'
@@ -19,10 +22,12 @@ Plug 'https://github.com/itchyny/lightline.vim'
 " Smooth scrolling
 Plug 'https://github.com/psliwka/vim-smoothie'
 
- " Minimap
+" Minimap
 
 " Plug 'https://github.com/wfxr/minimap.nvim'
 
+" Semantic highlighting
+Plug 'https://github.com/RRethy/vim-illuminate'
 
 
 " =============================================================================
@@ -37,13 +42,13 @@ Plug 'https://github.com/deoplete-plugins/deoplete-jedi'
 " =============================================================================
 " GIT
 " Main git wrapper
-Plug 'https://github.com/tpope/vim-fugitive' 
+Plug 'https://github.com/tpope/vim-fugitive'
 
 " Show most recent commit
-Plug 'https://github.com/rhysd/git-messenger.vim' 
+Plug 'https://github.com/rhysd/git-messenger.vim'
 
 " Git diff in sign column
-Plug 'https://github.com/airblade/vim-gitgutter' 
+Plug 'https://github.com/airblade/vim-gitgutter'
 
 
 " =============================================================================
@@ -54,7 +59,7 @@ Plug 'https://github.com/junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'https://github.com/junegunn/fzf.vim'
 
 " Floating terminal
-Plug 'https://github.com/voldikss/vim-floaterm' 
+Plug 'https://github.com/voldikss/vim-floaterm'
 
 " Better commenting
 Plug 'https://github.com/preservim/nerdcommenter'
@@ -62,7 +67,7 @@ Plug 'https://github.com/preservim/nerdcommenter'
 " Neovim sidebar file manager
 Plug 'https://github.com/kyazdani42/nvim-tree.lua'
 
- " Improved tab bar
+" Improved tab bar
 Plug 'https://github.com/romgrk/barbar.nvim'
 
 " Autoformatting
@@ -84,13 +89,13 @@ Plug 'jbyuki/venn.nvim'
 " LANGUAGE
 
 " Treesitter
-Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " GDB support for CXX and python
 Plug 'https://github.com/sakhnik/nvim-gdb.git'
 
 " OpenSCAD highlighting
-Plug 'https://github.com/sirtaj/vim-openscad' 
+Plug 'https://github.com/sirtaj/vim-openscad'
 
 " Python
 Plug 'https://github.com/python-mode/python-mode'
@@ -98,25 +103,36 @@ Plug 'https://github.com/python-mode/python-mode'
 " Plug 'https://github.com/vim-python/python-syntax' " Better python syntax highlighting
 
 " CXX highlighting
-" Plug 'https://github.com/bfrg/vim-cpp-modern'
+Plug 'https://github.com/bfrg/vim-cpp-modern'
 
 " Latex suite
 Plug 'https://github.com/lervag/vimtex'
 
+" Linting
+Plug 'https://github.com/dense-analysis/ale'
+
+" LSP
+Plug 'https://github.com/neovim/nvim-lspconfig'
+Plug 'https://github.com/williamboman/nvim-lsp-installer'
 call plug#end()
 
 
 " PLUGIN SETTINGS ------------------------------------------------------------
+
+" LSP
+lua << EOF
+local nvim_lsp = require('lspconfig')
+EOF
 
 " Start NERDTree and put the cursor back in the other window.
 " The augroup is required for lightline to behave correctly - see
 " https://github.com/itchyny/lightline.vim/issues/487#issuecomment-660380223
 "
 " augroup NERD
-    " au!
-    " autocmd VimEnter * NERDTree
-    " autocmd VimEnter * wincmd p
-    " autocmd VimEnter * call lightline#update()
+" au!
+" autocmd VimEnter * NERDTree
+" autocmd VimEnter * wincmd p
+" autocmd VimEnter * call lightline#update()
 " augroup END
 "
 "
@@ -125,7 +141,7 @@ call plug#end()
 "
 " " Exit Vim if NERDTree is the only window left.
 " autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1
-            " \ && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" \ && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 "
 " " Open the existing NERDTree on each new tab.
 " autocmd BufWinEnter * silent NERDTreeMirror
@@ -134,11 +150,11 @@ call plug#end()
 " " Better NERDTreeToggle and focus
 "
 " function! NTToggle()
-    " :NERDTreeToggle
-    " if exists('b:NERDTree')
-        " wincmd p
-    " endif
-    " call lightline#update()
+" :NERDTreeToggle
+" if exists('b:NERDTree')
+" wincmd p
+" endif
+" call lightline#update()
 " endfunction
 "
 " let NERDTreeShowHidden=1
@@ -209,6 +225,8 @@ let g:NERDCreateDefaultMappings = 0
 " ---- ALE
 
 let g:ale_c_parse_compile_commands = 1
+let g:ale_lint_on_insert_leave = 1
+
 
 " ---- python-mode
 
@@ -221,7 +239,7 @@ let g:pymode_lint_cwindow = 0 " Do not open quickfix window on lint
 
 let g:pymode_lint_ignore = ["E501", "W", "C"] " Skip conventions
 
-" ---- python-syntax 
+" ---- python-syntax
 " let g:python_highlight_all = 1
 
 " ---- startify
@@ -245,27 +263,51 @@ let g:bufferline.icon_separator_inactive = '▎'
 lua << EOF
 tree = {}
 tree.open = function()
-   require 'bufferline.state'.set_offset(30, 'FileTree')
-   require 'nvim-tree'.find_file(true)
+require 'bufferline.state'.set_offset(30, 'FileTree')
+require 'nvim-tree'.find_file(true)
 end
 
 tree.close = function()
-   require 'bufferline.state'.set_offset(0)
-   require 'nvim-tree'.close()
+require 'bufferline.state'.set_offset(0)
+require 'nvim-tree'.close()
 end
 
 tree.toggle = function()
-    local view = require 'nvim-tree.view'
-    if view.win_open() then
-        tree.close()
-    else
-        tree.open()
-    end
+local view = require 'nvim-tree.view'
+if view.win_open() then
+    tree.close()
+else
+    tree.open()
+end
 end
 EOF
 
+" LSP
+lua << EOF
+require'lspconfig'.texlab.setup {
+    on_attach = function(client)
+    require 'illuminate'.on_attach(client)
+end,
+}
+require'lspconfig'.cmake.setup {
+    on_attach = function(client)
+    require 'illuminate'.on_attach(client)
+end,
+}
+require'lspconfig'.pylsp.setup {
+    on_attach = function(client)
+    require 'illuminate'.on_attach(client)
+end,
+}
+EOF
 
 " ---- vimtex
+let g:vimtex_compiler_progname = 'nvr'
+let g:tex_flavor = 'latex'
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
+
 
 " KEYBINDINGS ----------------------------------------------------------------
 
@@ -387,3 +429,6 @@ set conceallevel=2
 set scrolloff=3
 
 set listchars=trail:-
+
+" Virtual editing in visual block mode
+set ve=block

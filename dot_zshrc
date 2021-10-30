@@ -29,6 +29,8 @@ alias find="fd"
 
 export SEM="/mnt/Storage/College/FALL2"
 alias csem="cd $SEM"
+alias notemk="touch `date -I`.txt"
+alias enote="nvim `ls -1 | tail -1`"
 
 
 bindkey "^[[3~" delete-char # Make 'delete' actually delete 
@@ -79,6 +81,13 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 zinit light "Aloxaf/fzf-tab"
 zinit light "MikeDacre/tmux-zsh-vim-titles"
+zinit light "MichaelAquilina/zsh-autoswitch-virtualenv"
+zinit light "zdharma/fast-syntax-highlighting"
+zinit light "zsh-users/zsh-autosuggestions"
+zinit light "hcgraf/zsh-sudo"
+zinit light "hlissner/zsh-autopair"
+zinit light "jandamm/instant-repl.zsh"
+
 
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
@@ -91,3 +100,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls'
 
 
 eval $(thefuck --alias)
+
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+
+export PATH=~/.local/bin:$PATH
