@@ -17,8 +17,6 @@ map('n', '<S-J>', '<C-E>', opts)
 map('n', '<S-K>', '<C-Y>', opts)
 
 map('n', '<F1>', '<nop>', {noremap = false})
-map('n', '<F2>', ':Autoformat<CR>', opts)
-map('n', '<F3>', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 map('n', '<F12>', ':FloatermToggle<CR>', opts)
 map('n', '<F9>', ':FloatermNew<CR>', opts)
 map('n', '<F10>', ':FloatermPrev<CR>', opts)

@@ -1,11 +1,3 @@
--- Install packer on any machine these configs are cloned to.
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    packer_bootstrap = vim.fn.system({
-        'git', 'clone', '--depth', '1',
-        'https://github.com/wbthomason/packer.nvim', install_path
-    })
-end
 
 return require('packer').startup(function(use)
 
@@ -92,6 +84,10 @@ return require('packer').startup(function(use)
 
     -- LSP
     use 'https://github.com/neovim/nvim-lspconfig'
+    use 'https://github.com/williamboman/nvim-lsp-installer'
+
+    -- Use virtual text for warnings
+    use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
     -- Completion
     use 'https://github.com/hrsh7th/cmp-nvim-lsp'
@@ -102,6 +98,9 @@ return require('packer').startup(function(use)
 
     -- LaTeX suite
     use 'https://github.com/lervag/vimtex'
+
+    -- C++ clangd_extensions
+    use 'https://github.com/p00f/clangd_extensions.nvim'
 
     -- Automatically set up configuration after cloning packer.nvim
     -- Always to be put after plugins
