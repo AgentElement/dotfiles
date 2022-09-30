@@ -1,5 +1,6 @@
 require('plugins')
 require('plugin_config')
+require('lsp')
 require('keybindings')
 
 -- NVIM SETTINGS --------------------------------------------------------------
@@ -19,9 +20,11 @@ vim.opt.syntax='on'
 -- Enable auto indentation
 vim.opt.autoindent=true
 
--- Turn on line numbers, make them relative to cursor position
+-- Turn on line numbers
 vim.opt.number=true
-vim.opt.relativenumber=true
+
+-- Make line numbers relative to cursor position
+-- vim.opt.relativenumber=true
 
 -- Number of spaces for auto indentation
 vim.opt.shiftwidth=4

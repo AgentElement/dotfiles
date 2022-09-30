@@ -1,4 +1,3 @@
-
 return require('packer').startup(function(use)
 
     ---------------------------------------------------------------------------
@@ -6,7 +5,7 @@ return require('packer').startup(function(use)
     use 'https://github.com/wbthomason/packer.nvim'
 
     ---------------------------------------------------------------------------
-    -- VSUALS
+    -- VISUALS
 
     -- Color scheme
     use 'https://github.com/navarasu/onedark.nvim'
@@ -73,6 +72,9 @@ return require('packer').startup(function(use)
     -- ASCII diagrams in vim
     use 'https://github.com/jbyuki/venn.nvim'
 
+    -- Better / searching
+    use 'https://github.com/junegunn/vim-slash'
+
     ---------------------------------------------------------------------------
     -- LANGUAGE
 
@@ -82,22 +84,29 @@ return require('packer').startup(function(use)
         run = ':TSUpdate'
     }
 
-    -- LSP
-    use 'https://github.com/neovim/nvim-lspconfig'
-    use 'https://github.com/williamboman/nvim-lsp-installer'
+    -- LSP installer
+    use "https://github.com/williamboman/mason.nvim"
+
+    -- mason/lspconfig bridge
+    use "https://github.com/williamboman/mason-lspconfig.nvim"
+
+    -- LSP configuration
+    use "https://github.com/neovim/nvim-lspconfig"
 
     -- Use virtual text for warnings
     use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
     -- Completion
     use 'https://github.com/hrsh7th/cmp-nvim-lsp'
+    use 'https://github.com/hrsh7th/cmp-cmdline'
+    use 'https://github.com/hrsh7th/cmp-buffer'
     use 'https://github.com/hrsh7th/nvim-cmp'
 
     -- Snippets
     use 'https://github.com/L3MON4D3/LuaSnip'
 
     -- LaTeX suite
-    use 'https://github.com/lervag/vimtex'
+    -- use 'https://github.com/lervag/vimtex'
 
     -- C++ clangd_extensions
     use 'https://github.com/p00f/clangd_extensions.nvim'
