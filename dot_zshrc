@@ -9,6 +9,8 @@ fi
 #
 zstyle ':completion:*:*:*:default' menu yes select search # Enhanced tab completion
 
+eval "$(zoxide init zsh --cmd j)"
+
 # Aliases
 # alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
@@ -17,6 +19,7 @@ alias fgrep='fgrep --colour=auto'
 alias cp="cp -i"
 alias df="df -h"
 alias ls="lsd"
+alias ssh="$TERM=xterm-256color ssh"
 
 alias vim=nvim
 
@@ -27,13 +30,16 @@ alias icat="kitty +kitten icat" # image cat
 
 alias find="fd"
 
-export SEM="/mnt/Storage/College/SPRING2"
+export SEM="/mnt/Storage/College/FALL3"
 export PROJ="/mnt/Storage/Projects"
 alias csem="cd $SEM"
 alias cproj="cd $PROJ"
 alias notemk="touch `date -I`.txt"
 alias enote="nvim `ls -1 | tail -1`"
 
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
 
 bindkey "^[[3~" delete-char # Make 'delete' actually delete 
 bindkey \^U backward-kill-line  # Ctrl-U works as in bash 
@@ -86,7 +92,7 @@ zinit light "MikeDacre/tmux-zsh-vim-titles"
 zinit light "MichaelAquilina/zsh-autoswitch-virtualenv"
 zinit light "zdharma-continuum/fast-syntax-highlighting"
 zinit light "zsh-users/zsh-autosuggestions"
-zinit light "hcgraf/zsh-sudo"
+# zinit light "hcgraf/zsh-sudo"
 zinit light "hlissner/zsh-autopair"
 zinit light "jandamm/instant-repl.zsh"
 zinit light "peterhurford/up.zsh"
@@ -111,16 +117,16 @@ export PATH=~/.local/bin:$PATH
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/agentelement/.local/share/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/agentelement/.local/share/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/agentelement/.local/share/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/agentelement/.local/share/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('/home/agentelement/.local/share/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/agentelement/.local/share/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/agentelement/.local/share/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/agentelement/.local/share/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
