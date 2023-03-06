@@ -19,7 +19,8 @@ alias fgrep='fgrep --colour=auto'
 alias cp="cp -i"
 alias df="df -h"
 alias ls="lsd"
-alias ssh="$TERM=xterm-256color ssh"
+alias ssh="TERM=xterm-256color ssh"
+alias cat="bat"
 
 alias vim=nvim
 
@@ -30,12 +31,8 @@ alias icat="kitty +kitten icat" # image cat
 
 alias find="fd"
 
-export SEM="/mnt/Storage/College/FALL3"
-export PROJ="/mnt/Storage/Projects"
-alias csem="cd $SEM"
-alias cproj="cd $PROJ"
 alias notemk="touch `date -I`.txt"
-alias enote="nvim `ls -1 | tail -1`"
+alias enote='nvim `ls -1 | grep -P \"\d{4}-[01]\d-[0-3]\d\.txt\" | tail -1`'
 
 autoload -z edit-command-line
 zle -N edit-command-line
