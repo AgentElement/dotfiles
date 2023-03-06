@@ -1,9 +1,14 @@
 -- Colorscheme
-require('onedark').setup()
+require('onedark').setup {
+    style = 'warmer'
+}
+
+require('onedark').load()
 
 -- lualine
 require('lualine').setup {
     options = {
+        icons_enabled = true,
         theme = 'onedark'
     }
 }
@@ -65,6 +70,10 @@ vim.g.NERDCreateDefaultMappings = false
 
 -- nvim-cmp
 local cmp = require('cmp')
+if cmp == nil then
+    error("nvim-cmp missing!", 1)
+end
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -119,3 +128,7 @@ cmp.setup.cmdline(':', {
         { name = 'buffer' }
     }
 })
+
+-- OpenSCAD
+require('openscad')
+vim.g.openscad_load_snippets = true

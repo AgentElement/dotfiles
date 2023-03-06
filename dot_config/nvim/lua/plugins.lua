@@ -45,7 +45,7 @@ return require('packer').startup(function(use)
     -- Powerful file picker
     use {
         'https://github.com/nvim-telescope/telescope.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
+        requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
     -- Floating terminal
@@ -93,6 +93,9 @@ return require('packer').startup(function(use)
     -- LSP configuration
     use "https://github.com/neovim/nvim-lspconfig"
 
+    -- Formatter
+    use "https://github.com/mhartington/formatter.nvim"
+
     -- Use virtual text for warnings
     use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
@@ -100,10 +103,18 @@ return require('packer').startup(function(use)
     use 'https://github.com/hrsh7th/cmp-nvim-lsp'
     use 'https://github.com/hrsh7th/cmp-cmdline'
     use 'https://github.com/hrsh7th/cmp-buffer'
+
+    -- Luasnip completion source for cmp
+    use 'https://github.com/saadparwaiz1/cmp_luasnip'
+
     use 'https://github.com/hrsh7th/nvim-cmp'
 
     -- Snippets
     use 'https://github.com/L3MON4D3/LuaSnip'
+
+    -- OpenSCAD extension
+    use 'https://github.com/salkin-mada/openscad.nvim'
+
 
     -- LaTeX suite
     -- use 'https://github.com/lervag/vimtex'
@@ -111,10 +122,12 @@ return require('packer').startup(function(use)
     -- C++ clangd_extensions
     use 'https://github.com/p00f/clangd_extensions.nvim'
 
+    -- Rust-tools
+    use 'https://github.com/simrat39/rust-tools.nvim'
+
     -- Automatically set up configuration after cloning packer.nvim
     -- Always to be put after plugins
     if packer_bootstrap then
         require('packer').sync()
     end
 end)
-

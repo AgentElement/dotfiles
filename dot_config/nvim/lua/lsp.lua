@@ -2,38 +2,66 @@ require('mason').setup()
 
 require('mason-lspconfig').setup({
     ensure_installed = {
+        "ltex",
         "texlab",
-        "rust_language_server",
+        "rust_analyzer",
         "pylsp",
         "clangd",
         "cmake",
-        "sumneko_lua",
+        "lua_ls",
+        "openscad_lsp",
+        "bashls"
     }
 })
 
 require('lspconfig')
 
+vim.diagnostic.config({
+    virtual_text = false -- don't show diagnostics as inline virtual text
+})
+
 local keybindings = require('keybindings')
 
 local on_attach = function(client, bufnr)
-    for _, binding in pairs(keybindings) do
-        vim.api.nvim_buf_set_keymap(bufnr, binding[1], binding[2], binding[3], binding[4])
+    -- Add keybindings that are enabled when there is a LSP active
+    for _, binding in pairs(keybindings.lsp_attach_keybindings) do
+        binding[4].buffer = bufnr
+        vim.keymap.set(binding[1], binding[2], binding[3], binding[4])
     end
+
+
+    -- Show line diagnostics automatically in hover window
+    vim.api.nvim_create_autocmd("CursorMoved", {
+        buffer = bufnr,
+        callback = function()
+            local opts = {
+                focusable = false,
+                close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+                border = 'rounded',
+                source = 'always',
+                prefix = ' ',
+                scope = 'cursor',
+            }
+            vim.diagnostic.open_float(nil, opts)
+        end
+    })
 end
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+vim.g.floaterm_width = 0.8
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+-- Options for specific language servers
 local server_opts = {
     ["texlab"] = function(opts)
         opts.settings = {
             texlab = {
-                auxDirectory = "build",
-                bibtexFormatter = "texlab",
+                auxDirectory = "./build",
                 build = {
                     args = { "-shell-escape", "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f", },
                     executable = "latexmk",
                     forwardSearchAfter = false,
-                    onSave = true
+                    onSave = false,
                 },
                 chktex = {
                     onEdit = false,
@@ -47,7 +75,8 @@ local server_opts = {
                 latexFormatter = "latexindent",
                 latexindent = {
                     modifyLineBreaks = false
-                }
+                },
+                bibtexFormatter = 'texlab',
             }
         }
     end,
@@ -62,11 +91,15 @@ local server_opts = {
         }
     end,
 
-    ["sumneko_lua"] = function(opts)
+    ["lua_ls"] = function(opts)
         opts.settings = {
             Lua = {
+                runtime = {
+                    version = 'LuaJIT'
+                },
                 diagnostics = {
                     -- Get the language server to recognize the `vim` global
+                    -- for nvim configs
                     globals = { 'vim' },
                 },
                 workspace = {
@@ -78,9 +111,9 @@ local server_opts = {
             }
         }
     end,
-
 }
 
+-- LSP installer settings
 require('mason-lspconfig').setup_handlers({
     function(server)
         local opts = {
@@ -109,4 +142,3 @@ require("clangd_extensions").setup {
         capabilities = capabilities,
     }
 }
-
