@@ -268,3 +268,6 @@ mouse_warping none
             # background #00000000
         # }
 # }
+
+for_window [class="matplotlib"] floating enable
+for_window [class="Qalculate-gtk"] floating enable
