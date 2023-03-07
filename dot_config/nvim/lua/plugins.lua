@@ -103,11 +103,11 @@ return require('packer').startup(function(use)
     use 'https://github.com/hrsh7th/cmp-nvim-lsp'
     use 'https://github.com/hrsh7th/cmp-cmdline'
     use 'https://github.com/hrsh7th/cmp-buffer'
+    use 'https://github.com/hrsh7th/cmp-path'
+    use 'https://github.com/hrsh7th/nvim-cmp'
 
     -- Luasnip completion source for cmp
     use 'https://github.com/saadparwaiz1/cmp_luasnip'
-
-    use 'https://github.com/hrsh7th/nvim-cmp'
 
     -- Snippets
     use 'https://github.com/L3MON4D3/LuaSnip'
