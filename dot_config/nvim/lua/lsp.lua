@@ -49,7 +49,9 @@ end
 
 vim.g.floaterm_width = 0.8
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(
+    vim.lsp.protocol.make_client_capabilities()
+)
 
 -- Options for specific language servers
 local server_opts = {
@@ -58,7 +60,12 @@ local server_opts = {
             texlab = {
                 auxDirectory = "./build",
                 build = {
-                    args = { "-shell-escape", "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f", },
+                    args = { "-shell-escape",
+                        "-pdf",
+                        "-interaction=nonstopmode",
+                        "-synctex=1",
+                        "%f",
+                    },
                     executable = "latexmk",
                     forwardSearchAfter = false,
                     onSave = false,
@@ -100,7 +107,7 @@ local server_opts = {
                 diagnostics = {
                     -- Get the language server to recognize the `vim` global
                     -- for nvim configs
-                    globals = { 'vim' },
+                    globals = { 'vim', 'packer_bootstrap' },
                 },
                 workspace = {
                     library = vim.api.nvim_get_runtime_file("", true),
