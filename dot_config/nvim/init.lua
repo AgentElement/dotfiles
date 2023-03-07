@@ -1,8 +1,3 @@
-require('plugins')
-require('plugin_config')
-require('lsp')
-require('keybindings')
-
 -- NVIM SETTINGS --------------------------------------------------------------
 
 -- Disable line wrapping
@@ -88,3 +83,15 @@ vim.opt.listchars='trail:-'
 
 -- Virtual editing in visual block mode
 vim.opt.ve='block'
+
+-- nvim-tree strongly recommends eagerly disabling netrw due to race conditions 
+-- at vim startup
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+require('plugins')
+require('plugin_config')
+require('cmp_config')
+require('lsp')
+require('keybindings')
+

@@ -1,11 +1,18 @@
+local keybindings = require('keybindings')
+
 -- Colorscheme
 require('onedark').setup {
-    style = 'warmer'
+    style = 'warmer',
+    -- highlights = {
+    --     CursorLine = {fmt = 'italic'}
+    -- }
 }
 
 require('onedark').load()
 
--- lualine
+require('illuminate')
+
+-- Status line
 require('lualine').setup {
     options = {
         icons_enabled = true,
@@ -17,10 +24,7 @@ require('lualine').setup {
 require('nvim-tree').setup {
     view = {
         mappings = {
-            list = {
-                { key = "<C-w>", action = "close" },
-                { key = "A", action = "edit_in_place" },
-            }
+            list =  keybindings.nvim_tree_keybindings
         }
     },
 }
@@ -67,67 +71,6 @@ vim.g.NERDTrimTrailingWhitespace = true
 
 -- Do not create default mappings
 vim.g.NERDCreateDefaultMappings = false
-
--- nvim-cmp
-local cmp = require('cmp')
-if cmp == nil then
-    error("nvim-cmp missing!", 1)
-end
-
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-        end
-    },
-
-    mapping = cmp.mapping.preset.insert({
-        ['<TAB>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-u>'] = cmp.mapping.scroll_docs(4),
-        --        ['<S-TAB>'] = cmp.mapping({
-        --            c = cmp.mapping.confirm({ select = false }),
-        --        }),
-
-        --        ['<TAB>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    }),
-
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' }
-    }),
-
-    experimental = {
-        ghost_text = true
-    },
-
-    sorting = {
-        comparators = {
-            cmp.config.compare.offset,
-            cmp.config.compare.exact,
-            cmp.config.compare.recently_used,
-            require("clangd_extensions.cmp_scores"),
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-        },
-    },
-})
-
--- Use buffer source for `/`.
-cmp.setup.cmdline('/', {
-    sources = {
-        { name = 'buffer' }
-    }
-})
-
-
-cmp.setup.cmdline(':', {
-    sources = {
-        { name = 'buffer' }
-    }
-})
 
 -- OpenSCAD
 require('openscad')

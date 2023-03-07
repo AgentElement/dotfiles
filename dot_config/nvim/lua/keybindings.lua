@@ -46,6 +46,37 @@ M.lsp_attach_keybindings = {
     { 'n', '<F2>', vim.lsp.buf.format, opts },
     { 'n', 'K', vim.lsp.buf.hover, opts },
     { 'n', '<leader>]', vim.diagnostic.open_float, opts },
+    {'n', 'gD', vim.lsp.buf.declaration, opts},
+    {'n', 'gd', vim.lsp.buf.definition, opts},
+    {'n', 'gi', vim.lsp.buf.implementation, opts},
+}
+
+M.nvim_tree_keybindings = {
+    { key = "<C-w>", action = "close" },
+    { key = "A", action = "edit_in_place" },
+}
+
+
+local cmp = require('cmp')
+if cmp == nil then
+    error("nvim-cmp missing!", 1)
+end
+
+M.cmp_mapping_keybindings = {
+    ['<TAB>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item({
+        behavior = cmp.SelectBehavior.Insert
+    }), { 'i', 'c' }),
+    ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item({
+        behavior = cmp.SelectBehavior.Insert
+    }), { 'i', 'c' }),
+    --        ['<S-TAB>'] = cmp.mapping({
+    --            c = cmp.mapping.confirm({ select = false }),
+    --        }),
+
+    --        ['<TAB>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
 }
 
 for _, binding in pairs(M.keybindings) do
