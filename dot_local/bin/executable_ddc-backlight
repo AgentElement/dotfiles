@@ -1,0 +1,57 @@
+#!/bin/sh
+
+RAMP0=""
+RAMP1=""
+RAMP2=""
+
+BAR0="|─────────"
+BAR1="━|────────"
+BAR2="━━|───────"
+BAR3="━━━|──────"
+BAR4="━━━━|─────"
+BAR5="━━━━━|────"
+BAR6="━━━━━━|───"
+BAR7="━━━━━━━|──"
+BAR8="━━━━━━━━|─"
+BAR9="━━━━━━━━━|"
+
+rampcalc() {
+    case $(($1 / 33)) in
+        0) echo $RAMP0;;
+        1) echo $RAMP1;;
+        2) echo $RAMP2;;
+        3) echo $RAMP2;;
+    esac
+}
+
+barcalc() {
+    case $(($1 / 10)) in
+        0) echo $BAR0;;
+        1) echo $BAR1;;
+        2) echo $BAR2;;
+        3) echo $BAR3;;
+        4) echo $BAR4;;
+        5) echo $BAR5;;
+        6) echo $BAR6;;
+        7) echo $BAR7;;
+        8) echo $BAR8;;
+        9) echo $BAR9;;
+    esac
+}
+
+case "$1" in
+    "-i")
+    ddcutil setvcp 10 + "$2"
+    ;;
+    
+    "-d")
+    ddcutil setvcp 10 - "$2"
+    ;;
+
+    *)
+    BRIGHTNESS=$(ddcutil getvcp 10 | grep "VCP code 0x10" | awk '{print $9}' | tr -d ',')
+    ICON=$(rampcalc $BRIGHTNESS)
+    BAR=$(barcalc $BRIGHTNESS)
+    echo $ICON "" $BAR  $BRIGHTNESS
+    ;;
+esac
