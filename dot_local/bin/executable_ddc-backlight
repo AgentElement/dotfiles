@@ -1,8 +1,8 @@
 #!/bin/sh
 
-RAMP0=""
-RAMP1=""
-RAMP2=""
+RAMP0="󰃞 "
+RAMP1="󰃟 "
+RAMP2="󰃠 "
 
 BAR0="|─────────"
 BAR1="━|────────"
@@ -39,19 +39,21 @@ barcalc() {
     esac
 }
 
-case "$1" in
-    "-i")
-    ddcutil setvcp 10 + "$2"
-    ;;
-    
-    "-d")
-    ddcutil setvcp 10 - "$2"
-    ;;
+main() {
+    case "$1" in
+        "-i")
+        ddcutil setvcp 10 + "$2"
+        ;;
+        
+        "-d")
+        ddcutil setvcp 10 - "$2"
+        ;;
 
-    *)
-    BRIGHTNESS=$(ddcutil getvcp 10 | grep "VCP code 0x10" | awk '{print $9}' | tr -d ',')
-    ICON=$(rampcalc $BRIGHTNESS)
-    BAR=$(barcalc $BRIGHTNESS)
-    echo $ICON "" $BAR  $BRIGHTNESS
-    ;;
-esac
+        *)
+        BRIGHTNESS=$(ddcutil getvcp 10 | grep "VCP code 0x10" | awk '{print $9}' | tr -d ',')
+        echo $(rampcalc $BRIGHTNESS) "" $(barcalc $BRIGHTNESS) $BRIGHTNESS
+        ;;
+    esac
+}
+
+main
