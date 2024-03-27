@@ -118,7 +118,7 @@
 
     ### Text ###
 
-    font = Monospace 8
+    font = inconsolata 10
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -245,7 +245,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 4
+    corner_radius = 6
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -315,7 +315,7 @@
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#232326"
+    background = "#000000"
     foreground = "#a7aab0"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
