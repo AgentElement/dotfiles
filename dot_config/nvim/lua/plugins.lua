@@ -21,10 +21,13 @@ return require('packer').startup(function(use)
     use 'https://github.com/nvim-lualine/lualine.nvim'
 
     -- Smooth scrolling
-    use 'https://github.com/psliwka/vim-smoothie'
+    -- use 'https://github.com/psliwka/vim-smoothie'
 
     -- Semantic highlighting
     use 'https://github.com/RRethy/vim-illuminate'
+
+    -- Colors
+    use 'https://github.com/brenoprata10/nvim-highlight-colors'
 
     ---------------------------------------------------------------------------
     -- GIT
