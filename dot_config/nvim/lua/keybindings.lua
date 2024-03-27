@@ -42,14 +42,19 @@ M.keybindings = {
     { 'n', '<leader>ll', ':TexlabBuild<CR>', opts },
 }
 
-M.lsp_attach_keybindings = {
-    { 'n', '<F2>', vim.lsp.buf.format, opts },
-    { 'n', 'K', vim.lsp.buf.hover, opts },
-    { 'n', '<leader>]', vim.diagnostic.open_float, opts },
-    {'n', 'gD', vim.lsp.buf.declaration, opts},
-    {'n', 'gd', vim.lsp.buf.definition, opts},
-    {'n', 'gi', vim.lsp.buf.implementation, opts},
-}
+
+M.generate_lsp_attach_keybindings = function(tbl)
+    local lsp_attach_keybindings = {
+        { 'n', '<F2>', function() vim.lsp.buf.format({ async = true }) end, opts },
+        { 'n', 'K', tbl.hover_fn, opts },
+        { 'n', '<leader>]', vim.diagnostic.open_float, opts },
+        { 'n', 'gD', function() vim.lsp.buf.declaration({ reuse_win = true }) end, opts },
+        { 'n', 'gd', function() vim.lsp.buf.definition({ reuse_win = true }) end, opts },
+        { 'n', 'gi', vim.lsp.buf.implementation, opts },
+    }
+    return lsp_attach_keybindings
+end
+
 
 M.nvim_tree_keybindings = {
     { key = "<C-w>", action = "close" },
@@ -80,7 +85,7 @@ M.cmp_mapping_keybindings = {
 }
 
 for _, binding in pairs(M.keybindings) do
-    vim.api.nvim_set_keymap(binding[1], binding[2], binding[3], binding[4]);
+    vim.keymap.set(binding[1], binding[2], binding[3], binding[4]);
 end
 
 return M
