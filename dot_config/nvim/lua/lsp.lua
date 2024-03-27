@@ -22,9 +22,22 @@ vim.diagnostic.config({
 
 local keybindings = require('keybindings')
 
+local generate_hover_function = function()
+    local filetype = vim.bo.filetype;
+    local hover_fn = vim.lsp.buf.hover;
+    if vim.tbl_contains({ "rust" }, filetype) and packer_plugins["rust-tools.nvim"] then
+        local rust_tools = require('rust-tools')
+        hover_fn = rust_tools.hover_actions.hover_actions
+    end
+    return hover_fn
+end
+
 local on_attach = function(client, bufnr)
     -- Add keybindings that are enabled when there is a LSP active
-    for _, binding in pairs(keybindings.lsp_attach_keybindings) do
+    local lsp_attach_keybindings = keybindings.generate_lsp_attach_keybindings({
+        hover_fn = generate_hover_function()
+    })
+    for _, binding in pairs(lsp_attach_keybindings) do
         binding[4].buffer = bufnr
         vim.keymap.set(binding[1], binding[2], binding[3], binding[4])
     end
@@ -115,6 +128,15 @@ local server_opts = {
                 telemetry = {
                     enable = false,
                 },
+            }
+        }
+    end,
+
+    ["openscad_lsp"] = function(opts)
+        opts.settings = {
+            openscad = {
+                fmt_exe = "/usr/bin/clang-format",
+                fmt_style = "WebKit",
             }
         }
     end,
