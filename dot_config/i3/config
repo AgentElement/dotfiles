@@ -66,6 +66,8 @@ bindsym XF86MonBrightnessDown   exec light -U 10
 # secondary monitor backlight control
 bindsym $mod+mod1+minus exec ddcutil setvcp 10 - 10
 bindsym $mod+mod1+plus  exec ddcutil setvcp 10 + 10
+bindsym $mod+mod1+Shift+minus exec ddcutil setvcp 12 - 10
+bindsym $mod+mod1+Shift+plus  exec ddcutil setvcp 12 + 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -226,7 +228,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # launch polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always $HOME/.config/polybar/launch.sh
 
 # Desktop background
 exec_always --no-startup-id feh --bg-fill $HOME/.config/bg/earth.jpg
@@ -245,7 +247,7 @@ gaps inner 0
 # gaps horizontal 8
 
 # smart_gaps on
-gaps top 32
+gaps top 20
 
 
 # Change keyboard modmap
@@ -279,3 +281,4 @@ mouse_warping none
 
 for_window [class="matplotlib"] floating enable
 for_window [class="Qalculate-gtk"] floating enable
+for_window [class="easyeffects"] floating enable
