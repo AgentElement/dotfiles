@@ -12,6 +12,8 @@ require('onedark').load()
 
 require('illuminate')
 
+require('nvim-highlight-colors').setup {}
+
 -- Status line
 require('lualine').setup {
     options = {
