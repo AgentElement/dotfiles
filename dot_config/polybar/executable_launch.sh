@@ -14,7 +14,7 @@ echo "---" | tee -a /tmp/polybar_top-main.log /tmp/polybar_top-secondary.log /tm
 
 for m in $(polybar --list-monitors | cut -d":" -f1); do
 
-    MONITOR=$m polybar --config=$HOME/.config/polybar/config.ini top-workspaces 2>&1 | tee -a /tmp/polybar_top-workspaces.log  & disown
+    # MONITOR=$m polybar --config=$HOME/.config/polybar/config.ini top-workspaces 2>&1 | tee -a /tmp/polybar_top-workspaces.log  & disown
 
     if [[ $m = "eDP-1" ]]; then
         MONITOR=$m polybar --config=$HOME/.config/polybar/config.ini top-main 2>&1 | tee -a /tmp/polybar_top-main.log & disown
