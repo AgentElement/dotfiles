@@ -1,2 +1,16 @@
 README.md
 package-list.txt
+{{ if eq .chezmoi.osRelease.name "NixOS" }}
+.config/dunst/
+.config/picom/
+.config/polybar/
+.config/i3/
+.local/bin/touchscreen-setup.sh
+.config/libinput-gestures.conf
+.Xmodmap
+{{ else }}
+.config/fuzzel/
+.config/sway/
+.config/yambar/
+{{ end }}
+
