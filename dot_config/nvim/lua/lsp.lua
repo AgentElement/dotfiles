@@ -115,7 +115,7 @@ local server_opts = {
                 diagnostics = {
                     -- Get the language server to recognize the `vim` global
                     -- for nvim configs
-                    globals = { 'vim', 'packer_bootstrap' },
+                    globals = { 'vim' },
                 },
                 workspace = {
                     library = vim.api.nvim_get_runtime_file("", true),
