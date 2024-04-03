@@ -50,6 +50,11 @@ require('nvim-treesitter.configs').setup {
     }
 }
 
+--
+vim.g.floaterm_height = 0.3
+vim.g.floaterm_width = 0.99
+vim.g.floaterm_position = 'bottom'
+--
 -- vimtex
 vim.g.vimtex_compiler_progname = 'nvr'
 vim.g.tex_flavor = 'latex'
