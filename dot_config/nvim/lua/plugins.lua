@@ -14,10 +14,9 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
-    
     ---------------------------------------------------------------------------
     -- PACKER
-    'https://github.com/wbthomason/packer.nvim',
+    -- 'https://github.com/wbthomason/packer.nvim',
 
     ---------------------------------------------------------------------------
     -- VISUALS
@@ -67,7 +66,7 @@ require("lazy").setup({
     },
 
     -- Floating terminal
-    'https://github.com/voldikss/vim-floaterm',
+    'https://github.com//vim-floaterm',
 
     -- Better commenting
     'https://github.com/preservim/nerdcommenter',
@@ -103,10 +102,10 @@ require("lazy").setup({
     },
 
     -- LSP installer
-    "https://github.com/williamboman/mason.nvim",
+    -- "https://github.com/williamboman/mason.nvim",
 
     -- mason/lspconfig bridge
-    "https://github.com/williamboman/mason-lspconfig.nvim",
+    -- "https://github.com/williamboman/mason-lspconfig.nvim",
 
     -- LSP configuration
     "https://github.com/neovim/nvim-lspconfig",

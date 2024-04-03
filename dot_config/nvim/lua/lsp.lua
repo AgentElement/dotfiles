@@ -1,18 +1,14 @@
-require('mason').setup()
-
-require('mason-lspconfig').setup({
-    ensure_installed = {
-        "ltex",
-        "texlab",
-        "rust_analyzer",
-        "pylsp",
-        "clangd",
-        "cmake",
-        "lua_ls",
-        "openscad_lsp",
-        "bashls"
-    }
-})
+local lsp_list = {
+    "texlab",
+    "rust_analyzer",
+    "pylsp",
+    "cmake",
+    "lua_ls",
+    "openscad_lsp",
+    "bashls",
+    "clangd",
+    "nixd",
+}
 
 require('lspconfig')
 
@@ -31,6 +27,7 @@ local generate_hover_function = function()
     end
     return hover_fn
 end
+
 
 local on_attach = function(client, bufnr)
     -- Add keybindings that are enabled when there is a LSP active
@@ -59,8 +56,6 @@ local on_attach = function(client, bufnr)
         end
     })
 end
-
-vim.g.floaterm_width = 0.8
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(
     vim.lsp.protocol.make_client_capabilities()
@@ -142,25 +137,19 @@ local server_opts = {
     end,
 }
 
--- LSP installer settings
-require('mason-lspconfig').setup_handlers({
-    function(server)
-        local opts = {
-            on_attach = on_attach,
-            capabilities = capabilities,
-            update_in_insert = true,
-        }
+for _, server in pairs(lsp_list) do
+    local opts = {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        update_in_insert = true,
+    }
 
-        if server_opts[server] then
-            server_opts[server](opts)
-        end
-
-        -- clangd setup is done in the clangd_extensions setup
-        if server ~= 'clangd' then
-            require('lspconfig')[server].setup(opts)
-        end
+    if server_opts[server] then
+        server_opts[server](opts)
     end
-})
+
+    require('lspconfig')[server].setup(opts)
+end
 
 require("clangd_extensions").setup {
     -- pass clangd settings to lspconfig here
