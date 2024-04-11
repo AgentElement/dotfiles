@@ -1,0 +1,29 @@
+backlight = [
+    "󰃞",
+    "󰃟",
+    "󰃠",
+]
+bat = [
+    "󰂎",
+    "󰁺",
+    "󰁻",
+    "󰁼",
+    "󰁽",
+    "󰁾",
+    "󰁿",
+    "󰂀",
+    "󰂁",
+    "󰂂",
+    "󰁹",
+]
+bat_charging = "󰂄"
+cpu = ""
+memory_mem = "󰘚"
+volume = [
+    "󰕿",
+    "󰖀",
+    "󰕾",
+]
+volume_muted = "󰝟"
+net_wired = "󰈀"
+net_wireless = "󰖩"
