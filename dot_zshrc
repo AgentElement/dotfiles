@@ -70,8 +70,10 @@ compinit
 kitty + complete setup zsh | source /dev/stdin
 
 # . /usr/share/powerline/bindings/zsh/powerline.zsh
-. /usr/share/fzf/completion.zsh
-. /usr/share/fzf/key-bindings.zsh
+if [ -n "${commands[fzf-share]}" ]; then
+    source "$(fzf-share)/key-bindings.zsh"
+    source "$(fzf-share)/completion.zsh"
+fi
 
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -90,7 +92,7 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 zinit light "Aloxaf/fzf-tab"
 zinit light "MikeDacre/tmux-zsh-vim-titles"
-zinit light "MichaelAquilina/zsh-autoswitch-virtualenv"
+# zinit light "MichaelAquilina/zsh-autoswitch-virtualenv"
 zinit light "zdharma-continuum/fast-syntax-highlighting"
 zinit light "zsh-users/zsh-autosuggestions"
 # zinit light "hcgraf/zsh-sudo"
@@ -108,9 +110,6 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # preview directory's content with exa when completing cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls'
-
-
-eval $(thefuck --alias)
 
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
