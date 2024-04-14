@@ -28,11 +28,14 @@
             "browser.search.region" = "US";
             "browser.theme.content-theme" = 0;
             "browser.theme.toolbar-theme" = 0;
+            "browser.toolbars.bookmarks.visibility" = "never";
             "browser.urlbar.suggest.quicksuggest.sponsored" = false;
             "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
             "browser.tabs.inTitlebar" = 0;
             "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
         };
+
+        containersForce = true;
 
         containers = {
           banking = {
