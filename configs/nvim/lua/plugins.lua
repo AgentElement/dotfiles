@@ -66,7 +66,7 @@ require("lazy").setup({
     },
 
     -- Floating terminal
-    'https://github.com//vim-floaterm',
+    'https://github.com/voldikss/vim-floaterm',
 
     -- Better commenting
     'https://github.com/preservim/nerdcommenter',
@@ -140,5 +140,6 @@ require("lazy").setup({
     'https://github.com/p00f/clangd_extensions.nvim',
 
     -- Rust-tools
-    'https://github.com/simrat39/rust-tools.nvim',
+    'https://github.com/mrcjkb/rustaceanvim',
+
 })
