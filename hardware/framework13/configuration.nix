@@ -24,6 +24,7 @@
     };
   };
   
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = ["abmlevel=3" "amd_pstate=active"];
 
   networking.hostName = "delta";

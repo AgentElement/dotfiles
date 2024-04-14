@@ -51,6 +51,7 @@ alias enote='nvim `ls -1 | grep -P \"\d{4}-[01]\d-[0-3]\d\.txt\" | tail -1`'
 
 autoload -z edit-command-line
 zle -N edit-command-line
+bindkey -v
 bindkey "^X^E" edit-command-line
 
 bindkey "^[[3~" delete-char # Make 'delete' actually delete 

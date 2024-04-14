@@ -20,7 +20,6 @@
     neofetch
     lsd
     bat
-    fzf
     delta
     zoxide
     bottom
@@ -32,6 +31,8 @@
     kitty
     fuzzel
     wl-clipboard
+    grim
+    slurp
 
     # GUI tools
     zathura
@@ -45,7 +46,7 @@
     prismlauncher
     krita
 
-    # Devtoolxs
+    # Devtools
     rustup
     texlive.combined.scheme-full
     (python311.withPackages (ps: with ps; [
@@ -98,6 +99,8 @@
   };
 
   programs.i3status-rust.enable = true;
+
+  programs.fzf.enable = true;
 
   programs.zsh = {
     initExtra = ''
