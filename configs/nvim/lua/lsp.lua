@@ -21,10 +21,10 @@ local keybindings = require('keybindings')
 local generate_hover_function = function()
     local filetype = vim.bo.filetype;
     local hover_fn = vim.lsp.buf.hover;
-    if vim.tbl_contains({ "rust" }, filetype) and packer_plugins["rust-tools.nvim"] then
-        local rust_tools = require('rust-tools')
-        hover_fn = rust_tools.hover_actions.hover_actions
-    end
+    -- if vim.tbl_contains({ "rust" }, filetype) and packer_plugins["rust-tools.nvim"] then
+    --     local rust_tools = require('rust-tools')
+    --     hover_fn = rust_tools.hover_actions.hover_actions
+    -- end
     return hover_fn
 end
 
