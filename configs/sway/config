@@ -168,8 +168,8 @@ bindsym $mod+greater move workspace to output right
 bindsym $mod+less move workspace to output left 
 
 # normal alt-tab behavior
-bindsym Mod1+Tab workspace next
-bindsym Mod1+Shift+Tab workspace prev
+bindsym Mod1+Tab workspace next_on_output
+bindsym Mod1+Shift+Tab workspace prev_on_output
 
 # reload the configuration file
 bindsym $mod+Shift+c exec sway reload
@@ -189,16 +189,16 @@ mode "resize" {
 # Pressing right will grow the window’s width.
 # Pressing up will shrink the window’s height.
 # Pressing down will grow the window’s height.
-    bindsym h resize shrink width 10 px or 10 ppt
-    bindsym j resize grow height 10 px or 10 ppt
-    bindsym k resize shrink height 10 px or 10 ppt
-    bindsym l resize grow width 10 px or 10 ppt
+    bindsym h resize shrink width 10 px or 1 ppt
+    bindsym j resize grow height 10 px or 1 ppt
+    bindsym k resize shrink height 10 px or 1 ppt
+    bindsym l resize grow width 10 px or 1 ppt
 
 # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 1 ppt
+    bindsym Down resize grow height 10 px or 1 ppt
+    bindsym Up resize shrink height 10 px or 1 ppt
+    bindsym Right resize grow width 10 px or 1 ppt
 
 # back to normal: Enter or Escape or $mod+r
     bindsym Return mode "default"
@@ -256,7 +256,7 @@ bar {
         focused_workspace #35363b #35363b #57a5e5
         active_workspace #1c1d1e #1c1d1e #8fb573
         inactive_workspace #1c1d1e #1c1d1e #a7aab0
-        urgent_workspace #1c1d1e #de6d68 #de6d68
+        urgent_workspace #1c1d1e #de6d68 #a7aab0
     }
 }
 
