@@ -142,4 +142,6 @@ require("lazy").setup({
     -- Rust-tools
     'https://github.com/mrcjkb/rustaceanvim',
 
+    -- Large language model integration
+    'https://github.com/David-Kunz/gen.nvim'
 })

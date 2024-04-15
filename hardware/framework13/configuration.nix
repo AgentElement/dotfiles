@@ -55,6 +55,7 @@
         IdleActionSec=10m
     '';
   };
+  services.ollama.enable = true;
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
