@@ -4,6 +4,7 @@
 
   imports = [
     ./firefox.nix
+    # ./steam.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -69,12 +70,28 @@
     # Proprietary crap
     steamcmd
     steam-tui
-    steam
+    # steam
+    gamescope
+
+    # games
+    endless-sky
+
+    
   ];
 
-  # programs.steam.enable = true;
+  nixpkgs.overlays = [
+    (final: prev: {
+      signal-desktop = prev.signal-desktop.overrideAttrs (oldAttrs: {
+        postInstall = (oldAttrs.postInstall or "") + ''
+          substituteInPlace $out/share/applications/signal-desktop.desktop --replace "/bin/signal-desktop --use-tray-icon --no-sandbox %U" "/bin/signal-desktop --no-sandbox --enable-features=UseOzonePlatform --ozone-platform=wayland %U"
+          touch $out/share/applications/test.txt
+        '';
+      });
+    })
+  ];
 
   fonts.fontconfig.enable = true;
+  # programs.steam.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -96,6 +113,7 @@
     ".config/git/config".source = ../configs/git/config;
     ".config/gdb/gdbinit".source = ../configs/gdb/gdbinit;
     ".config/fuzzel/fuzzel.ini".source = ../configs/fuzzel/fuzzel.ini;
+    ".config/bg/earth.jpg".source = ../configs/bg/earth.jpg;
   };
 
   programs.i3status-rust.enable = true;
@@ -132,4 +150,10 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # xdg.desktopEntries.signal = {
+  #   exec = "signal --enable-features=UseOzonePlatform --ozone-platform=wayland";
+  #   name = "Signal";
+  #
+  # };
 }
