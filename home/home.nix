@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ inputs, outputs, lib, config, pkgs, ... }:
 
 {
 
@@ -13,6 +13,13 @@
 
   # First home-manager release this config is compatible with. Do not change.
   home.stateVersion = "23.11"; # Please read the comment before changing.
+
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.modifications
+    ];
+  };
 
   home.packages = with pkgs; [
     # CLI tools
@@ -77,17 +84,6 @@
     endless-sky
 
     
-  ];
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      signal-desktop = prev.signal-desktop.overrideAttrs (oldAttrs: {
-        postInstall = (oldAttrs.postInstall or "") + ''
-          substituteInPlace $out/share/applications/signal-desktop.desktop --replace "/bin/signal-desktop --use-tray-icon --no-sandbox %U" "/bin/signal-desktop --no-sandbox --enable-features=UseOzonePlatform --ozone-platform=wayland %U"
-          touch $out/share/applications/test.txt
-        '';
-      });
-    })
   ];
 
   fonts.fontconfig.enable = true;
