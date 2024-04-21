@@ -39,6 +39,7 @@
     unzip
     pciutils
     usbutils
+    fd
 
     # Environment
     kitty
