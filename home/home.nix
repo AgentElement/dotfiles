@@ -4,7 +4,8 @@
 
   imports = [
     ./firefox.nix
-    # ./steam.nix
+    ./steam.nix
+    ./gamescope.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -34,6 +35,8 @@
     neovim
     traceroute
     nmap
+    zip
+    unzip
 
     # Environment
     kitty
@@ -53,6 +56,7 @@
     qalculate-gtk
     prismlauncher
     krita
+    libreoffice-qt
 
     # Devtools
     rustup
@@ -74,20 +78,21 @@
     inconsolata
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
 
-    # Proprietary crap
-    steamcmd
-    steam-tui
-    # steam
-    gamescope
-
     # games
     endless-sky
-
-    
   ];
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-run"
+    "steamcmd"
+  ];
+
+  programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+
   fonts.fontconfig.enable = true;
-  # programs.steam.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
