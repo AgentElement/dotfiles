@@ -37,6 +37,8 @@
     nmap
     zip
     unzip
+    pciutils
+    usbutils
 
     # Environment
     kitty
