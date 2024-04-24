@@ -24,18 +24,6 @@ set $mod mod4
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-#Start the gesture daemon on launch
-exec --no-startup-id libinput-gestures
-
-#Start flameshot on launch
-exec --no-startup-id flameshot
-
-#Start notification daemon
-exec --no-startup-id dunst
-
-#Start bar 
-exec --no-startup-id yambar
-
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume  @DEFAULT_SINK@ +10%     && $refresh_i3status
 bindsym XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-volume  @DEFAULT_SINK@ -10%     && $refresh_i3status
@@ -56,7 +44,7 @@ bindsym $mod+mod1+Shift+plus    exec ddcutil setvcp 12 + 10
 floating_modifier $mod
 
 # capture screenshots
-bindsym Print exec flameshot gui
+bindsym Print exec grim -g "$(slurp)" - | wl-copy
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id kitty
@@ -65,7 +53,7 @@ bindsym $mod+Return exec --no-startup-id kitty
 bindsym $mod+Shift+q kill
 bindsym Mod1+F4 kill
 
-# start wofi (a program launcher)
+# start fuzzel (a program launcher)
 bindsym $mod+space exec fuzzel
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -98,10 +86,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+b split h
+bindsym $mod+bracketleft split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+bracketright split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -164,8 +152,8 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # move container to right/left monitors
-bindsym $mod+greater move workspace to output right
-bindsym $mod+less move workspace to output left 
+bindsym $mod+comma move workspace to output right
+bindsym $mod+period move workspace to output left 
 
 # normal alt-tab behavior
 bindsym Mod1+Tab workspace next_on_output
@@ -205,6 +193,11 @@ mode "resize" {
     bindsym Escape mode "default"
     bindsym $mod+r mode "default"
 }
+
+bindsym $mod+Control+Left   seat - cursor move -10  0
+bindsym $mod+Control+Down   seat - cursor move  0   10
+bindsym $mod+Control+Up     seat - cursor move  0  -10
+bindsym $mod+Control+Right  seat - cursor move  10  0
 
 bindsym $mod+r mode "resize"
 
