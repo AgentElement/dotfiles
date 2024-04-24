@@ -1,7 +1,7 @@
 
 [[block]]
 block = "cpu"
-format = " $icon $utilization.eng() "
+format = " $icon $utilization "
 interval = 1
 
 [[block]]
@@ -18,11 +18,13 @@ format = " $icon { $volume | 0% } "
 
 [[block]]
 block = "backlight"
-format = " $icon $brightness.eng() "
+format = " $icon $brightness "
 
 [[block]]
 block = "battery"
-format = " $icon $percentage.eng() {$power} "
+format = " $icon $percentage {$power} "
+full_format = " $icon $percentage {$power} "
+empty_format = " $icon $percentage {$power} "
 
 
 [[block]]
