@@ -56,6 +56,7 @@
     '';
   };
   services.ollama.enable = true;
+  services.ollama.acceleration = "rocm";
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -128,6 +129,8 @@
     driSupport32Bit = true;
   };
 
+
+  services.colord.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
