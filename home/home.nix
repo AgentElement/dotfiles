@@ -26,7 +26,7 @@
     # CLI tools
     zsh
     chezmoi
-    neofetch
+    fastfetch
     lsd
     bat
     delta
@@ -57,9 +57,9 @@
     mpv
     inkscape
     qalculate-gtk
-    prismlauncher
     krita
     libreoffice-qt
+    ghidra
 
     # Devtools
     rustup
@@ -83,6 +83,7 @@
 
     # games
     endless-sky
+    prismlauncher
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -91,6 +92,13 @@
     "steam-run"
     "steamcmd"
   ];
+
+  home.pointerCursor = {
+      name = "phinger-cursors-light";
+      package = pkgs.phinger-cursors;
+      size = 32;
+      gtk.enable = true;
+  };
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
@@ -135,7 +143,7 @@
     enable = true;
     theme = {
       package = pkgs.gnome.gnome-themes-extra;
-      name = "Breeze-dark";
+      name = "Adwaita-dark";
     };
   };
 
