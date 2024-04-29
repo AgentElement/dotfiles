@@ -40,6 +40,7 @@
     pciutils
     usbutils
     fd
+    calcurse
 
     # Environment
     kitty
