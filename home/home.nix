@@ -41,6 +41,7 @@
     usbutils
     fd
     calcurse
+    pdftk
 
     # Environment
     kitty
