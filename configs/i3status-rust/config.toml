@@ -23,7 +23,7 @@ format = " $icon $brightness "
 [[block]]
 block = "battery"
 format = " $icon $percentage {$power} "
-full_format = " $icon $percentage {$power} "
+full_format = " $icon $percentage {$power | 0W} "
 empty_format = " $icon $percentage {$power} "
 
 
