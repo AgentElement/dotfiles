@@ -10,7 +10,7 @@ format = " $icon $mem_used "
 
 [[block]]
 block = "net"
-format = " $icon { $bitrate | 0b } "
+format = " $icon { $signal_strength | 0% } "
 
 [[block]]
 block = "sound"
