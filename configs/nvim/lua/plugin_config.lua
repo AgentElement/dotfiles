@@ -10,7 +10,7 @@ require('onedark').setup {
 
 require('gen').setup({
     opts = {
-        model = "mistral", -- The default model to use.
+        model = "llama3", -- The default model to use.
         host = "localhost", -- The host running the Ollama service.
         port = "11434", -- The port on which the Ollama service is listening.
         quit_map = "q", -- set keymap for close the response window
