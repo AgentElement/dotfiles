@@ -15,9 +15,9 @@
   # First home-manager release this config is compatible with. Do not change.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-
   nixpkgs = {
     overlays = [
+      outputs.overlays.additions
       outputs.overlays.modifications
     ];
   };
@@ -78,6 +78,7 @@
     texlab
     lua-language-server
     nixd
+    lsp-ai
 
     # Fonts
     inconsolata
@@ -164,10 +165,4 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  # xdg.desktopEntries.signal = {
-  #   exec = "signal --enable-features=UseOzonePlatform --ozone-platform=wayland";
-  #   name = "Signal";
-  #
-  # };
 }

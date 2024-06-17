@@ -1,5 +1,8 @@
 # This file defines overlays
 {inputs, ...}: {
+  # Bring in custom packages from the 'pkgs' directory
+  additions = final: prev: import ../pkgs final.pkgs;
+
   modifications = final: prev: {
       # This overlay passes a few arguments to the signal-desktop binary
       # in the signal-desktop.desktop file. The postInstall hook executes 

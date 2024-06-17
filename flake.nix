@@ -10,9 +10,17 @@
 
   outputs = { self, nixpkgs, home-manager, ... } @ inputs: 
   let inherit (self) outputs; 
+    systems = [
+      "x86_64-linux"
+    ];
+    # This is a function that generates an attribute by calling a function you
+    # pass to it, with each system as an argument
+    forAllSystems = nixpkgs.lib.genAttrs systems;
   in 
   {
+    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     overlays = import ./overlays {inherit inputs;};
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     nixosConfigurations = {
       delta = nixpkgs.lib.nixosSystem {
