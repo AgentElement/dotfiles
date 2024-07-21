@@ -1,23 +1,19 @@
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
-    ---------------------------------------------------------------------------
-    -- PACKER
-    -- 'https://github.com/wbthomason/packer.nvim',
-
     ---------------------------------------------------------------------------
     -- VISUALS
 
@@ -44,7 +40,7 @@ require("lazy").setup({
     'https://github.com/brenoprata10/nvim-highlight-colors',
 
     ---------------------------------------------------------------------------
-    -- GI
+    -- GIT
 
     -- Main git wrapper
     'https://github.com/tpope/vim-fugitive',
@@ -90,7 +86,7 @@ require("lazy").setup({
     'https://github.com/jbyuki/venn.nvim',
 
     -- Better / searching
-    'https://github.com/junegunn/vim-slash',
+    -- 'https://github.com/junegunn/vim-slash',
 
     ---------------------------------------------------------------------------
     -- LANGUAGE
@@ -101,14 +97,8 @@ require("lazy").setup({
         build = ':TSUpdate'
     },
 
-    -- LSP installer
-    -- "https://github.com/williamboman/mason.nvim",
-
-    -- mason/lspconfig bridge
-    -- "https://github.com/williamboman/mason-lspconfig.nvim",
-
     -- LSP configuration
-    "https://github.com/neovim/nvim-lspconfig",
+    { dir = "/storage/proj/clone/nvim-lspconfig/", branch = "lsp-ai" },
 
     -- Formatter
     "https://github.com/mhartington/formatter.nvim",
@@ -143,5 +133,16 @@ require("lazy").setup({
     'https://github.com/mrcjkb/rustaceanvim',
 
     -- Large language model integration
-    'https://github.com/David-Kunz/gen.nvim'
+    'https://github.com/David-Kunz/gen.nvim',
+
+    -- Lean theorem prover
+    {
+        'Julian/lean.nvim',
+        event = { 'BufReadPre *.lean', 'BufNewFile *.lean' },
+
+        dependencies = {
+            'neovim/nvim-lspconfig',
+            'nvim-lua/plenary.nvim',
+        },
+    }
 })

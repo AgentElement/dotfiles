@@ -57,6 +57,8 @@ require('nvim-tree').setup {
     },
 }
 
+require('lean').setup{ mappings = true }
+
 -- lsp_lines
 -- require("lsp_lines").register_lsp_virtual_lines()
 
@@ -77,7 +79,7 @@ require('nvim-treesitter.configs').setup({
 })
 
 --
-vim.g.floaterm_height = 0.3
+vim.g.floaterm_height = 0.4
 vim.g.floaterm_width = 0.99
 vim.g.floaterm_position = 'bottom'
 --
