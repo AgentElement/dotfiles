@@ -3,23 +3,23 @@ local keybindings = require('keybindings')
 -- Colorscheme
 require('onedark').setup {
     style = 'warmer',
-    -- highlights = {
-    --     CursorLine = {fmt = 'italic'}
-    -- }
 }
+
+require('onedark').load()
 
 require('gen').setup({
     opts = {
-        model = "llama3", -- The default model to use.
-        host = "localhost", -- The host running the Ollama service.
-        port = "11434", -- The port on which the Ollama service is listening.
-        quit_map = "q", -- set keymap for close the response window
+        model = "llama3",    -- The default model to use.
+        host = "localhost",  -- The host running the Ollama service.
+        port = "11434",      -- The port on which the Ollama service is listening.
+        quit_map = "q",      -- set keymap for close the response window
         retry_map = "<c-r>", -- set keymap to re-send the current prompt
         init = function(options) end,
         -- Function to initialize Ollama
         command = function(options)
-            local body = {model = options.model, stream = true}
-            return "curl --silent --no-buffer -X POST http://" .. options.host .. ":" .. options.port .. "/api/chat -d $body"
+            local body = { model = options.model, stream = true }
+            return "curl --silent --no-buffer -X POST http://" ..
+            options.host .. ":" .. options.port .. "/api/chat -d $body"
         end,
         -- The command for the Ollama service. You can use placeholders $prompt, $model and $body (shellescaped).
         -- This can also be a command string.
@@ -27,14 +27,13 @@ require('gen').setup({
         -- (context property is optional).
         -- list_models = '<omitted lua function>', -- Retrieves a list of model names
         display_mode = "split", -- The display mode. Can be "float" or "split".
-        show_prompt = true, -- Shows the prompt submitted to Ollama.
-        show_model = true, -- Displays which model you are using at the beginning of your chat session.
-        no_auto_close = false, -- Never closes the window automatically.
-        debug = false -- Prints errors and the command which is run.
+        show_prompt = true,     -- Shows the prompt submitted to Ollama.
+        show_model = true,      -- Displays which model you are using at the beginning of your chat session.
+        no_auto_close = false,  -- Never closes the window automatically.
+        debug = false           -- Prints errors and the command which is run.
     }
 })
 
-require('onedark').load()
 
 require('illuminate')
 
@@ -52,22 +51,15 @@ require('lualine').setup {
 require('nvim-tree').setup {
     view = {
         mappings = {
-            list =  keybindings.nvim_tree_keybindings
+            list = keybindings.nvim_tree_keybindings
         }
     },
 }
 
-require('lean').setup{ mappings = true }
+require('lean').setup { mappings = true }
 
 -- lsp_lines
 -- require("lsp_lines").register_lsp_virtual_lines()
-
--- indent-blankline
--- Character for indentation guides
-vim.g.indent_blankline_char = '▏'
--- vim.g.indent_blankline_char = '|'
-vim.g.indent_blankline_show_trailing_blankline_indent = 0
-vim.g.indent_blankline_filetype_exclude = { 'help', 'text' }
 
 -- treesitter
 require('nvim-treesitter.configs').setup({

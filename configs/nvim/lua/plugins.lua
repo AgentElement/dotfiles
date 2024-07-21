@@ -24,14 +24,8 @@ require("lazy").setup({
     'https://github.com/kyazdani42/nvim-web-devicons',
     'https://github.com/ryanoasis/vim-devicons',
 
-    -- View indentation guides
-    'https://github.com/lukas-reineke/indent-blankline.nvim',
-
     -- Status bar
     'https://github.com/nvim-lualine/lualine.nvim',
-
-    -- Smooth scrolling
-    -- 'https://github.com/psliwka/vim-smoothie'
 
     -- Semantic highlighting
     'https://github.com/RRethy/vim-illuminate',
@@ -80,7 +74,7 @@ require("lazy").setup({
     'https://github.com/Chiel92/vim-autoformat',
 
     -- Startup screen
-    'https://github.com/mhinz/vim-startify',
+    -- 'https://github.com/mhinz/vim-startify',
 
     -- ASCII diagrams in vim
     'https://github.com/jbyuki/venn.nvim',
