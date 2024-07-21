@@ -4,7 +4,6 @@ local keybindings = require('keybindings')
 require('onedark').setup {
     style = 'warmer',
 }
-
 require('onedark').load()
 
 require('gen').setup({
@@ -19,7 +18,7 @@ require('gen').setup({
         command = function(options)
             local body = { model = options.model, stream = true }
             return "curl --silent --no-buffer -X POST http://" ..
-            options.host .. ":" .. options.port .. "/api/chat -d $body"
+                options.host .. ":" .. options.port .. "/api/chat -d $body"
         end,
         -- The command for the Ollama service. You can use placeholders $prompt, $model and $body (shellescaped).
         -- This can also be a command string.
@@ -44,7 +43,23 @@ require('lualine').setup {
     options = {
         icons_enabled = true,
         theme = 'onedark'
-    }
+    },
+    sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_c = { 'filename' },
+        lualine_x = { 'encoding', 'fileformat' },
+        lualine_y = { 'filetype' },
+        lualine_z = { 'location' }
+    },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { 'filename' },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {}
+    },
 }
 
 -- nvim-tree
@@ -70,10 +85,14 @@ require('nvim-treesitter.configs').setup({
     }
 })
 
---
-vim.g.floaterm_height = 0.4
-vim.g.floaterm_width = 0.99
-vim.g.floaterm_position = 'bottom'
+
+-- toggleterm
+require('toggleterm').setup {
+    size = vim.o.lines * 0.4,
+    shade_terminals = false,
+    start_in_insert = false,
+}
+
 --
 -- vimtex
 vim.g.vimtex_compiler_progname = 'nvr'

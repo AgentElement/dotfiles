@@ -16,18 +16,9 @@ M.keybindings = {
     { 'n', '<C-K>', '<C-W><C-K>', opts },
     { 'n', '<C-L>', '<C-W><C-L>', opts },
 
-    { 'n', '<S-J>', '<C-E>', opts },
-    { 'n', '<S-K>', '<C-Y>', opts },
-
     { 'n', '<F1>', '<nop>', { noremap = false } },
-    { 'n', '<F12>', ':FloatermToggle<CR>', opts },
-    { 'n', '<F9>', ':FloatermNew<CR>', opts },
-    { 'n', '<F10>', ':FloatermPrev<CR>', opts },
-    { 'n', '<F11>', ':FloatermNext<CR>', opts },
-    { 't', '<F9>', '<C-\\><C-n>:FloatermNew<CR>', opts },
-    { 't', '<F10>', '<C-\\><C-n>:FloatermPrev<CR>', opts },
-    { 't', '<F11>', '<C-\\><C-n>:FloatermNext<CR>', opts },
-    { 't', '<F12>', '<C-\\><C-n>:FloatermToggle<CR>', opts },
+    { 'n', '<C-o>', ':ToggleTerm<CR>', opts },
+    { 't', '<C-o>', '<C-\\><C-n>:ToggleTerm<CR>', opts },
 
     { 'n', '<C-/>', "<plug>NERDCommenterToggle<CR>", { noremap = true } },
     { 'v', '<C-/>', '<plug>NERDCommenterToggle<CR>gv', { noremap = true } },
@@ -38,8 +29,6 @@ M.keybindings = {
     { 'n', '<leader>fh', '<cmd>Telescope help_tags<CR>', opts },
 
     { 'n', '<C-w>', ':NvimTreeToggle<CR>', opts },
-
-    { 'n', '<leader>ll', ':TexlabBuild<CR>', opts },
 }
 
 
