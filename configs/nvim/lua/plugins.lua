@@ -56,7 +56,8 @@ require("lazy").setup({
     },
 
     -- Floating terminal
-    'https://github.com/voldikss/vim-floaterm',
+    -- 'https://github.com/voldikss/vim-floaterm',
+    {'akinsho/toggleterm.nvim', version = "*", config = true},
 
     -- Better commenting
     'https://github.com/preservim/nerdcommenter',
