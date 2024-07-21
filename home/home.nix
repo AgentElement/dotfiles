@@ -4,8 +4,8 @@
 
   imports = [
     ./firefox.nix
-    ./steam.nix
-    ./gamescope.nix
+    # ./steam.nix
+    # ./gamescope.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -67,10 +67,13 @@
     rustup
     texlive.combined.scheme-full
     (python311.withPackages (ps: with ps; [
-      python-lsp-server
       pip
       numpy
     ]))
+    pyright
+    poetry
+    # pylyzer
+    ruff
     clang
     clang-tools
 
@@ -89,13 +92,6 @@
     prismlauncher
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-run"
-    "steamcmd"
-  ];
-
   home.pointerCursor = {
       name = "phinger-cursors-light";
       package = pkgs.phinger-cursors;
@@ -103,8 +99,8 @@
       gtk.enable = true;
   };
 
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
+  # programs.steam.enable = true;
+  # programs.steam.gamescopeSession.enable = true;
 
   fonts.fontconfig.enable = true;
 

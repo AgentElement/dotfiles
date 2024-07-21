@@ -1,7 +1,8 @@
 local lsp_list = {
     "texlab",
     "rust_analyzer",
-    "pylsp",
+    "pyright", -- TODO: change this to pylyzer once they figure out how to resolve local imports
+    "ruff",
     "cmake",
     "lua_ls",
     "openscad_lsp",
@@ -15,6 +16,8 @@ require('lspconfig')
 vim.diagnostic.config({
     virtual_text = false -- don't show diagnostics as inline virtual text
 })
+
+vim.lsp.set_log_level("debug")
 
 local keybindings = require('keybindings')
 
