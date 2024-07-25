@@ -70,18 +70,20 @@
       pip
       numpy
     ]))
-    pyright
     poetry
-    # pylyzer
-    ruff
     clang
     clang-tools
+    lean
 
     # Language servers
     texlab
     lua-language-server
     nixd
+    llm-ls
     lsp-ai
+    pyright
+    # pylyzer
+    ruff
 
     # Fonts
     inconsolata
@@ -141,7 +143,7 @@
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.gnome.gnome-themes-extra;
+      package = pkgs.gnome-themes-extra;
       name = "Adwaita-dark";
     };
   };
