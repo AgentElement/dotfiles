@@ -73,7 +73,7 @@
     poetry
     clang
     clang-tools
-    lean
+    lean4
 
     # Language servers
     texlab
