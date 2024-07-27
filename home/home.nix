@@ -73,7 +73,7 @@
     poetry
     clang
     clang-tools
-    lean4
+    elan
 
     # Language servers
     texlab
@@ -87,6 +87,7 @@
 
     # Fonts
     inconsolata
+    monaspace
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
 
     # games
