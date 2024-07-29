@@ -25,7 +25,6 @@
   home.packages = with pkgs; [
     # CLI tools
     zsh
-    chezmoi
     fastfetch
     lsd
     bat
