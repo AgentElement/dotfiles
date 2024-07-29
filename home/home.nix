@@ -40,8 +40,10 @@
     pciutils
     usbutils
     fd
+    ripgrep
     calcurse
     pdftk
+    pandoc
 
     # Environment
     kitty
@@ -62,6 +64,7 @@
     krita
     libreoffice-qt
     ghidra
+    kicad
 
     # Devtools
     rustup
