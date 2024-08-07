@@ -121,7 +121,6 @@
     ".config/nvim/lua/lsp.lua".source = ../configs/nvim/lua/lsp.lua;
     ".config/nvim/lua/plugin_config.lua".source = ../configs/nvim/lua/plugin_config.lua;
     ".config/nvim/lua/plugins.lua".source = ../configs/nvim/lua/plugins.lua;
-    ".config/neofetch/config.conf".source = ../configs/neofetch/config.conf;
     ".config/kitty/kitty.conf".source = ../configs/kitty/kitty.conf;
     ".config/i3status-rust/config.toml".source = ../configs/i3status-rust/config.toml;
     ".config/i3status-rust/icons/icon.toml".source = ../configs/i3status-rust/icons/icon.toml;
