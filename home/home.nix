@@ -24,68 +24,69 @@
 
   home.packages = with pkgs; [
     # CLI tools
-    zsh
-    fastfetch
-    lsd
-    bat
-    delta
-    zoxide
-    bottom
-    neovim
-    traceroute
-    nmap
-    zip
-    unzip
-    pciutils
-    usbutils
-    fd
-    ripgrep
-    calcurse
-    pdftk
-    pandoc
+    zsh                 # Shell
+    fastfetch           # Pretty system fetch
+    lsd                 # Pretty ls
+    bat                 # Pretty cat
+    delta               # Pretty diff
+    zoxide              # Fuzzy file navigation
+    bottom              # System monitor
+    neovim              # Text editor
+    traceroute          # traceroute
+    nmap                # Network scanner
+    zip                 # Make zip archives
+    unzip               # Unmake zip archives
+    pciutils            # lspci
+    usbutils            # lsusb
+    fd                  # Fuzzy find
+    ripgrep             # Fuzzy grep
+    calcurse            # Calendar
+    pdftk               # PDF toolkit
+    pandoc              # Document converter
 
     # Environment
-    kitty
-    fuzzel
-    wl-clipboard
-    grim
-    slurp
+    kitty               # Terminal emulator
+    fuzzel              # Launcher
+    wl-clipboard        # CLI interactions with wayland clipboard
+    grim                # Grab images from wayland
+    slurp               # Select region from wayland
+    kanata              # Keymap rebinds 
 
     # GUI tools
-    zathura
-    openscad
-    prusa-slicer
-    thunderbird
-    signal-desktop
-    mpv
-    inkscape
-    qalculate-gtk
-    krita
-    libreoffice-qt
-    ghidra
-    kicad
+    zathura             # PDF viewer
+    openscad            # Solid object modeling language
+    prusa-slicer        # STL slicer
+    thunderbird         # Email client
+    signal-desktop      # Messenger
+    mpv                 # Media player
+    inkscape            # Vector graphics editor
+    qalculate-gtk       # Calculator
+    krita               # Raster graphics editor
+    libreoffice-qt      # Office suite
+    ghidra              # Reverse engineering
+    kicad               # EDA suite
 
     # Devtools
-    rustup
-    texlive.combined.scheme-full
-    (python311.withPackages (ps: with ps; [
+    rustup                                      # rust
+    texlive.combined.scheme-full                # LaTeX
+    (python311.withPackages (ps: with ps; [     # python
       pip
       numpy
     ]))
-    poetry
-    clang
-    clang-tools
-    elan
+    poetry                                      # python build system
+    clang                                       # Cxx compiler, LSP 
+    clang-tools                                 # Cxx linter, formatter, etc
+    elan                                        # L∃∀N
 
     # Language servers
-    texlab
-    lua-language-server
-    nixd
-    llm-ls
-    lsp-ai
-    pyright
+    texlab                                      # LaTeX
+    lua-language-server                         # lua
+    nixd                                        # nix-lang
+    llm-ls                                      # language model
+    lsp-ai                                      # lanugage model
+    pyright                                     # python
     # pylyzer
-    ruff
+    ruff                                        # python linter
 
     # Fonts
     inconsolata
@@ -93,8 +94,8 @@
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
 
     # games
-    endless-sky
-    prismlauncher
+    endless-sky                                 # Trading game
+    prismlauncher                               # Minecraft launcher
   ];
 
   home.pointerCursor = {
@@ -131,10 +132,13 @@
     ".config/bg/earth.jpg".source = ../configs/bg/earth.jpg;
   };
 
+  # Status bar
   programs.i3status-rust.enable = true;
 
+  # Fuzzy finding
   programs.fzf.enable = true;
 
+  # Enable zsh and source the original .zshrc
   programs.zsh = {
     initExtra = ''
       source ~/.old_zshrc
