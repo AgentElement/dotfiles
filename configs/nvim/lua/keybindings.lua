@@ -3,51 +3,45 @@ local M = {}
 local opts = { noremap = true, silent = true }
 
 M.keybindings = {
-    { 'n', '<leader>ll', ':TexlabBuild<CR>',                opts },
-    { 'n', '<Tab>',      'gt',                              opts },
-    { 'n', '<S-Tab>',    'gT',                              opts },
-    { 'n', '<C-t>',      ':tabnew<CR>',                     opts },
+    { 'n', '<leader>ll', ':TexlabBuild<CR>',              opts },
+    { 'n', '<Tab>',      'gt',                            opts },
+    { 'n', '<S-Tab>',    'gT',                            opts },
+    { 'n', '<C-t>',      ':tabnew<CR>',                   opts },
 
-    { 'v', '<leader>vb', ':VBox<CR>',                       opts },
+    { 'v', '<leader>vb', ':VBox<CR>',                     opts },
 
     -- Window navigation
-    { 'n', '<C-H>',      '<C-W><C-H>',                      opts },
-    { 'n', '<C-J>',      '<C-W><C-J>',                      opts },
-    { 'n', '<C-K>',      '<C-W><C-K>',                      opts },
-    { 'n', '<C-L>',      '<C-W><C-L>',                      opts },
+    { 'n', '<C-H>',      '<C-W><C-H>',                    opts },
+    { 'n', '<C-J>',      '<C-W><C-J>',                    opts },
+    { 'n', '<C-K>',      '<C-W><C-K>',                    opts },
+    { 'n', '<C-L>',      '<C-W><C-L>',                    opts },
 
-    { 'n', '<F1>',       '<nop>',                           { noremap = false } },
+    { 'n', '<F1>',       '<nop>',                         { noremap = false } },
 
-    { 'n', '<C-o>',      ':ToggleTerm<CR>',                 opts },
-    { 't', '<C-o>',      '<C-\\><C-n>:ToggleTerm<CR>',      opts },
+    { 'n', '<leader>o',  ':ToggleTerm<CR>',               opts },
+    { 't', '<leader>o',  '<C-\\><C-n>:ToggleTerm<CR>',    opts },
 
-    { 'n', '<leader>ff', '<cmd>Telescope find_files<CR>',   opts },
-    { 'n', '<leader>fg', '<cmd>Telescope live_grep<CR>',    opts },
-    { 'n', '<leader>fb', '<cmd>Telescope buffers<CR>',      opts },
-    { 'n', '<leader>fh', '<cmd>Telescope help_tags<CR>',    opts },
+    { 'n', '<leader>ff', '<cmd>Telescope find_files<CR>', opts },
+    { 'n', '<leader>fg', '<cmd>Telescope live_grep<CR>',  opts },
+    { 'n', '<leader>fb', '<cmd>Telescope buffers<CR>',    opts },
+    { 'n', '<leader>fh', '<cmd>Telescope help_tags<CR>',  opts },
 
-    { 'n', '<C-w>',      ':NvimTreeToggle<CR>',             opts },
+    { 'n', '<leader>w',  ':NvimTreeToggle<CR>',           opts },
+    { 'n', '<leader>j',  ':',                             opts },
 }
 
 
 M.generate_lsp_attach_keybindings = function(tbl)
     local lsp_attach_keybindings = {
-        { 'n', '<F2>',      function() vim.lsp.buf.format({ async = true }) end,          opts },
-        { 'n', 'K',         tbl.hover_fn,                                                 opts },
-        { 'n', '<leader>]', vim.diagnostic.open_float,                                    opts },
+        { 'n', '<leader>k', function() vim.lsp.buf.format({ async = true }) end,          opts },
+        { 'n', '<leader>h', tbl.hover_fn,                                                 opts },
+        { 'n', '<leader>d', vim.diagnostic.open_float,                                    opts },
         { 'n', 'gD',        function() vim.lsp.buf.declaration({ reuse_win = true }) end, opts },
         { 'n', 'gd',        function() vim.lsp.buf.definition({ reuse_win = true }) end,  opts },
         { 'n', 'gi',        vim.lsp.buf.implementation,                                   opts },
     }
     return lsp_attach_keybindings
 end
-
-
-M.nvim_tree_keybindings = {
-    { key = "<C-w>", action = "close" },
-    { key = "A",     action = "edit_in_place" },
-}
-
 
 local cmp = require('cmp')
 if cmp == nil then

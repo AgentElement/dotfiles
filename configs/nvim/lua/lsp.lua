@@ -21,17 +21,10 @@ vim.lsp.set_log_level("debug")
 
 local keybindings = require('keybindings')
 
-local generate_hover_function = function()
-    local filetype = vim.bo.filetype;
-    local hover_fn = vim.lsp.buf.hover;
-    return hover_fn
-end
-
-
 local on_attach = function(client, bufnr)
     -- Add keybindings that are enabled when there is a LSP active
     local lsp_attach_keybindings = keybindings.generate_lsp_attach_keybindings({
-        hover_fn = generate_hover_function()
+        hover_fn = vim.lsp.buf.hover,
     })
     for _, binding in pairs(lsp_attach_keybindings) do
         binding[4].buffer = bufnr
@@ -41,7 +34,7 @@ local on_attach = function(client, bufnr)
     -- Change vertical ruler width to 100 on rust files when rust-lsp is active
     local filetype = vim.bo.filetype;
     if vim.tbl_contains({ "rust" }, filetype) then
-        vim.opt.colorcolumn="100"
+        vim.opt.colorcolumn = "100"
     end
 
     -- Show line diagnostics automatically in hover window
