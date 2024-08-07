@@ -52,8 +52,8 @@ vim.opt.wildmenu=true
 -- Search for words as you type
 vim.opt.incsearch=true
 
--- Vertical rulers
-vim.o.colorcolumn='80,120'
+-- Vertical ruler at 80 chars
+vim.opt.colorcolumn="80"
 
 -- The statusline shows the current mode, no need the redundant mode underneath
 vim.opt.showmode=false
@@ -94,6 +94,10 @@ vim.opt.splitbelow=true
 -- at vim startup
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- make leader key <space> instead of \
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
 
 require('plugins')
 require('plugin_config')
