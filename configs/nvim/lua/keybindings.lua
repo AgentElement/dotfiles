@@ -17,11 +17,9 @@ M.keybindings = {
     { 'n', '<C-L>',      '<C-W><C-L>',                      opts },
 
     { 'n', '<F1>',       '<nop>',                           { noremap = false } },
+
     { 'n', '<C-o>',      ':ToggleTerm<CR>',                 opts },
     { 't', '<C-o>',      '<C-\\><C-n>:ToggleTerm<CR>',      opts },
-
-    { 'n', '<C-/>',      "<plug>NERDCommenterToggle<CR>",   { noremap = true } },
-    { 'v', '<C-/>',      '<plug>NERDCommenterToggle<CR>gv', { noremap = true } },
 
     { 'n', '<leader>ff', '<cmd>Telescope find_files<CR>',   opts },
     { 'n', '<leader>fg', '<cmd>Telescope live_grep<CR>',    opts },
@@ -66,11 +64,6 @@ M.cmp_mapping_keybindings = {
     ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item({
         behavior = cmp.SelectBehavior.Insert
     }), { 'i', 'c' }),
-    --        ['<S-TAB>'] = cmp.mapping({
-    --            c = cmp.mapping.confirm({ select = false }),
-    --        }),
-
-    --        ['<TAB>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
 }
 
 for _, binding in pairs(M.keybindings) do
