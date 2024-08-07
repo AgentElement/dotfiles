@@ -30,7 +30,7 @@ require("lazy").setup({
     -- Semantic highlighting
     'https://github.com/RRethy/vim-illuminate',
 
-    -- Colors
+    -- Highlight color codes (eg #222222)
     'https://github.com/brenoprata10/nvim-highlight-colors',
 
     ---------------------------------------------------------------------------
@@ -56,11 +56,7 @@ require("lazy").setup({
     },
 
     -- Floating terminal
-    -- 'https://github.com/voldikss/vim-floaterm',
     {'akinsho/toggleterm.nvim', version = "*", config = true},
-
-    -- Better commenting
-    'https://github.com/preservim/nerdcommenter',
 
     -- Neovim sidebar file manager
     {
@@ -74,14 +70,8 @@ require("lazy").setup({
     -- Autoformatting
     'https://github.com/Chiel92/vim-autoformat',
 
-    -- Startup screen
-    -- 'https://github.com/mhinz/vim-startify',
-
     -- ASCII diagrams in vim
     'https://github.com/jbyuki/venn.nvim',
-
-    -- Better / searching
-    -- 'https://github.com/junegunn/vim-slash',
 
     ---------------------------------------------------------------------------
     -- LANGUAGE
@@ -93,7 +83,7 @@ require("lazy").setup({
     },
 
     -- LSP configuration
-    { dir = "/storage/proj/clone/nvim-lspconfig/", branch = "lsp-ai" },
+    'https://github.com/neovim/nvim-lspconfig',
 
     -- Formatter
     "https://github.com/mhartington/formatter.nvim",
@@ -117,22 +107,15 @@ require("lazy").setup({
     -- OpenSCAD extension
     'https://github.com/salkin-mada/openscad.nvim',
 
-
-    -- LaTeX suite
-    -- 'https://github.com/lervag/vimtex'
+    -- Rust tools
+    'https://github.com/mrcjkb/rustaceanvim',
 
     -- C++ clangd_extensions
     'https://github.com/p00f/clangd_extensions.nvim',
 
-    -- Rust-tools
-    'https://github.com/mrcjkb/rustaceanvim',
-
-    -- Large language model integration
-    'https://github.com/David-Kunz/gen.nvim',
-
     -- Lean theorem prover
     {
-        'Julian/lean.nvim',
+        'https://github.com/Julian/lean.nvim',
         event = { 'BufReadPre *.lean', 'BufNewFile *.lean' },
 
         dependencies = {
