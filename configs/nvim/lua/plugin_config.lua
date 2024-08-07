@@ -16,6 +16,8 @@ require('lualine').setup {
         icons_enabled = true,
         theme = 'onedark'
     },
+
+    -- Sections under an active buffer
     sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
@@ -24,6 +26,8 @@ require('lualine').setup {
         lualine_y = { 'filetype' },
         lualine_z = { 'location' }
     },
+
+    -- Sections under all other buffers
     inactive_sections = {
         lualine_a = {},
         lualine_b = {},
@@ -36,11 +40,11 @@ require('lualine').setup {
 
 -- nvim-tree
 require('nvim-tree').setup {
-    view = {
-        mappings = {
-            list = keybindings.nvim_tree_keybindings
+    renderer = {
+        indent_markers = {
+            enable = true,
         }
-    },
+    }
 }
 
 require('lean').setup {
@@ -77,16 +81,28 @@ require('lean').setup {
 -- require("lsp_lines").register_lsp_virtual_lines()
 
 -- treesitter
-require('nvim-treesitter.configs').setup({
+require('nvim-treesitter.configs').setup {
     -- Ensure all treesitter parsers are installed
     ensure_installed = "all",
-    
+
+    -- Install parsers synchronously
+    sync_install = false,
+
+    -- Don't automatically install parsers
+    auto_install = false,
+
+    -- Really, don't ignore anything. I want ALL the parsers.
+    ignore_install = {},
+
+    -- I don't know what this is, but lua-ls complains if it isn't here.
+    modules = {},
+
     -- enable highlighting and disable vim's default regex-based highlighting
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
     }
-})
+}
 
 
 -- toggleterm
