@@ -24,10 +24,6 @@ local keybindings = require('keybindings')
 local generate_hover_function = function()
     local filetype = vim.bo.filetype;
     local hover_fn = vim.lsp.buf.hover;
-    -- if vim.tbl_contains({ "rust" }, filetype) and packer_plugins["rust-tools.nvim"] then
-    --     local rust_tools = require('rust-tools')
-    --     hover_fn = rust_tools.hover_actions.hover_actions
-    -- end
     return hover_fn
 end
 
@@ -42,6 +38,11 @@ local on_attach = function(client, bufnr)
         vim.keymap.set(binding[1], binding[2], binding[3], binding[4])
     end
 
+    -- Change vertical ruler width to 100 on rust files when rust-lsp is active
+    local filetype = vim.bo.filetype;
+    if vim.tbl_contains({ "rust" }, filetype) then
+        vim.opt.colorcolumn="100"
+    end
 
     -- Show line diagnostics automatically in hover window
     vim.api.nvim_create_autocmd("CursorMoved", {
