@@ -8,12 +8,12 @@
         isDefault = true;
 
         search = {
-          default = "searxng.site";
+          default = "opnxng.com";
           force = true;
           engines = {
             "searxng.site" = {
               urls = [{
-                template = "https://searxng.site";
+                template = "https://opnxng.com";
                 params = [
                   {name = "q"; value = "{searchTerms}";}
                   {name = "safesearch"; value = "0";}
