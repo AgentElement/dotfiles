@@ -65,6 +65,7 @@
     libreoffice-qt      # Office suite
     ghidra              # Reverse engineering
     kicad               # EDA suite
+    swappy              # Snapshot editor tool
 
     # Devtools
     rustup                                      # rust
@@ -90,7 +91,6 @@
 
     # Fonts
     inconsolata
-    monaspace
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
 
     # games
