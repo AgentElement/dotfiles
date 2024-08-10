@@ -51,6 +51,9 @@ alias find="fd"
 alias notemk="touch `date -I`.txt"
 alias enote='nvim `ls -1 | grep -P \"\d{4}-[01]\d-[0-3]\d\.txt\" | tail -1`'
 
+alias nixdev="nix develop -c zsh"
+alias hm-switch="home-manager switch --flake ~/dotfiles/.#agentelement"
+
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey -v
@@ -108,8 +111,8 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls'
+# preview directory's content with lsd when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd'
 
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
