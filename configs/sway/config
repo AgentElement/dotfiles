@@ -29,7 +29,6 @@ set {
 }
 
 
-
 # Global keybindings
 bindsym {
 
@@ -60,7 +59,7 @@ bindsym {
 
 
     # printscreen captures screenshots
-    Print exec grim -g "$(slurp)" - | wl-copy
+    Print exec grim -g "$(slurp)" - | snappy -f -
 
     # start a terminal
     $mod+Return exec --no-startup-id kitty
