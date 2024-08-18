@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{pkgs, ... }:
+{pkgs, lib, ... }:
 
 {
   imports =
@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
     ];
 
+  # Bootloader configuration
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub.device = "nodev";
@@ -17,6 +18,7 @@
   boot.loader.grub.enableCryptodisk = true;
   boot.loader.grub.efiSupport = true;
   
+  # LUKS on LVM encryption
   boot.initrd.luks.devices = {
     root = {
       device = "/dev/disk/by-uuid/24e1e6e4-5c97-46d1-81af-35f075673d3c";
@@ -44,10 +46,15 @@
     useXkbConfig = true; # use xkb.options in tty.
   };
 
+  # Backlight control
   programs.light.enable = true;
 
+  # Better power management
   services.power-profiles-daemon.enable = true;
   services.udisks2.enable = true;
+
+  # Make the lid switch suspend instead of shut down, suspend after 10 minutes
+  # of inactivity
   services.logind = {
     lidSwitch = "suspend";
     extraConfig = ''
@@ -55,17 +62,12 @@
         IdleActionSec=10m
     '';
   };
+
+  # Language model
   services.ollama.enable = true;
   services.ollama.acceleration = "rocm";
 
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
+  # Enable sound
   security.rtkit.enable = true;
   security.polkit.enable = true;
   services.pipewire = {
@@ -75,12 +77,25 @@
     pulse.enable = true;
   };
 
+  # Give users access to /storage
   users.groups.storage = {};
 
+  # Give users access to the uinput group. Required for kanata
+  users.groups.uinput = {};
+
+  # Enable uinput
+  hardware.uinput.enable = true;
+
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
+
+  # Install + enable zsh
   programs.zsh.enable = true;
+    
+  # The agentelement user (hey, that's me!)
   users.users.agentelement = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "storage" "networkmanager" "docker" ];
+    extraGroups = [ "wheel" "video" "storage" "networkmanager" "docker" "input" "uinput"];
     shell = pkgs.zsh;
   };
 
@@ -92,10 +107,26 @@
     light
     pulseaudio
     gnupg
+    bluez
   ];
 
-  programs.gnupg.agent.enable = true;
+  # Beware, proprietary garbage here.
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+     "steam"
+     "steam-original"
+     "steam-run"
+  ];
 
+  programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+
+  # GPG with ssh support
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  # login screen
   services.greetd = {
     enable = true;
     settings = {
@@ -109,6 +140,7 @@
     };
   };
 
+  # Enable nix flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   programs.sway = {
@@ -120,16 +152,19 @@
     sway
   '';
 
+
+  # Required for docker to work correctly
   virtualisation.docker.enable = true;
 
   # Fix github.com/NixOS/nixpkgs/issues/47932 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+  # hardware.opengl = {
+  #   enable = true;
+  #   driSupport = true;
+  #   driSupport32Bit = true;
+  # };
 
 
+  # Color management
   services.colord.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -137,7 +172,6 @@
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
   #   enable = true;
-  #   enableSSHSupport = true;
   # };
 
   # List services that you want to enable:
