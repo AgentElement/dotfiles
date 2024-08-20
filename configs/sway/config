@@ -59,7 +59,7 @@ bindsym {
 
 
     # printscreen captures screenshots
-    Print exec grim -g "$(slurp)" - | snappy -f -
+    Print exec grim -g "$(slurp)" - | swappy -f -
 
     # start a terminal
     $mod+Return exec --no-startup-id kitty
@@ -176,6 +176,7 @@ mode "resize" {
 
 # Desktop background
 exec_always --no-startup-id feh --bg-fill $HOME/.config/bg/earth.jpg
+exec_always --no-startup-id kanata
 
 # 2px borders, hidden when only one window is in the workspace
 default_border pixel 2
