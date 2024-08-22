@@ -130,6 +130,7 @@
     ".config/gdb/gdbinit".source = ../configs/gdb/gdbinit;
     ".config/fuzzel/fuzzel.ini".source = ../configs/fuzzel/fuzzel.ini;
     ".config/bg/earth.jpg".source = ../configs/bg/earth.jpg;
+    ".config/kanata/kanata.kbd".source = ../configs/kanata/kanata.kbd;
   };
 
   # Status bar
