@@ -11,7 +11,7 @@
           default = "opnxng.com";
           force = true;
           engines = {
-            "searxng.site" = {
+            "opnxng.com" = {
               urls = [{
                 template = "https://opnxng.com";
                 params = [
@@ -24,6 +24,7 @@
         };
 
         settings = {
+            "layout.css.devPixelsPerPx" = 1.8;
             "browser.startup.homepage" = "chrome://browser/content/blanktab.html";
             "browser.search.region" = "US";
             "browser.theme.content-theme" = 0;
