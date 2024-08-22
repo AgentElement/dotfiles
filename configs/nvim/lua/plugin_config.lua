@@ -65,7 +65,7 @@ require('lean').setup {
 
     stderr = {
         enable = true,
-        -- height of the window
+        -- Height of the window
         height = 5,
         -- a callback which will be called with (multi-line) stderr output
         -- e.g., use:
@@ -76,9 +76,6 @@ require('lean').setup {
         on_lines = nil,
     },
 }
-
--- lsp_lines
--- require("lsp_lines").register_lsp_virtual_lines()
 
 -- treesitter
 require('nvim-treesitter.configs').setup {
