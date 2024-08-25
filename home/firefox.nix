@@ -24,7 +24,7 @@
         };
 
         settings = {
-            "layout.css.devPixelsPerPx" = 1.8;
+            "layout.css.devPixelsPerPx" = 1.6;
             "browser.startup.homepage" = "chrome://browser/content/blanktab.html";
             "browser.search.region" = "US";
             "browser.theme.content-theme" = 0;
@@ -57,7 +57,7 @@
       DontCheckDefaultBrowser = true;
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
-      EnableTrackingProtectioon = {
+      EnableTrackingProtection = {
         Value = true;
         Locked = true;
         Cryptomining = true;
