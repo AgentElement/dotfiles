@@ -212,7 +212,7 @@ input type:touchpad {
 
 input * {
     # Swap caps and esc for all keyboards
-    xkb_options caps:swapescape
+    # xkb_options caps:swapescape
 }
 
 # Scale framework laptop display
@@ -222,7 +222,7 @@ output eDP-1 scale 2
 output DP-2 scale 2
 
 # Use phinger-cursors
-seat seat0 xcursor_theme phinger-cursors-light 32
+seat seat0 xcursor_theme phinger-cursors-light 24
 
 bar {
     font pango:Inconsolata 8
