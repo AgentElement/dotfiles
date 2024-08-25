@@ -43,6 +43,7 @@
     calcurse            # Calendar
     pdftk               # PDF toolkit
     pandoc              # Document converter
+    imagemagick         # Image manipulation suite
 
     # Environment
     kitty               # Terminal emulator
@@ -101,7 +102,7 @@
   home.pointerCursor = {
       name = "phinger-cursors-light";
       package = pkgs.phinger-cursors;
-      size = 32;
+      size = 24;
       gtk.enable = true;
   };
 
@@ -131,10 +132,13 @@
     ".config/fuzzel/fuzzel.ini".source = ../configs/fuzzel/fuzzel.ini;
     ".config/bg/earth.jpg".source = ../configs/bg/earth.jpg;
     ".config/kanata/kanata.kbd".source = ../configs/kanata/kanata.kbd;
+    ".config/hypr/hyprland.conf".source = ../configs/hypr/hyprland.conf;
+    ".config/waybar/config.jsonc".source = ../configs/waybar/config.jsonc;
+    ".config/waybar/style.css".source = ../configs/waybar/style.css;
   };
 
   # Status bar
-  programs.i3status-rust.enable = true;
+  programs.waybar.enable = true;
 
   # Fuzzy finding
   programs.fzf.enable = true;

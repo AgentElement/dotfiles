@@ -1,0 +1,124 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "top", // Waybar at top layer
+  "position": "top", // Waybar position (top|bottom|left|right)
+  "height": 0, // Waybar height (to be removed for auto height)
+  "spacing": 0, // Gaps between modules (4px)
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "network",
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "power-profiles-daemon",
+    "tray",
+  ],
+  "modules-left": [
+      "hyprland/workspaces",
+  ],
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+  "clock": {
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "interval": 10,
+    "format": "{:%a %Y-%m-%d %R %Z}",
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "on-scroll-up": "light -A 1",
+    "on-scroll-down": "light -U 1",
+    "format-icons": [
+        "󰃞",
+        "󰃟",
+        "󰃠",
+    ]
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}% {power}W",
+    "format-full": "{icon} {capacity}% {power}W",
+    "format-charging": "{icon} {capacity}% {power}W",
+    "format-plugged": "{icon} {capacity}% {power}W",
+    "format-alt": "{icon} {time} {cycles} {health}",
+    "format-icons": [
+        "󰂎",
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂",
+        "󰁹",
+    ]
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": "",
+    }
+  },
+  "network": {
+    "format-wifi": " {essid} ({signalStrength}%)",
+    "format-ethernet": "󰈀 {ipaddr}/{cidr}",
+    "tooltip-format": "󰩠 {ifname} via {gwaddr}",
+    "format-linked": "󰅛 {ifname} (No IP) ",
+    "format-disconnected": "⚠ Disconnected",
+    "format-alt": "{ipaddr}/{cidr}"
+  },
+  "pulseaudio": {
+    "scroll-step": 1,
+    "format": "{icon} {volume}% {format_source}",
+    "format-bluetooth": "{icon} {volume}% {format_source}",
+    "format-bluetooth-muted": "  {icon} {format_source}",
+    "format-muted": "  0% {format_source}",
+    "format-source": "  {volume}%",
+    "format-source-muted": " 0%",
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        "",
+      ]
+    },
+    "on-click": "pavucontrol",
+    "ignored-sinks": [
+      "Easy Effects Sink"
+    ]
+  },
+  "cpu": {
+      "format": "{icon} {usage}%",
+      "format-icons": [""],
+  },
+  "memory": {
+      "format": "{icon} {percentage}%",
+      "format-icons": ["󰘚"],
+  },
+
+  "hyprland/workspaces": {
+         "format": "{icon}",
+         "on-scroll-up": "hyprctl dispatch workspace e+1",
+         "on-scroll-down": "hyprctl dispatch workspace e-1"
+  }
+}

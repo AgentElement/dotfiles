@@ -1,0 +1,164 @@
+@define-color black #101012;
+@define-color bg0 #232326;
+@define-color bg1 #2c2d31;
+@define-color bg2 #35363b;
+@define-color bg3 #37383d;
+@define-color bg_d #1b1c1e;
+@define-color bg_blue #68aee8;
+@define-color bg_yellow #e2c792;
+@define-color fg #a7aab0;
+@define-color purple #bb70d2;
+@define-color green #8fb573;
+@define-color orange #c49060;
+@define-color blue #57a5e5;
+@define-color yellow #dbb671;
+@define-color cyan #51a8b3;
+@define-color red #de5d68;
+@define-color grey #5a5b5e;
+@define-color light_grey #818387;
+@define-color dark_cyan #2b5d63;
+@define-color dark_red #833b3b;
+@define-color dark_yellow #7c5c20;
+@define-color dark_purple #79428a;
+@define-color diff_add #282b26;
+@define-color diff_delete #2a2626;
+@define-color diff_change #1a2a37;
+@define-color diff_text #2c485f;
+
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: Inconsolata;
+  font-size: 8pt;
+  padding: 0.5 0px;
+  min-height: 0; 
+}
+
+window#waybar {
+  background-color: @bg_d;
+  color: @fg;
+  transition-property: background-color;
+}
+
+window {
+  border-radius: 0px;
+}
+
+button {
+  border: none;
+  margin: 0px;
+  padding: 0 0px;
+  border-radius: 4px;
+}
+
+#workspaces button {
+  padding: 0 0px;
+  margin: 0px 2px;
+  color: @fg;
+  background-color: @bg3;
+}
+
+/* If workspaces is the leftmost module, increase left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 8px;
+}
+
+#workspaces button.focused {
+	color: @blue;
+}
+
+#workspaces button:hover {
+    color: @grey;  
+	background-color: @bg_blue;
+}
+
+#workspaces button:hover {
+	box-shadow: inherit;
+	text-shadow: inherit;
+}
+
+#workspaces button.urgent {
+  background-color: @red;
+  color: @fg;
+}
+
+
+#power-profiles-daemon,
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#mpd {
+  padding: 0 10px;
+  color: @fg;
+  border-radius: 0px;
+  margin: 0px 0px;
+}
+
+
+#power-profiles-daemon.performance {
+  color: @red;
+}
+#power-profiles-daemon.balanced {
+  color: @blue;
+}
+#power-profiles-daemon.power-saver {
+  color: @green;
+}
+
+#battery {
+  background-color: @bg_d;
+  color: @green;
+}
+
+#battery.warning {
+  background-color: @bg_d;
+  color: @yellow;
+}
+
+#battery.charging, #battery.plugged, #battery.full {
+  background-color: @bg_d;
+  color: @green;
+}
+
+@keyframes blink {
+to {
+  background-color: @red;
+  color: @fg;
+}
+}
+
+#battery.critical:not(.charging) {
+  background-color: @bg_d;
+  color: @red;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#tray {
+  background-color: @base;
+  color: @text;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: @red;
+}
+
