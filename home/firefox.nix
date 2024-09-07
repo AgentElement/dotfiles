@@ -1,4 +1,5 @@
-{config, pkgs, ...}: { 
+{ config, pkgs, ... }:
+{
   programs.firefox = {
     enable = true;
     profiles = {
@@ -12,28 +13,36 @@
           force = true;
           engines = {
             "opnxng.com" = {
-              urls = [{
-                template = "https://opnxng.com";
-                params = [
-                  {name = "q"; value = "{searchTerms}";}
-                  {name = "safesearch"; value = "0";}
-                ];
-              }];
+              urls = [
+                {
+                  template = "https://opnxng.com";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                    {
+                      name = "safesearch";
+                      value = "0";
+                    }
+                  ];
+                }
+              ];
             };
           };
         };
 
         settings = {
-            "layout.css.devPixelsPerPx" = 1.6;
-            "browser.startup.homepage" = "chrome://browser/content/blanktab.html";
-            "browser.search.region" = "US";
-            "browser.theme.content-theme" = 0;
-            "browser.theme.toolbar-theme" = 0;
-            "browser.toolbars.bookmarks.visibility" = "never";
-            "browser.urlbar.suggest.quicksuggest.sponsored" = false;
-            "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
-            "browser.tabs.inTitlebar" = 0;
-            "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+          "layout.css.devPixelsPerPx" = 1.6;
+          "browser.startup.homepage" = "chrome://browser/content/blanktab.html";
+          "browser.search.region" = "US";
+          "browser.theme.content-theme" = 0;
+          "browser.theme.toolbar-theme" = 0;
+          "browser.toolbars.bookmarks.visibility" = "never";
+          "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+          "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
+          "browser.tabs.inTitlebar" = 0;
+          "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
         };
 
         containersForce = true;
@@ -48,6 +57,12 @@
             id = 2;
             color = "red";
             icon = "fruit";
+          };
+
+          music = {
+            id = 3;
+            color = "purple";
+            icon = "chill";
           };
         };
       };
@@ -97,7 +112,6 @@
         };
 
         # stylus
-
       };
     };
   };
