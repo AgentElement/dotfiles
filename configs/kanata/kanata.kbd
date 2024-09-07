@@ -10,57 +10,130 @@
     esc
     grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
     tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-    caps  a    s    d    f    g    h    j    k    l    ;    '    ret
+    caps a    s    d    f    g    h    j    k    l    ;    '    ret
     lsft z    x    c    v    b    n    m    ,    .    /    rsft
     lctl lmet lalt           spc            ralt rmet rctl
 )
 
 (deflayer qwerty 
     caps 
-    grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-    tab  q    @cw  @ce  r    t    y    u    @ci  @co  p    [    ]    \
-    esc  a    @cs  @cd  f    g    h    j    @ck  @cl  ;    '    ret
-    lsft z    x    c    v    b    n    m    ,    .    /    rsft
+    @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+    tab  q    @qcw @qce r    t    y    u    @qci @qco p    [    ]    \
+    esc  a    @qcs @qcd f    g    h    j    @qck @qcl ;    '    ret
+    lsft z    x    c    v    b    n    m    ,    .    /    _
     lctl lmet lalt           @sps           ralt rmet rctl
 )
 
-(defalias
-    cw (chord tab w)    
-    ce (chord tab e)
-
-    cs (chord esc s)
-    cd (chord esc d)
-
-    ci (chord bspc i)    
-    co (chord bspc o)
-
-    ck (chord ret k)
-    cl (chord ret l)
-
-    sps (tap-hold 200 200 spc lshift)
+(deflayer colemak-dh 
+    caps 
+    @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+    tab  q    @ccw @ccf p    b    j    l    @ccu @ccy  '    [    ]    \
+    esc  a    @ccr @ccs t    g    m    n    @cce @cci o    ;    ret
+    lsft z    x    c    d    v    k    h    ,    .    /    _
+    lctl lmet lalt           @sps           ralt rmet rctl
 )
 
-(defchords ret 35
+
+
+(deflayer default 
+    caps
+    @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+    tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+    esc  a    s    d    f    g    h    j    k    l    ;    '    ret
+    lsft z    x    c    v    b    n    m    ,    .    /    rsft
+    lctl lmet lalt           spc            ralt rmet rctl
+)
+
+(deflayer layers
+  _
+  _    @def @qwr @cmk _    _    _    _    _    _    lrld    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+)
+
+
+
+(defalias
+    qcw (chord qwrtab w)    
+    qce (chord qwrtab e)
+
+    qcs (chord qwresc s)
+    qcd (chord qwresc d)
+
+    qci (chord qwrbspc i)    
+    qco (chord qwrbspc o)
+
+    qck (chord qwrret k)
+    qcl (chord qwrret l)
+
+    ccw (chord cmktab w)
+    ccf (chord cmktab f)
+
+    ccr (chord cmkesc r)
+    ccs (chord cmkesc s)
+
+    ccu (chord cmkbspc u)    
+    ccy (chord cmkbspc y)
+
+    cce (chord cmkret e)
+    cci (chord cmkret i)
+
+    sps (tap-hold 200 200 spc lshift)
+
+    grl (tap-hold 200 200 grv (layer-toggle layers))
+
+    def (layer-switch default)
+    qwr (layer-switch qwerty)
+    cmk (layer-switch colemak-dh)
+)
+
+(defchords qwrret 35
     (k  ) k
     (  l) l
     (k l) ret
 )
 
-(defchords bspc 35
+(defchords qwrbspc 35
     (i  ) i
     (  o) o
     (i o) bspc 
 )
 
-(defchords esc 35
+(defchords qwresc 35
     (s  ) s
     (  d) d
     (s d) esc
 )
 
-(defchords tab 35
+(defchords qwrtab 35
     (w  ) w
     (  e) e
     (w e) tab
+)
+
+(defchords cmkret 35
+    (e  ) e
+    (  i) i
+    (e i) ret
+)
+
+(defchords cmkbspc 35
+    (u  ) u
+    (  y) y
+    (u y) bspc 
+)
+
+(defchords cmkesc 35
+    (r  ) r
+    (  s) s
+    (r s) esc
+)
+
+(defchords cmktab 35
+    (w  ) w
+    (  f) f
+    (w f) tab
 )
 
