@@ -1,3 +1,1 @@
-pkgs: {
-    lsp-ai = pkgs.callPackage ./lsp-ai {};
-}
+pkgs: { lsp-ai = pkgs.callPackage ./lsp-ai { }; }

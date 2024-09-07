@@ -1,5 +1,10 @@
-{ lib, fetchFromGitHub, rustPlatform, pkg-config, openssl }:
-
+{
+  lib,
+  fetchFromGitHub,
+  rustPlatform,
+  pkg-config,
+  openssl,
+}:
 rustPlatform.buildRustPackage rec {
   pname = "lsp-ai";
   version = "0.2.0";
@@ -32,6 +37,6 @@ rustPlatform.buildRustPackage rec {
     description = "LSP-AI is an open-source language server that serves as a backend for AI-powered functionality.";
     homepage = "https://github.com/SilasMarvin/lsp-ai";
     license = lib.licenses.mit;
-    maintainers = [];
+    maintainers = [ ];
   };
 }
