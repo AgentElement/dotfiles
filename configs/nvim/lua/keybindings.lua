@@ -28,6 +28,10 @@ M.keybindings = {
 
     { 'n', '<leader>w',  ':NvimTreeToggle<CR>',           opts },
     { 'n', '<leader>j',  ':',                             opts },
+
+    { 'n', '<leader>y',  '"+y',                           opts },
+    { 'n', '<leader>p',  '"+p',                           opts },
+
 }
 
 
