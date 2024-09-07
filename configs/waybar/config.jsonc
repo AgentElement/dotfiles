@@ -14,6 +14,7 @@
     "pulseaudio",
     "backlight",
     "battery",
+    "bluetooth",
     "power-profiles-daemon",
     "tray",
   ],
@@ -41,13 +42,14 @@
   },
   "battery": {
     "states": {
-      "warning": 30,
-      "critical": 15
+      "low": 30,
+      "warning": 15,
+      "critical": 5
     },
-    "format": "{icon} {capacity}% {power}W",
-    "format-full": "{icon} {capacity}% {power}W",
-    "format-charging": "{icon} {capacity}% {power}W",
-    "format-plugged": "{icon} {capacity}% {power}W",
+    "format": "{icon} {capacity}% {power:>}W",
+    "format-full": "{icon} {capacity}% {power:>}W",
+    "format-charging": "{icon} {capacity}% {power:>}W",
+    "format-plugged": "{icon} {capacity}% {power:>}W",
     "format-alt": "{icon} {time} {cycles} {health}",
     "format-icons": [
         "󰂎",
@@ -114,6 +116,15 @@
   "memory": {
       "format": "{icon} {percentage}%",
       "format-icons": ["󰘚"],
+  },
+
+  "bluetooth": {
+      "format-on": "󰂯",
+      "format-off": "󰂲",
+      "format-disabled": "",
+      "format-connected": "󰂱 {num_connections}",
+      "tooltip-format-connected": "{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}"
   },
 
   "hyprland/workspaces": {

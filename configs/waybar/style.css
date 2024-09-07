@@ -29,7 +29,7 @@
   /* `otf-font-awesome` is required to be installed for icons */
   font-family: Inconsolata;
   font-size: 8pt;
-  padding: 0.5 0px;
+  padding: 1pt 0px;
   min-height: 0; 
 }
 
@@ -47,14 +47,14 @@ button {
   border: none;
   margin: 0px;
   padding: 0 0px;
-  border-radius: 4px;
 }
 
 #workspaces button {
-  padding: 0 0px;
-  margin: 0px 2px;
   color: @fg;
-  background-color: @bg3;
+  padding: 0 0px;
+  margin: 0px 0px;
+  border-radius: 0px;
+  background-color: @bg_d;
 }
 
 /* If workspaces is the leftmost module, increase left margin */
@@ -66,7 +66,7 @@ button {
 	color: @blue;
 }
 
-#workspaces button:hover {
+#workspaces button.hover {
     color: @grey;  
 	background-color: @bg_blue;
 }
@@ -121,9 +121,15 @@ button {
   color: @green;
 }
 
-#battery.warning {
+
+#battery.low {
   background-color: @bg_d;
   color: @yellow;
+}
+
+#battery.warning {
+  background-color: @bg_d;
+  color: @red;
 }
 
 #battery.charging, #battery.plugged, #battery.full {
@@ -143,7 +149,7 @@ to {
   color: @red;
   animation-name: blink;
   animation-duration: 0.5s;
-  animation-timing-function: linear;
+  animation-timing-function: steps(12);
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
