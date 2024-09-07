@@ -5,8 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-#
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
 zstyle ':completion:*:*:*:default' menu yes select search # Enhanced tab completion
 
 eval "$(zoxide init zsh --cmd j)"
