@@ -1,14 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{pkgs, lib, ... }:
-
+{ pkgs, lib, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader configuration
   boot.loader.efi.canTouchEfiVariables = true;
@@ -17,7 +15,7 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.enableCryptodisk = true;
   boot.loader.grub.efiSupport = true;
-  
+
   # LUKS on LVM encryption
   boot.initrd.luks.devices = {
     root = {
@@ -25,9 +23,12 @@
       preLVM = true;
     };
   };
-  
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = ["abmlevel=3" "amd_pstate=active"];
+  boot.kernelParams = [
+    "abmlevel=3"
+    "amd_pstate=active"
+  ];
 
   networking.hostName = "delta";
   networking.networkmanager.enable = true;
@@ -58,8 +59,8 @@
   services.logind = {
     lidSwitch = "suspend";
     extraConfig = ''
-        IdleAction=suspend
-        IdleActionSec=10m
+      IdleAction=suspend
+      IdleActionSec=10m
     '';
   };
 
@@ -78,10 +79,19 @@
   };
 
   # Give users access to /storage
-  users.groups.storage = {};
+  users.groups.storage = { };
 
   # Give users access to the uinput group. Required for kanata
-  users.groups.uinput = {};
+  users.groups.uinput = { };
+
+  # Give users access to the plugdev group. Required for crazyradio
+  users.groups.uinput = { };
+
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="1915", ATTRS{idProduct}=="7777", MODE="0664", GROUP="plugdev"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="1915", ATTRS{idProduct}=="0101", MODE="0664", GROUP="plugdev"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE="0664", GROUP="plugdev"
+  '';
 
   # Enable uinput
   hardware.uinput.enable = true;
@@ -91,11 +101,20 @@
 
   # Install + enable zsh
   programs.zsh.enable = true;
-    
+
   # The agentelement user (hey, that's me!)
   users.users.agentelement = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "storage" "networkmanager" "docker" "input" "uinput"];
+    extraGroups = [
+      "wheel"
+      "video"
+      "storage"
+      "networkmanager"
+      "docker"
+      "input"
+      "uinput"
+      "plugdev"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -104,18 +123,20 @@
     wget
     git
     gcc
-    light
+    brightnessctl
     pulseaudio
     gnupg
     bluez
   ];
 
   # Beware, proprietary garbage here.
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-     "steam"
-     "steam-original"
-     "steam-run"
-  ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "steam"
+      "steam-original"
+      "steam-run"
+    ];
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
@@ -130,18 +151,21 @@
   services.greetd = {
     enable = true;
     settings = {
-     default_session.command = ''
-      ${pkgs.greetd.tuigreet}/bin/tuigreet \
-        --time \
-        --asterisks \
-        --user-menu \
-        --cmd hyprland 
-    '';
+      default_session.command = ''
+        ${pkgs.greetd.tuigreet}/bin/tuigreet \
+          --time \
+          --asterisks \
+          --user-menu \
+          --cmd hyprland
+      '';
     };
   };
 
   # Enable nix flakes
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   programs.sway = {
     enable = true;
@@ -154,10 +178,8 @@
     hyprland
   '';
 
-
   # Required for docker to work correctly
   virtualisation.docker.enable = true;
-
 
   # Color management
   services.colord.enable = true;
@@ -180,4 +202,3 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
 }
-
