@@ -1,7 +1,12 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-
 {
-
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ./firefox.nix
     # ./steam.nix
@@ -40,18 +45,22 @@
     usbutils            # lsusb
     fd                  # Fuzzy find
     ripgrep             # Fuzzy grep
+    yq                  # YAML/JSON/XML/CSV/TOML processor
     calcurse            # Calendar
     pdftk               # PDF toolkit
     pandoc              # Document converter
     imagemagick         # Image manipulation suite
+    playerctl           # Manage media players implementing the MPRIS dbus spec
 
     # Environment
     kitty               # Terminal emulator
-    fuzzel              # Launcher
     wl-clipboard        # CLI interactions with wayland clipboard
     grim                # Grab images from wayland
     slurp               # Select region from wayland
-    kanata              # Keymap rebinds 
+    kanata              # Keymap rebinds
+    wev                 # Keycode viewer
+    hyprpicker          # Color picker
+    localsend           # Share files between devices over wifi
 
     # GUI tools
     zathura             # PDF viewer
@@ -67,43 +76,57 @@
     ghidra              # Reverse engineering
     kicad               # EDA suite
     swappy              # Snapshot editor tool
+    pavucontrol         # Volume control
 
     # Devtools
     rustup                                      # rust
     texlive.combined.scheme-full                # LaTeX
-    (python311.withPackages (ps: with ps; [     # python
-      pip
-      numpy
-    ]))
+    (python311.withPackages (
+      ps:                                       # python
+      with ps; [
+        pip
+        numpy
+      ]
+    ))
     poetry                                      # python build system
-    clang                                       # Cxx compiler, LSP 
+    clang                                       # Cxx compiler, LSP
     clang-tools                                 # Cxx linter, formatter, etc
     elan                                        # L∃∀N
+    typst                                       # Is LaTeX really that bad?
 
     # Language servers
-    texlab                                      # LaTeX
-    lua-language-server                         # lua
-    nixd                                        # nix-lang
+    texlab                                      # LaTeX lsp
+    lua-language-server                         # lua lsp
+    nixd                                        # nix-lang lsp
     llm-ls                                      # language model
     lsp-ai                                      # lanugage model
-    pyright                                     # python
-    # pylyzer
+    pyright                                     # python lsp
+    # pylyzer                                   # python lsp
     ruff                                        # python linter
+    typst-lsp                                   # typst lsp
 
     # Fonts
     inconsolata
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
 
     # games
-    endless-sky                                 # Trading game
-    prismlauncher                               # Minecraft launcher
+    endless-sky # Trading game
+    prismlauncher # Minecraft launcher
+
+    # One of the earliest memories I have is of of writing this program in the
+    # LOGO language.
+    #
+    #   repeat 36 [repeat 360 [forward 1 right 1] right 10]
+    #
+    # If you are reading this, try it out yourself!
+    ucblogo
   ];
 
   home.pointerCursor = {
-      name = "phinger-cursors-light";
-      package = pkgs.phinger-cursors;
-      size = 24;
-      gtk.enable = true;
+    name = "phinger-cursors-light";
+    package = pkgs.phinger-cursors;
+    size = 24;
+    gtk.enable = true;
   };
 
   # programs.steam.enable = true;
@@ -114,28 +137,31 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    ".old_zshrc".source = ../configs/zsh/zshrc;
-    ".p10k.zsh".source = ../configs/zsh/p10k.zsh;
-    ".config/sway/config".source = ../configs/sway/config;
-    ".config/nvim/init.lua".source = ../configs/nvim/init.lua;
-    ".config/nvim/lua/cmp_config.lua".source = ../configs/nvim/lua/cmp_config.lua;
-    ".config/nvim/lua/keybindings.lua".source = ../configs/nvim/lua/keybindings.lua;
-    ".config/nvim/lua/lsp.lua".source = ../configs/nvim/lua/lsp.lua;
-    ".config/nvim/lua/plugin_config.lua".source = ../configs/nvim/lua/plugin_config.lua;
-    ".config/nvim/lua/plugins.lua".source = ../configs/nvim/lua/plugins.lua;
-    ".config/kitty/kitty.conf".source = ../configs/kitty/kitty.conf;
-    ".config/i3status-rust/config.toml".source = ../configs/i3status-rust/config.toml;
-    ".config/i3status-rust/icons/icon.toml".source = ../configs/i3status-rust/icons/icon.toml;
-    ".config/i3status-rust/themes/theme.toml".source = ../configs/i3status-rust/themes/theme.toml;
-    ".config/git/config".source = ../configs/git/config;
-    ".config/gdb/gdbinit".source = ../configs/gdb/gdbinit;
-    ".config/fuzzel/fuzzel.ini".source = ../configs/fuzzel/fuzzel.ini;
-    ".config/bg/earth.jpg".source = ../configs/bg/earth.jpg;
-    ".config/kanata/kanata.kbd".source = ../configs/kanata/kanata.kbd;
-    ".config/hypr/hyprland.conf".source = ../configs/hypr/hyprland.conf;
-    ".config/waybar/config.jsonc".source = ../configs/waybar/config.jsonc;
-    ".config/waybar/style.css".source = ../configs/waybar/style.css;
+    ".old_zshrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/zsh/zshrc";
+    ".p10k.zsh".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/zsh/p10k.zsh";
+    ".config/sway/config".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/sway/config";
+    ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim/init.lua";
+    ".config/nvim/lua/cmp_config.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim/lua/cmp_config.lua";
+    ".config/nvim/lua/keybindings.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim/lua/keybindings.lua";
+    ".config/nvim/lua/lsp.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim/lua/lsp.lua";
+    ".config/nvim/lua/plugin_config.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim/lua/plugin_config.lua";
+    ".config/nvim/lua/plugins.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim/lua/plugins.lua";
+    ".config/kitty/kitty.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/kitty/kitty.conf";
+    ".config/i3status-rust/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/i3status-rust/config.toml";
+    ".config/i3status-rust/icons/icon.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/i3status-rust/icons/icon.toml";
+    ".config/i3status-rust/themes/theme.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/i3status-rust/themes/theme.toml";
+    ".config/git/config".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/git/config";
+    ".config/gdb/gdbinit".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/gdb/gdbinit";
+    ".config/fuzzel/fuzzel.ini".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/fuzzel/fuzzel.ini";
+    ".config/bg/earth.jpg".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/bg/earth.jpg";
+    ".config/kanata/kanata.kbd".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/kanata/kanata.kbd";
+    ".config/hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/hypr/hyprland.conf";
+    ".config/waybar/config.jsonc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/waybar/config.jsonc";
+    ".config/waybar/style.css".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/waybar/style.css";
   };
+
+  # Launcher
+  programs.fuzzel.enable = true;
 
   # Status bar
   programs.waybar.enable = true;
@@ -157,6 +183,10 @@
       package = pkgs.gnome-themes-extra;
       name = "Adwaita-dark";
     };
+    font = {
+      size = 9;
+      name = "Noto Sans";
+    };
   };
 
   qt = {
@@ -169,8 +199,11 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    XDG_CURRENT_DESKTOP = "sway";
+    XDG_CURRENT_DESKTOP = "";
   };
+
+  # Media control for mpris-compatible media players (mpv, firefox, etc)
+  services.mpris-proxy.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
