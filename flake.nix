@@ -1,8 +1,9 @@
 {
-  description = "Configuration files";
+  description = "AgentElement's configuration files";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nur.url = "github:nix-community/nur";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -12,6 +13,7 @@
     {
       self,
       nixpkgs,
+      nur,
       home-manager,
       ...
     }@inputs:
@@ -24,7 +26,7 @@
     in
     {
       packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-      overlays = import ./overlays { inherit inputs; };
+      overlays = {nuroverlay = nur.overlay;} // import ./overlays { inherit inputs; };
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
 
       nixosConfigurations = {
@@ -42,7 +44,11 @@
           extraSpecialArgs = {
             inherit inputs outputs;
           };
-          modules = [ ./home/home.nix ];
+          modules = [ 
+            # use `config.nur` to access nur packages. 
+            nur.nixosModules.nur
+            ./home/home.nix 
+          ];
         };
       };
     };

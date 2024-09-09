@@ -32,6 +32,14 @@
           };
         };
 
+        extensions = with config.nur.repos.rycee.firefox-addons; [
+            bitwarden
+            greasemonkey
+            sponsorblock
+            vimium
+            ublock-origin
+        ];
+
         settings = {
           "layout.css.devPixelsPerPx" = 1.6;
           "browser.startup.homepage" = "chrome://browser/content/blanktab.html";
@@ -83,36 +91,6 @@
       DisableFirefoxAccounts = false;
       DisableAccounts = false;
       DefaultDownloadDirectory = "/tmp/firefox-downloads/";
-
-      ExtensionSettings = {
-        # "*".installation_mode = "blocked";
-
-        # Ublock origin
-        "uBlock0@raymondhill.net" = {
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-        };
-
-        # Bitwarden
-        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/file/4246600/bitwarden_password_manager-2024.2.1.xpi";
-        };
-
-        # Greasemonkey
-        "{e4a8a97b-f2ed-450b-b12d-ee082ba24781}" = {
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/file/4208821/greasemonkey-4.12.0.xpi";
-        };
-
-        # vimium
-        "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/file/4191523/vimium_ff-2.0.6.xpi";
-        };
-
-        # stylus
-      };
     };
   };
 }
