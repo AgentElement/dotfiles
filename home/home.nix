@@ -98,8 +98,6 @@
     texlab                                      # LaTeX lsp
     lua-language-server                         # lua lsp
     nixd                                        # nix-lang lsp
-    llm-ls                                      # language model
-    lsp-ai                                      # lanugage model
     pyright                                     # python lsp
     # pylyzer                                   # python lsp
     ruff                                        # python linter
