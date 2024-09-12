@@ -134,29 +134,34 @@
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
-  home.file = {
-    ".old_zshrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/zsh/zshrc";
-    ".p10k.zsh".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/zsh/p10k.zsh";
-    ".config/sway/config".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/sway/config";
-    ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim/init.lua";
-    ".config/nvim/lua/cmp_config.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim/lua/cmp_config.lua";
-    ".config/nvim/lua/keybindings.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim/lua/keybindings.lua";
-    ".config/nvim/lua/lsp.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim/lua/lsp.lua";
-    ".config/nvim/lua/plugin_config.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim/lua/plugin_config.lua";
-    ".config/nvim/lua/plugins.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim/lua/plugins.lua";
-    ".config/kitty/kitty.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/kitty/kitty.conf";
-    ".config/i3status-rust/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/i3status-rust/config.toml";
-    ".config/i3status-rust/icons/icon.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/i3status-rust/icons/icon.toml";
-    ".config/i3status-rust/themes/theme.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/i3status-rust/themes/theme.toml";
-    ".config/git/config".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/git/config";
-    ".config/gdb/gdbinit".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/gdb/gdbinit";
-    ".config/fuzzel/fuzzel.ini".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/fuzzel/fuzzel.ini";
-    ".config/bg/earth.jpg".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/bg/earth.jpg";
-    ".config/kanata/kanata.kbd".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/kanata/kanata.kbd";
-    ".config/hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/hypr/hyprland.conf";
-    ".config/waybar/config.jsonc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/waybar/config.jsonc";
-    ".config/waybar/style.css".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/waybar/style.css";
-  };
+  home.file =
+    builtins.mapAttrs
+      (key: value: {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/${value}";
+      })
+      {
+        ".old_zshrc" = "zsh/zshrc";
+        ".p10k.zsh" = "zsh/p10k.zsh";
+        ".config/sway/config" = "sway/config";
+        ".config/nvim/init.lua" = "nvim/init.lua";
+        ".config/nvim/lua/cmp_config.lua" = "nvim/lua/cmp_config.lua";
+        ".config/nvim/lua/keybindings.lua" = "nvim/lua/keybindings.lua";
+        ".config/nvim/lua/lsp.lua" = "nvim/lua/lsp.lua";
+        ".config/nvim/lua/plugin_config.lua" = "nvim/lua/plugin_config.lua";
+        ".config/nvim/lua/plugins.lua" = "nvim/lua/plugins.lua";
+        ".config/kitty/kitty.conf" = "kitty/kitty.conf";
+        ".config/i3status-rust/config.toml" = "i3status-rust/config.toml";
+        ".config/i3status-rust/icons/icon.toml" = "i3status-rust/icons/icon.toml";
+        ".config/i3status-rust/themes/theme.toml" = "i3status-rust/themes/theme.toml";
+        ".config/git/config" = "git/config";
+        ".config/gdb/gdbinit" = "gdb/gdbinit";
+        ".config/fuzzel/fuzzel.ini" = "fuzzel/fuzzel.ini";
+        ".config/bg/earth.jpg" = "bg/earth.jpg";
+        ".config/kanata/kanata.kbd" = "kanata/kanata.kbd";
+        ".config/hypr/hyprland.conf" = "hypr/hyprland.conf";
+        ".config/waybar/config.jsonc" = "waybar/config.jsonc";
+        ".config/waybar/style.css" = "waybar/style.css";
+      };
 
   # Launcher
   programs.fuzzel.enable = true;
