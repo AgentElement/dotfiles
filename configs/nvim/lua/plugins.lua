@@ -73,6 +73,9 @@ require("lazy").setup({
     -- ASCII diagrams in vim
     'https://github.com/jbyuki/venn.nvim',
 
+    -- Search jumping
+    'https://github.com/ggandor/leap.nvim',
+
     ---------------------------------------------------------------------------
     -- LANGUAGE
 

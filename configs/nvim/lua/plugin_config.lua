@@ -10,6 +10,8 @@ require('illuminate')
 
 require('nvim-highlight-colors').setup {}
 
+require('leap').create_default_mappings()
+
 -- Status line
 require('lualine').setup {
     options = {
