@@ -30,7 +30,7 @@ M.keybindings = {
     { 'n', '<leader>j',  ':',                             opts },
 
     { 'v', '<leader>y',  '"+y',                           opts },
-    { 'v', '<leader>p',  '"+p',                           opts },
+    { 'n', '<leader>p',  '"+p',                           opts },
 
 }
 

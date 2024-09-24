@@ -9,6 +9,7 @@ local lsp_list = {
     "bashls",
     "clangd",
     "nixd",
+    "typst_lsp"
 }
 
 require('lspconfig')
