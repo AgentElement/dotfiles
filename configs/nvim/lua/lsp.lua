@@ -18,8 +18,6 @@ vim.diagnostic.config({
     virtual_text = false -- don't show diagnostics as inline virtual text
 })
 
-vim.lsp.set_log_level("debug")
-
 local keybindings = require('keybindings')
 
 local on_attach = function(client, bufnr)
