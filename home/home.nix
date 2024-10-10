@@ -34,6 +34,7 @@
     lsd                 # Pretty ls
     bat                 # Pretty cat
     delta               # Pretty diff
+    dust                # Pretty du
     zoxide              # Fuzzy file navigation
     bottom              # System monitor
     neovim              # Text editor
@@ -140,27 +141,27 @@
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/${value}";
       })
       {
-        ".old_zshrc" = "zsh/zshrc";
-        ".p10k.zsh" = "zsh/p10k.zsh";
-        ".config/sway/config" = "sway/config";
-        ".config/nvim/init.lua" = "nvim/init.lua";
-        ".config/nvim/lua/cmp_config.lua" = "nvim/lua/cmp_config.lua";
-        ".config/nvim/lua/keybindings.lua" = "nvim/lua/keybindings.lua";
-        ".config/nvim/lua/lsp.lua" = "nvim/lua/lsp.lua";
-        ".config/nvim/lua/plugin_config.lua" = "nvim/lua/plugin_config.lua";
-        ".config/nvim/lua/plugins.lua" = "nvim/lua/plugins.lua";
-        ".config/kitty/kitty.conf" = "kitty/kitty.conf";
-        ".config/i3status-rust/config.toml" = "i3status-rust/config.toml";
-        ".config/i3status-rust/icons/icon.toml" = "i3status-rust/icons/icon.toml";
-        ".config/i3status-rust/themes/theme.toml" = "i3status-rust/themes/theme.toml";
-        ".config/git/config" = "git/config";
-        ".config/gdb/gdbinit" = "gdb/gdbinit";
-        ".config/fuzzel/fuzzel.ini" = "fuzzel/fuzzel.ini";
-        ".config/bg/earth.jpg" = "bg/earth.jpg";
-        ".config/kanata/kanata.kbd" = "kanata/kanata.kbd";
-        ".config/hypr/hyprland.conf" = "hypr/hyprland.conf";
-        ".config/waybar/config.jsonc" = "waybar/config.jsonc";
-        ".config/waybar/style.css" = "waybar/style.css";
+        ".old_zshrc"                                = "zsh/zshrc";
+        ".p10k.zsh"                                 = "zsh/p10k.zsh";
+        ".config/sway/config"                       = "sway/config";
+        ".config/nvim/init.lua"                     = "nvim/init.lua";
+        ".config/nvim/lua/cmp_config.lua"           = "nvim/lua/cmp_config.lua";
+        ".config/nvim/lua/keybindings.lua"          = "nvim/lua/keybindings.lua";
+        ".config/nvim/lua/lsp.lua"                  = "nvim/lua/lsp.lua";
+        ".config/nvim/lua/plugin_config.lua"        = "nvim/lua/plugin_config.lua";
+        ".config/nvim/lua/plugins.lua"              = "nvim/lua/plugins.lua";
+        ".config/kitty/kitty.conf"                  = "kitty/kitty.conf";
+        ".config/i3status-rust/config.toml"         = "i3status-rust/config.toml";
+        ".config/i3status-rust/icons/icon.toml"     = "i3status-rust/icons/icon.toml";
+        ".config/i3status-rust/themes/theme.toml"   = "i3status-rust/themes/theme.toml";
+        ".config/git/config"                        = "git/config";
+        ".config/gdb/gdbinit"                       = "gdb/gdbinit";
+        ".config/fuzzel/fuzzel.ini"                 = "fuzzel/fuzzel.ini";
+        ".config/bg/earth.jpg"                      = "bg/earth.jpg";
+        ".config/kanata/kanata.kbd"                 = "kanata/kanata.kbd";
+        ".config/hypr/hyprland.conf"                = "hypr/hyprland.conf";
+        ".config/waybar/config.jsonc"               = "waybar/config.jsonc";
+        ".config/waybar/style.css"                  = "waybar/style.css";
       };
 
   # Launcher
