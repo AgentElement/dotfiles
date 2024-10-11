@@ -26,7 +26,9 @@
     in
     {
       packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-      overlays = {nuroverlay = nur.overlay;} // import ./overlays { inherit inputs; };
+      overlays = {
+        nuroverlay = nur.overlay;
+      } // import ./overlays { inherit inputs; };
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
 
       nixosConfigurations = {
@@ -44,10 +46,10 @@
           extraSpecialArgs = {
             inherit inputs outputs;
           };
-          modules = [ 
+          modules = [
             # use `config.nur` to access nur packages. 
             nur.nixosModules.nur
-            ./home/home.nix 
+            ./home/home.nix
           ];
         };
       };

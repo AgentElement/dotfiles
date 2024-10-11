@@ -48,7 +48,7 @@
   };
 
   # Backlight control
-  programs.light.enable = true;
+  # programs.light.enable = true;
 
   # Better power management
   services.power-profiles-daemon.enable = true;

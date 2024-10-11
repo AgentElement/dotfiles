@@ -33,11 +33,12 @@
         };
 
         extensions = with config.nur.repos.rycee.firefox-addons; [
-            bitwarden
-            greasemonkey
-            sponsorblock
-            vimium
-            ublock-origin
+          bitwarden
+          greasemonkey
+          sponsorblock
+          vimium
+          ublock-origin
+          unpaywall
         ];
 
         settings = {
