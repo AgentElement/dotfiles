@@ -64,12 +64,13 @@
     localsend           # Share files between devices over wifi
 
     # GUI tools
-    zathura             # PDF viewer
+    okular              # PDF viewer
     openscad            # Solid object modeling language
     prusa-slicer        # STL slicer
     thunderbird         # Email client
     signal-desktop      # Messenger
-    mpv                 # Media player
+    vlc                 # Media player
+    gwenview            # Image viewer
     inkscape            # Vector graphics editor
     qalculate-gtk       # Calculator
     krita               # Raster graphics editor
@@ -94,6 +95,7 @@
     clang-tools                                 # Cxx linter, formatter, etc
     elan                                        # L∃∀N
     typst                                       # Is LaTeX really that bad?
+    hugo                                        # Site generator
 
     # Language servers
     texlab                                      # LaTeX lsp
