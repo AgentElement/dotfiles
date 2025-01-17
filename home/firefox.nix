@@ -9,9 +9,26 @@
         isDefault = true;
 
         search = {
-          default = "opnxng.com";
+          default = "disroot.org";
           force = true;
           engines = {
+            "disroot.org" = {
+              urls = [
+                {
+                  template = "https://search.disroot.org";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                    {
+                      name = "safesearch";
+                      value = "0";
+                    }
+                  ];
+                }
+              ];
+            };
             "opnxng.com" = {
               urls = [
                 {
@@ -32,7 +49,7 @@
           };
         };
 
-        extensions = with config.nur.repos.rycee.firefox-addons; [
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           bitwarden
           greasemonkey
           sponsorblock

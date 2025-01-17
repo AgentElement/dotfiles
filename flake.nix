@@ -2,8 +2,9 @@
   description = "AgentElement's configuration files";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.05";
     nur.url = "github:nix-community/nur";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -47,8 +48,8 @@
             inherit inputs outputs;
           };
           modules = [
-            # use `config.nur` to access nur packages. 
-            nur.nixosModules.nur
+            # use `pkgs.nur` to access nur packages. 
+            nur.modules.homeManager.default
             ./home/home.nix
           ];
         };
