@@ -13,7 +13,6 @@
     # ./gamescope.nix
   ];
 
-  nixpkgs.config.allowUnfree = true;
   home.username = "agentelement";
   home.homeDirectory = "/home/agentelement";
 
@@ -111,8 +110,8 @@
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
 
     # games
-    endless-sky # Trading game
-    prismlauncher # Minecraft launcher
+    endless-sky                                 # Trading game
+    prismlauncher                               # Minecraft launcher
 
     # One of the earliest memories I have is of of writing this program in the
     # LOGO language.
