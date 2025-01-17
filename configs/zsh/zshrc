@@ -59,6 +59,8 @@ alias hm-switch="home-manager switch --flake ~/dotfiles/.#agentelement"
 alias nix-rebuild="nixos-rebuild switch --flake ~/dotfiles/.#delta"
 alias nix-poetry="nix flake init --template github:nix-community/poetry2nix"
 alias nix-rust="nix flake init --template templates#rust"
+alias exifdump="identify -format '%[EXIF:*]'"
+alias airplane-mode="nmcli radio all off && bluetoothctl power off"
 
 autoload -z edit-command-line
 zle -N edit-command-line
