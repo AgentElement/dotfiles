@@ -136,6 +136,7 @@
       "steam"
       "steam-original"
       "steam-run"
+      "steam-unwrapped"
     ];
 
   programs.steam.enable = true;
@@ -156,7 +157,7 @@
           --time \
           --asterisks \
           --user-menu \
-          --cmd hyprland
+          --cmd Hyprland
       '';
     };
   };
