@@ -103,11 +103,11 @@
     pyright                                     # python lsp
     # pylyzer                                   # python lsp
     ruff                                        # python linter
-    typst-lsp                                   # typst lsp
+    tinymist                                    # typst lsp
 
     # Fonts
     inconsolata
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    nerd-fonts.symbols-only
 
     # games
     endless-sky                                 # Trading game
@@ -121,6 +121,7 @@
     # If you are reading this, try it out yourself!
     ucblogo
   ];
+
 
   home.pointerCursor = {
     name = "phinger-cursors-light";
@@ -139,6 +140,7 @@
   home.file =
     builtins.mapAttrs
       (key: value: {
+        # symlink ~/dotfiles/configs/{value} to ~/{key}
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/${value}";
       })
       {
