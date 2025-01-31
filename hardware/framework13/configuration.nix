@@ -64,10 +64,6 @@
     '';
   };
 
-  # Language model
-  services.ollama.enable = true;
-  services.ollama.acceleration = "rocm";
-
   # Enable sound
   security.rtkit.enable = true;
   security.polkit.enable = true;
