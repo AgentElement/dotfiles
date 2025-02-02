@@ -40,13 +40,27 @@ require('lualine').setup {
     },
 }
 
+require('telescope').setup {
+    pickers = {
+        find_files = {
+            hidden = true
+        }
+    }
+}
+
+
 -- nvim-tree
 require('nvim-tree').setup {
     renderer = {
         indent_markers = {
             enable = true,
         }
+    },
+    filters = {
+        dotfiles = true,
+        git_ignored = false,
     }
+
 }
 
 require('lean').setup {
@@ -102,7 +116,6 @@ require('nvim-treesitter.configs').setup {
         additional_vim_regex_highlighting = false,
     }
 }
-
 
 -- toggleterm
 require('toggleterm').setup {

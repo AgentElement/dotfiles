@@ -81,7 +81,7 @@ require("lazy").setup({
 
     -- Treesitter
     {
-        'https://github.com/nvim-treesitter/nvim-treesitter',
+        'https://github.com/neovim/nvim-treesitter',
         build = ':TSUpdate'
     },
 
@@ -111,7 +111,7 @@ require("lazy").setup({
     'https://github.com/salkin-mada/openscad.nvim',
 
     -- Rust tools
-    'https://github.com/mrcjkb/rustaceanvim',
+    -- 'https://github.com/mrcjkb/rustaceanvim',
 
     -- C++ clangd_extensions
     'https://github.com/p00f/clangd_extensions.nvim',
