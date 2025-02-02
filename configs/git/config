@@ -1,6 +1,7 @@
 [user]
     name = agentelement
     email = agentelement@protonmail.com
+	signingkey = CD139E3B435434F1
 
 [difftool]
     prompt=false
@@ -19,3 +20,9 @@
 
 [delta]
     features = line-numbers side-by-side
+
+[commit]
+    gpgsign = true
+
+[tag]
+    gpgsign = true
