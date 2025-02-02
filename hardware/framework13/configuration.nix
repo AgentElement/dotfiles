@@ -153,7 +153,7 @@
           --time \
           --asterisks \
           --user-menu \
-          --cmd Hyprland
+          --cmd ${../../scripts/hyprland-run.sh} 
       '';
     };
   };
