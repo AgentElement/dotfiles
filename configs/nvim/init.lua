@@ -52,13 +52,16 @@ vim.opt.sessionoptions:remove('blank')
 -- Vertical bar seperator style
 vim.opt.fillchars:append('vert:▎')
 
-vim.opt.conceallevel=2
-
 -- Ensure the cursor remains at least three lines above the lowest line while
 -- scrolling
 vim.opt.scrolloff=3
 
-vim.opt.listchars='trail:-'
+-- Show - for trailing spaces
+vim.opt.listchars = {
+    trail="~",
+    tab="» ",
+}
+vim.opt.list=true
 
 -- Virtual editing in visual block mode
 vim.opt.ve='block'
@@ -74,9 +77,9 @@ vim.opt.splitbelow=true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Make leader key <space> instead of \
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ','
+-- Make leader key , instead of \
+vim.g.mapleader = ','
+vim.g.maplocalleader = '\\'
 
 require('plugins')
 require('plugin_config')
