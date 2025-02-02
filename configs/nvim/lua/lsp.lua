@@ -1,6 +1,6 @@
 local lsp_list = {
     "texlab",
-    "rust_analyzer",
+    "rust_analyzer", -- rustaceanvim takes care of rust-analyzer for us
     "pyright", -- TODO: change this to pylyzer once they figure out how to resolve local imports
     "ruff",
     "cmake",
@@ -92,12 +92,24 @@ local server_opts = {
         }
     end,
 
-    ["rust_analyzer"] = function(opts)
+    ['rust-analyzer'] = function(opts)
         opts.settings = {
             rust = {
                 unstable_features = true,
                 build_on_save = false,
                 all_features = true,
+            },
+            checkOnSave = {
+                allFeatures = true,
+                command = "clippy",
+                extraArgs = {
+                    "--",
+                    "--no-deps",
+                    "-Dclippy::correctness",
+                    "-Dclippy::complexity",
+                    "-Wclippy::perf",
+                    "-Wclippy::pedantic",
+                },
             },
         }
     end,
