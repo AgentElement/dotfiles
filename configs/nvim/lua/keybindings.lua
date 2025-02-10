@@ -18,8 +18,8 @@ M.keybindings = {
 
     { 'n', '<F1>',       '<nop>',                         { noremap = false } },
 
-    { 'n', '<leader>o',  ':ToggleTerm<CR>',               opts },
-    { 't', '<leader>o',  '<C-\\><C-n>:ToggleTerm<CR>',    opts },
+    { 'n', '<leader>e',  ':ToggleTerm<CR>',               opts },
+    { 't', '<leader>e',  '<C-\\><C-n>:ToggleTerm<CR>',    opts },
 
     { 'n', '<leader>ff', '<cmd>Telescope find_files<CR>', opts },
     { 'n', '<leader>fg', '<cmd>Telescope live_grep<CR>',  opts },
