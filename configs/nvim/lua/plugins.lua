@@ -81,7 +81,7 @@ require("lazy").setup({
 
     -- Treesitter
     {
-        'https://github.com/neovim/nvim-treesitter',
+        'https://github.com/nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate'
     },
 

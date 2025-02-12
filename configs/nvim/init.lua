@@ -72,7 +72,7 @@ vim.opt.splitright=true
 -- Make new horizontal splits below the currently focused buffer
 vim.opt.splitbelow=true
 
--- nvim-tree strongly recommends eagerly disabling netrw due to race conditions 
+-- nvim-tree strongly recommends eagerly disabling netrw due to race conditions
 -- at vim startup
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
