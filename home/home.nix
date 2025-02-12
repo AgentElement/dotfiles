@@ -89,7 +89,7 @@
         numpy
       ]
     ))
-    poetry                                      # python build system
+    uv                                          # python build system
     clang                                       # Cxx compiler, LSP
     clang-tools                                 # Cxx linter, formatter, etc
     elan                                        # L∃∀N
