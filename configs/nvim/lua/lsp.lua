@@ -9,7 +9,7 @@ local lsp_list = {
     "bashls",
     "clangd",
     "nixd",
-    "typst_lsp"
+    "tinymist"
 }
 
 require('lspconfig')
@@ -20,7 +20,7 @@ vim.diagnostic.config({
 
 local keybindings = require('keybindings')
 
-local on_attach = function(client, bufnr)
+local on_attach = function(_client, bufnr)
     -- Add keybindings that are enabled when there is a LSP active
     local lsp_attach_keybindings = keybindings.generate_lsp_attach_keybindings({
         hover_fn = vim.lsp.buf.hover,
@@ -143,6 +143,14 @@ local server_opts = {
             }
         }
     end,
+
+    ["tinymist"] = function (opts)
+        opts.settings = {
+            formatterMode = "typstyle",
+            exportPdf = "onType",
+            semanticTokens = "disable"
+        }
+    end
 }
 
 for _, server in pairs(lsp_list) do
