@@ -78,6 +78,7 @@
     kicad               # EDA suite
     swappy              # Snapshot editor tool
     pavucontrol         # Volume control
+    blueman             # Bluetooth control
 
     # Devtools
     rustup                                      # rust
@@ -95,6 +96,7 @@
     elan                                        # L∃∀N
     typst                                       # Is LaTeX really that bad?
     hugo                                        # Site generator
+    gnumake                                     # Good ol' make
 
     # Language servers
     texlab                                      # LaTeX lsp
