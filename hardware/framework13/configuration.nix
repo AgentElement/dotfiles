@@ -152,8 +152,7 @@
         ${pkgs.greetd.tuigreet}/bin/tuigreet \
           --time \
           --asterisks \
-          --user-menu \
-          --cmd ${../../scripts/hyprland-run.sh} 
+          --user-menu
       '';
     };
   };
@@ -169,7 +168,17 @@
     wrapperFeatures.gtk = true;
   };
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
+  programs.uwsm.enable = true;
+  programs.uwsm.waylandCompositors.hyprland = {
+    prettyName = "Hyprland";
+    comment = "Hyprland compositor managed by UWSM";
+    binPath = "/run/current-system/sw/bin/Hyprland";
+  };
+
 
   environment.etc."greetd/environments".text = ''
     hyprland
@@ -180,6 +189,15 @@
 
   # Color management
   services.colord.enable = true;
+
+  nixpkgs.config.rocmSupport = true;
+
+  # Language model
+  services.ollama = {
+    enable = true;
+    loadModels = ["deepseek-r1:8b"];
+  };
+
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
