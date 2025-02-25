@@ -1,7 +1,7 @@
 local lsp_list = {
     "texlab",
     "rust_analyzer", -- rustaceanvim takes care of rust-analyzer for us
-    "pyright", -- TODO: change this to pylyzer once they figure out how to resolve local imports
+    "pyright",       -- TODO: change this to pylyzer once they figure out how to resolve local imports
     "ruff",
     "cmake",
     "lua_ls",
@@ -36,21 +36,21 @@ local on_attach = function(_client, bufnr)
         vim.opt.colorcolumn = "100"
     end
 
-    -- Show line diagnostics automatically in hover window
-    vim.api.nvim_create_autocmd("CursorMoved", {
-        buffer = bufnr,
-        callback = function()
-            local opts = {
-                focusable = false,
-                close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-                border = 'rounded',
-                source = 'always',
-                prefix = ' ',
-                scope = 'cursor',
-            }
-            vim.diagnostic.open_float(nil, opts)
-        end
-    })
+    -- -- Show line diagnostics automatically in hover window
+    -- vim.api.nvim_create_autocmd("CursorMoved", {
+    --     buffer = bufnr,
+    --     callback = function()
+    --         local opts = {
+    --             focusable = false,
+    --             close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+    --             border = 'rounded',
+    --             source = 'always',
+    --             prefix = ' ',
+    --             scope = 'cursor',
+    --         }
+    --         vim.diagnostic.open_float(nil, opts)
+    --     end
+    -- })
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(
@@ -144,7 +144,7 @@ local server_opts = {
         }
     end,
 
-    ["tinymist"] = function (opts)
+    ["tinymist"] = function(opts)
         opts.settings = {
             formatterMode = "typstyle",
             exportPdf = "onType",
