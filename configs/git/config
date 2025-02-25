@@ -35,3 +35,6 @@
 
 [rerere]
     enable = true
+
+[lfs]
+    cachecredentials = true
