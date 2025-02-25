@@ -12,7 +12,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 require("lazy").setup({
     ---------------------------------------------------------------------------
     -- VISUALS
@@ -37,7 +36,7 @@ require("lazy").setup({
     -- GIT
 
     -- Main git wrapper
-    'https://github.com/tpope/vim-fugitive',
+    -- 'https://github.com/tpope/vim-fugitive',
 
     -- Show most recent commit
     'https://github.com/rhysd/git-messenger.vim',
@@ -45,18 +44,27 @@ require("lazy").setup({
     -- Git diff in sign column
     'https://github.com/airblade/vim-gitgutter',
 
+    {
+        "https://github.com/NeogitOrg/neogit",
+        dependencies = {
+            "https://github.com/nvim-lua/plenary.nvim",
+            "https://github.com/sindrets/diffview.nvim",
+            "https://github.com/nvim-telescope/telescope.nvim",
+        },
+        config = true
+    },
 
     ---------------------------------------------------------------------------
     -- UTILITIES
 
-    -- Powerful file picker
+    -- File picker
     {
         'https://github.com/nvim-telescope/telescope.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        dependencies = { 'https://github.com/nvim-lua/plenary.nvim' }
     },
 
     -- Floating terminal
-    {'akinsho/toggleterm.nvim', version = "*", config = true},
+    { 'https://github.com/akinsho/toggleterm.nvim', version = "*", config = true },
 
     -- Neovim sidebar file manager
     {
@@ -68,13 +76,24 @@ require("lazy").setup({
     'https://github.com/romgrk/barbar.nvim',
 
     -- Autoformatting
-    'https://github.com/Chiel92/vim-autoformat',
+    -- 'https://github.com/Chiel92/vim-autoformat',
 
     -- ASCII diagrams in vim
     'https://github.com/jbyuki/venn.nvim',
 
     -- Search jumping
     'https://github.com/ggandor/leap.nvim',
+
+    -- Language model completion
+    'https://github.com/milanglacier/minuet-ai.nvim',
+
+    -- Neovim org-mode
+    {
+        "nvim-neorg/neorg",
+        lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+        version = "*", -- Pin Neorg to the latest stable release
+        config = true,
+    },
 
     ---------------------------------------------------------------------------
     -- LANGUAGE
