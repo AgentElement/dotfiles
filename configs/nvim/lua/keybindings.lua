@@ -62,6 +62,7 @@ M.cmp_mapping_keybindings = {
     ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item({
         behavior = cmp.SelectBehavior.Insert
     }), { 'i', 'c' }),
+    ["<A-y>"] = require('minuet').make_cmp_map(),
 }
 
 for _, binding in pairs(M.keybindings) do
