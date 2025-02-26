@@ -6,31 +6,31 @@ if cmp == nil then
 end
 
 local kind_icons = {
-  Text = "",
-  Method = "󰆧",
-  Function = "󰊕",
-  Constructor = "",
-  Field = "󰇽",
-  Variable = "󰂡",
-  Class = "󰠱",
-  Interface = "",
-  Module = "",
-  Property = "󰜢",
-  Unit = "",
-  Value = "󰎠",
-  Enum = "",
-  Keyword = "󰌋",
-  Snippet = "",
-  Color = "󰏘",
-  File = "󰈙",
-  Reference = "",
-  Folder = "󰉋",
-  EnumMember = "",
-  Constant = "󰏿",
-  Struct = "",
-  Event = "",
-  Operator = "󰆕",
-  TypeParameter = "󰅲",
+    Text = "",
+    Method = "󰆧",
+    Function = "󰊕",
+    Constructor = "",
+    Field = "󰇽",
+    Variable = "󰂡",
+    Class = "󰠱",
+    Interface = "",
+    Module = "",
+    Property = "󰜢",
+    Unit = "",
+    Value = "󰎠",
+    Enum = "",
+    Keyword = "󰌋",
+    Snippet = "",
+    Color = "󰏘",
+    File = "󰈙",
+    Reference = "",
+    Folder = "󰉋",
+    EnumMember = "",
+    Constant = "󰏿",
+    Struct = "",
+    Event = "",
+    Operator = "󰆕",
+    TypeParameter = "󰅲",
 }
 
 cmp.setup({
@@ -50,7 +50,6 @@ cmp.setup({
     }, {
         { name = 'buffer' },
     }),
-
 
     performance = {
         -- It is recommended to increase the timeout duration due to
@@ -92,6 +91,19 @@ cmp.setup({
             })[entry.source.name]
             return vim_item
         end
+    },
+
+    -- border around window
+    window = {
+        completion = {
+            border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+            winhighlight = "Normal:None,FloatBorder:Comment",
+        },
+
+        documentation = {
+            border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+            winhighlight = "Normal:None,FloatBorder:Comment",
+        },
     },
 })
 
