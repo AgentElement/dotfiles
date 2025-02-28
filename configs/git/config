@@ -21,8 +21,27 @@
 [delta]
     features = line-numbers side-by-side
 
+[diff]
+    renames = true
+    mnemonicPrefix = true
+    colorMoved = plain
+    algorithm = histogram
+
+[fetch]
+    all = true
+
+[help]
+    autocorrect = prompt
+
 [commit]
     gpgsign = true
+    verbose = true
+
+[column]
+    ui = auto
+
+[branch]
+    sort = -committerdate
 
 [tag]
     gpgsign = true
@@ -35,6 +54,7 @@
 
 [rerere]
     enable = true
+    autoupdate = true
 
 [lfs]
     cachecredentials = true
