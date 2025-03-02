@@ -1,5 +1,3 @@
-local keybindings = require('keybindings')
-
 -- Colorscheme
 require('onedark').setup {
     style = 'warmer',
@@ -41,9 +39,12 @@ require('lualine').setup {
 }
 
 require('telescope').setup {
+    defaults = {
+        borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+    },
     pickers = {
         find_files = {
-            hidden = true
+            hidden = true,
         }
     }
 }
@@ -130,7 +131,15 @@ require('toggleterm').setup {
 require('openscad')
 vim.g.openscad_load_snippets = true
 
+
+-- Language Server
 require('minuet').setup {
+    cmp = {
+        enable_auto_complete = true,
+    },
+
+    throttle = 0,
+
     provider = 'openai_fim_compatible',
     n_completions = 1, -- recommend for local model for resource saving
     -- I recommend beginning with a small context window size and incrementally
@@ -138,16 +147,31 @@ require('minuet').setup {
     -- of 512, serves as an good starting point to estimate your computing
     -- power. Once you have a reliable estimate of your local computing power,
     -- you should adjust the context window to a larger value.
-    context_window = 256,
+    context_window = 512,
     provider_options = {
         openai_fim_compatible = {
             api_key = 'TERM',
-            name = 'Ollama',
-            end_point = 'http://localhost:11434/v1/completions',
-            model = 'qwen2.5-coder:3b',
+            name = 'Llama.cpp',
+            end_point = 'http://localhost:8012/v1/completions',
+            -- The model is set by the llama-cpp server and cannot be altered
+            -- post-launch.
+            model = 'PLACEHOLDER',
             optional = {
-                max_tokens = 56,
+                max_tokens = 96,
                 top_p = 0.9,
+            },
+            -- Llama.cpp does not support the `suffix` option in FIM completion.
+            -- Therefore, we must disable it and manually populate the special
+            -- tokens required for FIM completion.
+            template = {
+                prompt = function(context_before_cursor, context_after_cursor)
+                    return '<|fim_prefix|>'
+                        .. context_before_cursor
+                        .. '<|fim_suffix|>'
+                        .. context_after_cursor
+                        .. '<|fim_middle|>'
+                end,
+                suffix = false,
             },
         },
     },

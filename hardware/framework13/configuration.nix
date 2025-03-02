@@ -142,6 +142,7 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   # login screen
@@ -151,6 +152,7 @@
       default_session.command = ''
         ${pkgs.greetd.tuigreet}/bin/tuigreet \
           --time \
+          --theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red'
           --asterisks \
           --user-menu
       '';
@@ -191,13 +193,6 @@
   services.colord.enable = true;
 
   nixpkgs.config.rocmSupport = true;
-
-  # Language model
-  services.ollama = {
-    enable = true;
-    loadModels = ["deepseek-r1:8b"];
-  };
-
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
