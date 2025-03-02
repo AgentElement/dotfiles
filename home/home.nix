@@ -61,6 +61,8 @@
     wev                 # Keycode viewer
     hyprpicker          # Color picker
     localsend           # Share files between devices over wifi
+    dunst               # Notification daemon
+    udiskie             # Automount mass storage devices
 
     # GUI tools
     okular              # PDF viewer
