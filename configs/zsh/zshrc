@@ -146,7 +146,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice depth=1;
+zinit light romkatv/powerlevel10k
 
 zinit light "wfxr/forgit"
 zinit light "jeffreytse/zsh-vi-mode"

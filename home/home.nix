@@ -170,6 +170,7 @@
         ".config/hypr/hyprland.conf"                = "hypr/hyprland.conf";
         ".config/waybar/config.jsonc"               = "waybar/config.jsonc";
         ".config/waybar/style.css"                  = "waybar/style.css";
+        ".config/dunst/dunstrc"                     = "dunst/dunstrc";
       };
 
   # Launcher
