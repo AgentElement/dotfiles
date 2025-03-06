@@ -99,6 +99,12 @@ export NEWT_COLORS='
     textbox=blue,black
 '
 
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+--color=dark
+--color=fg:-1,bg:-1,hl:#bb70d2,fg+:#ffffff,bg+:#37383d,hl+:#79428a
+--color=info:#8fb573,prompt:#57a5e5,pointer:#de5d68,marker:#dbb671,spinner:#57a5e5,header:#57a5e5
+'
+
 
 # Tell gpg which tty to use
 export GPG_TTY=$(tty)
@@ -155,6 +161,6 @@ zinit light "jeffreytse/zsh-vi-mode"
 # which will wrap widgets
 zinit light "Aloxaf/fzf-tab"
 zinit light "MikeDacre/tmux-zsh-vim-titles"
-zinit light "zdharma-continuum/fast-syntax-highlighting"
 zinit light "zsh-users/zsh-autosuggestions"
 zinit light "hlissner/zsh-autopair"
+zinit light "zdharma-continuum/fast-syntax-highlighting"
