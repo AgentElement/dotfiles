@@ -147,6 +147,7 @@ local server_opts = {
     ["tinymist"] = function(opts)
         opts.settings = {
             formatterMode = "typstyle",
+            formatterTabSpaces = 4,
             exportPdf = "onType",
             semanticTokens = "disable"
         }

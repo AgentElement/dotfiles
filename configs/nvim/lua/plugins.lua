@@ -26,33 +26,14 @@ require("lazy").setup({
     -- Status bar
     'https://github.com/nvim-lualine/lualine.nvim',
 
-    -- Semantic highlighting
-    'https://github.com/RRethy/vim-illuminate',
-
     -- Highlight color codes (eg #222222)
     'https://github.com/brenoprata10/nvim-highlight-colors',
 
     ---------------------------------------------------------------------------
     -- GIT
 
-    -- Main git wrapper
-    -- 'https://github.com/tpope/vim-fugitive',
-
-    -- Show most recent commit
-    'https://github.com/rhysd/git-messenger.vim',
-
-    -- Git diff in sign column
-    'https://github.com/airblade/vim-gitgutter',
-
-    {
-        "https://github.com/NeogitOrg/neogit",
-        dependencies = {
-            "https://github.com/nvim-lua/plenary.nvim",
-            "https://github.com/sindrets/diffview.nvim",
-            "https://github.com/nvim-telescope/telescope.nvim",
-        },
-        config = true
-    },
+    -- Git signs, inline blame, inline diffs
+    'https://github.com/lewis6991/gitsigns.nvim',
 
     ---------------------------------------------------------------------------
     -- UTILITIES

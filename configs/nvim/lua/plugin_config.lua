@@ -1,10 +1,10 @@
+local keybindings = require('keybindings')
+
 -- Colorscheme
 require('onedark').setup {
     style = 'warmer',
 }
 require('onedark').load()
-
-require('illuminate')
 
 require('nvim-highlight-colors').setup {}
 
@@ -49,7 +49,6 @@ require('telescope').setup {
     }
 }
 
-
 -- nvim-tree
 require('nvim-tree').setup {
     renderer = {
@@ -64,6 +63,13 @@ require('nvim-tree').setup {
 
 }
 
+-- git
+require('gitsigns').setup {
+    on_attach = keybindings.gitsigns_keybindings
+}
+
+
+-- Theorem prover
 require('lean').setup {
     mappings = true,
     lsp = {
@@ -138,7 +144,7 @@ require('minuet').setup {
         enable_auto_complete = true,
     },
 
-    throttle = 0,
+    throttle = 100,
 
     provider = 'openai_fim_compatible',
     n_completions = 1, -- recommend for local model for resource saving
