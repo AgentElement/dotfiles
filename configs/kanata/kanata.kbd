@@ -9,7 +9,7 @@
 )
 
 
-(defsrc 
+(defsrc
     esc
     grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
     tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
@@ -18,8 +18,8 @@
     lctl lmet lalt           spc            ralt rmet rctl
 )
 
-(deflayer qwerty 
-    caps 
+(deflayer qwerty
+    caps
     @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
     tab  q    @qcw @qce r    t    y    u    @qci @qco p    [    ]    \
     esc  a    @qcs @qcd f    g    h    j    @qck @qcl ;    '    ret
@@ -27,8 +27,8 @@
     lctl lmet lalt           @sps           ralt rmet rctl
 )
 
-(deflayer colemak-dh 
-    caps 
+(deflayer colemak-dh
+    caps
     @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
     tab  q    @ccw @ccf p    b    j    l    @ccu @ccy  '    [    ]    \
     esc  a    @ccr @ccs t    g    m    n    @cce @cci o    ;    ret
@@ -38,7 +38,7 @@
 
 
 
-(deflayer default 
+(deflayer default
     caps
     @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
     tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
@@ -59,13 +59,13 @@
 
 
 (defalias
-    qcw (chord qwrtab w)    
+    qcw (chord qwrtab w)
     qce (chord qwrtab e)
 
     qcs (chord qwresc s)
     qcd (chord qwresc d)
 
-    qci (chord qwrbspc i)    
+    qci (chord qwrbspc i)
     qco (chord qwrbspc o)
 
     qck (chord qwrret k)
@@ -77,7 +77,7 @@
     ccr (chord cmkesc r)
     ccs (chord cmkesc s)
 
-    ccu (chord cmkbspc u)    
+    ccu (chord cmkbspc u)
     ccy (chord cmkbspc y)
 
     cce (chord cmkret e)
@@ -101,7 +101,7 @@
 (defchords qwrbspc 35
     (i  ) i
     (  o) o
-    (i o) bspc 
+    (i o) bspc
 )
 
 (defchords qwresc 35
@@ -125,7 +125,7 @@
 (defchords cmkbspc 35
     (u  ) u
     (  y) y
-    (u y) bspc 
+    (u y) bspc
 )
 
 (defchords cmkesc 35
