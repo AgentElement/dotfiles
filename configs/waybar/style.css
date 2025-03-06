@@ -51,8 +51,8 @@ button {
 
 #workspaces button {
     color: @fg;
-    padding: 0px 4px;
-    margin: 0px 6px;
+    padding: 2px 4px;
+    margin: 0px 4px;
     border-radius: 0px;
     border-top: 1px solid @bg2;
     background-color: @bg_d;
@@ -60,7 +60,7 @@ button {
 
 /* If workspaces is the leftmost module, increase left margin */
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 8px;
+    margin-left: 1em;
 }
 
 #workspaces button.active {
@@ -83,9 +83,10 @@ button {
     color: @fg;
 }
 
-#tooltip {
+tooltip {
     background: @bg_d;
-    border: 1px solid @bg2;
+    border: 1px solid @blue;
+    border-radius: 0px;
 }
 
 
@@ -107,13 +108,23 @@ button {
 #scratchpad,
 #bluetooth,
 #mpd {
-  padding: 2px 0px;
+  padding: 2px 4px;
   color: @fg;
   border-radius: 0px;
-  margin: 1px 8px;
-  /* border-top: 1px solid @bg2; */
+  margin: 0px 4px;
 }
 
+#clock tooltip {
+    background: @red
+}
+
+#clock.calendar.format.days {
+    color: @red
+}
+
+#clock tooltip {
+    color: @red
+}
 
 #power-profiles-daemon.performance {
   color: @red;
@@ -129,7 +140,6 @@ button {
   background-color: @bg_d;
   color: @green;
 }
-
 
 #battery.low {
   background-color: @bg_d;
