@@ -33,7 +33,7 @@ setopt correct                   # Suggest spelling suggestions for mistyped com
 
 # Aliases
 # alias ls='ls --color=auto'
-alias grep='grep --colour=auto'
+alias grep='rg'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
 alias cp="cp -i"
@@ -55,7 +55,7 @@ alias enote='nvim `ls -1 | grep -P \"\d{4}-[01]\d-[0-3]\d\.txt\" | tail -1`'
 
 alias nixdev="nix develop -c zsh"
 alias hm-switch="home-manager switch --flake ~/dotfiles/.#agentelement"
-alias nix-rebuild="nixos-rebuild switch --flake ~/dotfiles/.#delta"
+alias nix-rebuild="sudo nixos-rebuild switch --flake ~/dotfiles/.#delta"
 alias nix-poetry="nix flake init --template github:nix-community/poetry2nix"
 alias nix-rust="nix flake init --template templates#rust"
 alias exifdump="identify -format '%[EXIF:*]'"
@@ -99,12 +99,12 @@ export NEWT_COLORS='
     textbox=blue,black
 '
 
+# Colorize fzf
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=dark
 --color=fg:-1,bg:-1,hl:#bb70d2,fg+:#ffffff,bg+:#37383d,hl+:#79428a
 --color=info:#8fb573,prompt:#57a5e5,pointer:#de5d68,marker:#dbb671,spinner:#57a5e5,header:#57a5e5
 '
-
 
 # Tell gpg which tty to use
 export GPG_TTY=$(tty)
