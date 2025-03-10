@@ -83,10 +83,14 @@
   # Give users access to the plugdev group. Required for crazyradio
   users.groups.uinput = { };
 
+  # Udev rules for
+  # * Bitcraze crazyfile
+  # * Pyocd
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTRS{idVendor}=="1915", ATTRS{idProduct}=="7777", MODE="0664", GROUP="plugdev"
     SUBSYSTEM=="usb", ATTRS{idVendor}=="1915", ATTRS{idProduct}=="0101", MODE="0664", GROUP="plugdev"
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE="0664", GROUP="plugdev"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374e", MODE="0666", GROUP="plugdev"
   '';
 
   # Enable uinput
@@ -102,6 +106,7 @@
   users.users.agentelement = {
     isNormalUser = true;
     extraGroups = [
+      "dialout"
       "wheel"
       "video"
       "storage"
