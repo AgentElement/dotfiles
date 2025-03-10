@@ -44,7 +44,7 @@ main() {
         "-i")
         ddcutil setvcp 10 + "$2"
         ;;
-        
+
         "-d")
         ddcutil setvcp 10 - "$2"
         ;;

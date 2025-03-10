@@ -1,8 +1,8 @@
+#!/bin/sh
+
 # Set XDG_SESSION_DESKTOP to convince logind that the current session
 # is not a tty.
 # See documentation: https://man.sr.ht/~kennylevinsen/greetd/
-
-#!/bin/sh
 
 # Session
 export XDG_SESSION_TYPE=wayland
