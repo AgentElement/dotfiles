@@ -9,6 +9,8 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    textfox.url = "github:adriankarlen/textfox";
   };
 
   outputs =
@@ -17,8 +19,9 @@
       nixpkgs,
       nur,
       home-manager,
+      textfox,
       ...
-    }@inputs:
+    } @ inputs:
     let
       inherit (self) outputs;
       systems = [ "x86_64-linux" ];
@@ -49,8 +52,9 @@
             inherit inputs outputs;
           };
           modules = [
-            # use `pkgs.nur` to access nur packages. 
+            # use `pkgs.nur` to access nur packages.
             nur.modules.homeManager.default
+            textfox.homeManagerModules.default
             ./home/home.nix
           ];
         };
