@@ -9,8 +9,6 @@
 {
   imports = [
     ./firefox.nix
-    # ./steam.nix
-    # ./gamescope.nix
   ];
 
   home.username = "agentelement";
@@ -65,19 +63,20 @@
     udiskie             # Automount mass storage devices
 
     # GUI tools
-    okular              # PDF viewer
-    openscad            # Solid object modeling language
+    kdePackages.okular  # PDF viewer
     prusa-slicer        # STL slicer
     thunderbird         # Email client
     signal-desktop      # Messenger
     vlc                 # Media player
-    gwenview            # Image viewer
+    kdePackages.gwenview# Image viewer
     inkscape            # Vector graphics editor
     qalculate-gtk       # Calculator
     krita               # Raster graphics editor
     libreoffice-qt      # Office suite
     ghidra              # Reverse engineering
     kicad               # EDA suite
+    freecad             # CAD suite
+    openscad            # Solid object modeling language
     swappy              # Snapshot editor tool
     pavucontrol         # Volume control
     blueman             # Bluetooth control
@@ -85,7 +84,7 @@
     # Devtools
     rustup                                      # rust
     texlive.combined.scheme-full                # LaTeX
-    (python311.withPackages (
+    (python312.withPackages (
       ps:                                       # python
       with ps; [
         pip
@@ -100,6 +99,7 @@
     hugo                                        # Site generator
     gnumake                                     # Good ol' make
     llama-cpp                                   # Bleh
+    gdb                                         # good debugger
 
     # Language servers
     texlab                                      # LaTeX lsp
@@ -134,9 +134,6 @@
     size = 24;
     gtk.enable = true;
   };
-
-  # programs.steam.enable = true;
-  # programs.steam.gamescopeSession.enable = true;
 
   fonts.fontconfig.enable = true;
 
@@ -212,7 +209,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    XDG_CURRENT_DESKTOP = "";
+    XDG_CURRENT_DESKTOP = "Hyprland";
   };
 
   # Media control for mpris-compatible media players (mpv, firefox, etc)
