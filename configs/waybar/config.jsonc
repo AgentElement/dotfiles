@@ -34,10 +34,10 @@
         "mode-mon-col"  : 3,
         "weeks-pos"     : "right",
         "format": {
-            "months":     "<span color='#bb70d2'><b>{}</b></span>",
-            "days":       "<span color='#a7aab0'><b>{}</b></span>",
-            "weeks":      "<span color='#8fb573'><b>W{}</b></span>",
-            "weekdays":   "<span color='#51a8b3'><b>{}</b></span>",
+            "months":     "<span color='#bb70d2'>{}</span>",
+            "days":       "<span color='#a7aab0'>{}</span>",
+            "weeks":      "<span color='#8fb573'>W{}</span>",
+            "weekdays":   "<span color='#51a8b3'>{}</span>",
             "today":      "<span color='#de5d68'><b>{}</b></span>"
         }
     },
@@ -69,10 +69,10 @@
       "warning": 15,
       "critical": 5
     },
-    "format": "{icon} {capacity}% {power:>5}W",
-    "format-full": "{icon} {capacity}% {power:>5}W",
-    "format-charging": "{icon} {capacity}% {power:>5}W",
-    "format-plugged": "{icon} {capacity}% {power:>5}W",
+    "format": "{icon} {capacity}% {power:>4.1f}W",
+    "format-full": "{icon} {capacity}% {power:>4.1f}W",
+    "format-charging": "{icon} {capacity}% {power:>4.1f}W",
+    "format-plugged": "{icon} {capacity}% {power:>4.1f}W",
     "format-alt": "{icon} {time} {cycles} {health}",
     "format-icons": [
         "󰂎",
