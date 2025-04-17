@@ -141,7 +141,7 @@ vim.g.openscad_load_snippets = true
 -- Language Server
 require('minuet').setup {
     cmp = {
-        enable_auto_complete = true,
+        enable_auto_complete = false,
     },
 
     throttle = 100,

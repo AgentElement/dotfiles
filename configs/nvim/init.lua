@@ -81,6 +81,11 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = ','
 vim.g.maplocalleader = '\\'
 
+
+-- Set hover window background color to normal background color and hover
+-- window border color to comment color
+vim.opt.winhighlight="Normal:None,Pmenu:None,FloatBorder:Comment"
+
 require('plugins')
 require('plugin_config')
 require('cmp_config')

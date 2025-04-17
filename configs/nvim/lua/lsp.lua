@@ -15,7 +15,11 @@ local lsp_list = {
 require('lspconfig')
 
 vim.diagnostic.config({
-    virtual_text = false -- don't show diagnostics as inline virtual text
+    virtual_text = true -- don't show diagnostics as inline virtual text
+})
+
+vim.diagnostic.config({
+    virtual_lines = false
 })
 
 local keybindings = require('keybindings')
@@ -36,21 +40,21 @@ local on_attach = function(_client, bufnr)
         vim.opt.colorcolumn = "100"
     end
 
-    -- -- Show line diagnostics automatically in hover window
-    -- vim.api.nvim_create_autocmd("CursorMoved", {
-    --     buffer = bufnr,
-    --     callback = function()
-    --         local opts = {
-    --             focusable = false,
-    --             close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-    --             border = 'rounded',
-    --             source = 'always',
-    --             prefix = ' ',
-    --             scope = 'cursor',
-    --         }
-    --         vim.diagnostic.open_float(nil, opts)
-    --     end
-    -- })
+    -- Show line diagnostics automatically in hover window
+    vim.api.nvim_create_autocmd("CursorMoved", {
+        buffer = bufnr,
+        callback = function()
+            local opts = {
+                focusable = false,
+                close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+                border = 'single',
+                source = 'always',
+                prefix = ' ',
+                scope = 'cursor',
+            }
+            vim.diagnostic.open_float(nil, opts)
+        end
+    })
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(
