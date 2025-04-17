@@ -11,6 +11,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     textfox.url = "github:adriankarlen/textfox";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs =
@@ -20,6 +21,7 @@
       nur,
       home-manager,
       textfox,
+      nixos-hardware,
       ...
     } @ inputs:
     let
@@ -41,7 +43,10 @@
           specialArgs = {
             inherit inputs outputs;
           };
-          modules = [ ./hardware/framework13/configuration.nix ];
+          modules = [
+            nixos-hardware.nixosModules.framework-13-7040-amd
+            ./hardware/framework13/configuration.nix
+          ];
         };
       };
 

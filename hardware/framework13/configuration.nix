@@ -30,6 +30,10 @@
     "amd_pstate=active"
   ];
 
+  # Improve audio quality of speakers
+  # hardware.framework.laptop13.audioEnhancement.enable = true;
+
+
   networking.hostName = "delta";
   networking.networkmanager.enable = true;
 
@@ -53,6 +57,9 @@
   # Better power management
   services.power-profiles-daemon.enable = true;
   services.udisks2.enable = true;
+
+  # Update firmware
+  services.fwupd.enable = true;
 
   # Make the lid switch suspend instead of shut down, suspend after 10 minutes
   # of inactivity
@@ -147,7 +154,6 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-curses;
   };
 
   # login screen
