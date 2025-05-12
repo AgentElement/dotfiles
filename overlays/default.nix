@@ -15,12 +15,12 @@
     # we must substitute /opt/Signal/signal-desktop (the location that
     # signal-desktop expects to be placed)
 
-    signal-desktop = prev.signal-desktop.overrideAttrs (oldAttrs: {
-      postInstall =
-        (oldAttrs.postInstall or "")
-        + ''
-          substituteInPlace $out/share/applications/signal-desktop.desktop --replace-fail "/opt/Signal/signal-desktop" "/opt/Signal/signal-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland"
-        '';
-    });
+    # signal-desktop = prev.signal-desktop.overrideAttrs (oldAttrs: {
+    #   postInstall =
+    #     (oldAttrs.postInstall or "")
+    #     + ''
+    #       substituteInPlace $out/share/applications/signal-desktop.desktop --replace-fail "/opt/Signal/signal-desktop" "/opt/Signal/signal-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland"
+    #     '';
+    # });
   };
 }

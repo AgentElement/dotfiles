@@ -34,7 +34,6 @@
     dust                # Pretty du
     zoxide              # Fuzzy file navigation
     bottom              # System monitor
-    neovim              # Text editor
     traceroute          # traceroute
     nmap                # Network scanner
     zip                 # Make zip archives
@@ -76,6 +75,7 @@
     ghidra              # Reverse engineering
     kicad               # EDA suite
     freecad             # CAD suite
+    solvespace          # CAD suite
     openscad            # Solid object modeling language
     swappy              # Snapshot editor tool
     pavucontrol         # Volume control
@@ -178,6 +178,9 @@
 
   # Fuzzy finding
   programs.fzf.enable = true;
+
+  # Best editor
+  programs.neovim.enable = true;
 
   # Enable zsh and source the original .zshrc
   programs.zsh = {
