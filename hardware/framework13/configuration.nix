@@ -31,8 +31,7 @@
   ];
 
   # Improve audio quality of speakers
-  # hardware.framework.laptop13.audioEnhancement.enable = true;
-
+  hardware.framework.laptop13.audioEnhancement.enable = false;
 
   networking.hostName = "delta";
   networking.networkmanager.enable = true;
@@ -156,6 +155,9 @@
     enableSSHSupport = true;
   };
 
+  # Thunderbolt daemon
+  services.hardware.bolt.enable = true;
+
   # login screen
   services.greetd = {
     enable = true;
@@ -163,7 +165,7 @@
       default_session.command = ''
         ${pkgs.greetd.tuigreet}/bin/tuigreet \
           --time \
-          --theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red'
+          --theme 'border=blue;text=cyan;prompt=blue;time=red;action=blue;button=yellow;container=black;input=red'
           --asterisks \
           --user-menu
       '';
