@@ -58,3 +58,6 @@
 
 [lfs]
     cachecredentials = true
+
+[push]
+    autoSetupRemote = true
