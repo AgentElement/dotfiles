@@ -9,9 +9,22 @@
         isDefault = true;
 
         search = {
-          default = "disroot.org";
+          default = "leta.mullvad.net";
           force = true;
           engines = {
+            "leta.mullvad.net" = {
+              urls = [
+                {
+                  template = "https://leta.mullvad.net/search";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+            };
             "disroot.org" = {
               urls = [
                 {
@@ -69,6 +82,10 @@
           "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
           "browser.tabs.inTitlebar" = 0;
           "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+          "media.ffmpeg.vaapi.enabled" = true;
+          "browser.newtabpage.activity-stream.improvesearch.topSiteShortcuts.searchEngines" = "";
+          "browser.newtabpage.activity-stream.improvesearch.topSiteShortcuts.havePinned" = "";
+          "browser.newtabpage.activity-stream.improvesearch.topSiteShortcuts" = "";
         };
 
         containersForce = true;
