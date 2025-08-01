@@ -77,8 +77,6 @@ export VISUAL='nvim'
 export DEBUGINFOD_URLS='https://debuginfod.elfutils.org/'
 export DEBUGINFOD_PROGRESS=1
 
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
-
 export PATH=~/.local/bin:$PATH
 
 # nmtui uses NEWT_COLORS to set colors; this sets a sensible color scheme.
