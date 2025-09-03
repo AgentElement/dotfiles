@@ -48,6 +48,14 @@
             ./hardware/framework13/configuration.nix
           ];
         };
+        theta = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [
+            ./hardware/frameworkdesktop/configuration.nix
+          ];
+        };
       };
 
       homeConfigurations = {
