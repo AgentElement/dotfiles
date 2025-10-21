@@ -48,6 +48,8 @@
     pandoc              # Document converter
     imagemagick         # Image manipulation suite
     playerctl           # Manage media players implementing the MPRIS dbus spec
+    android-file-transfer# Transfer files from android devices.
+    macchanger          # Spoof MACs
 
     # Environment
     kitty               # Terminal emulator
@@ -74,7 +76,7 @@
     libreoffice-qt      # Office suite
     ghidra              # Reverse engineering
     kicad               # EDA suite
-    freecad             # CAD suite
+    freecad-wayland     # CAD suite
     solvespace          # CAD suite
     blender             # Soft-body modelling
     openscad            # Solid object modeling language

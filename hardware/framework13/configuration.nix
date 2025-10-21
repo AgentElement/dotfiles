@@ -187,6 +187,9 @@
     enable = true;
     withUWSM = true;
   };
+
+  services.mullvad-vpn.enable = true;
+
   programs.uwsm.enable = true;
   programs.uwsm.waylandCompositors.hyprland = {
     prettyName = "Hyprland";
