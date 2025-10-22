@@ -183,6 +183,10 @@
     };
   };
 
+  services.mullvad-vpn = {
+    enable = true;
+    package = pkgs.mullvad-vpn;
+  };
 
   nixpkgs.config.rocmSupport = true;
 

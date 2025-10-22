@@ -83,6 +83,7 @@
     swappy              # Snapshot editor tool
     pavucontrol         # Volume control
     blueman             # Bluetooth control
+    kdePackages.kdenlive # Video editor
 
     # Devtools
     rustup                                      # rust

@@ -2,7 +2,7 @@
   description = "AgentElement's configuration files";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:agentelement/nixpkgs/master";
 
     nur.url = "github:nix-community/nur";
     nur.inputs.nixpkgs.follows = "nixpkgs";
