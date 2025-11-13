@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports =
@@ -106,6 +106,9 @@
   # Thunderbolt daemon
   services.hardware.bolt.enable = true;
 
+  # Query and manipulate storage devices
+  services.udisks2.enable = true;
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -126,34 +129,8 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  # services.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.alice = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  #   packages = with pkgs; [
-  #     tree
-  #   ];
-  # };
-
-  # programs.firefox.enable = true;
-
-  # List packages installed in system profile.
-  # You can use https://search.nixos.org/ to find more packages (and options).
-  # environment.systemPackages = with pkgs; [
-  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #   wget
-  # ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -183,11 +160,10 @@
     };
   };
 
-  services.mullvad-vpn = {
-    enable = true;
-    package = pkgs.mullvad-vpn;
-  };
+  # Required for docker to work correctly
+  virtualisation.docker.enable = true;
 
+  services.mullvad-vpn.enable = true;
   nixpkgs.config.rocmSupport = true;
 
   # Open ports in the firewall.

@@ -50,11 +50,10 @@
     useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # Backlight control
-  # programs.light.enable = true;
-
   # Better power management
   services.power-profiles-daemon.enable = true;
+
+  # Query and manipulate storage devices
   services.udisks2.enable = true;
 
   # Update firmware
