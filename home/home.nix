@@ -224,22 +224,4 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-# systemd.user.services.llama-cpp = {
-#   Unit = {
-#       Description = "Run a small language model";
-#   };
-#   Install = {
-#       WantedBy = [ "default.target" ];
-#   };
-#   Service = {
-#       ExecStart = "${pkgs.writeShellScript "llama-cpp" ''
-#           #!/run/current-system/sw/bin/bash
-#           llama-server \
-#               -hf ggml-org/Qwen2.5-Coder-1.5B-Q8_0-GGUF \
-#               --port 8012 -ngl 99 -fa -ub 1024 -b 1024 \
-#               --ctx-size 0 --cache-reuse 256
-#       ''}";
-#   };
-# };
 }
