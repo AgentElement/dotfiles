@@ -24,7 +24,17 @@
     };
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [
+    "amd_iommu=off"
+    "amdgpu.gttsize=108000"
+    "ttm.pages_limit=33554432"
+    "amdgpu.ppfeaturemask=0xf7fff"
+  ];
+  boot.kernelPackages = lib.recurseIntoAttrs (pkgs.linuxPackagesFor (pkgs.buildLinux {
+    version = "6.18-rc5";
+    modDirVersion = "6.18.0-rc5";
+    src = lib.cleanSource "/storage/proj/clone/linux/";
+  }));
 
   networking.hostName = "theta";
   networking.networkmanager.enable = true;
@@ -71,6 +81,7 @@
       "networkmanager"
       "input"
       "uinput"
+      "podman"
     ];
     shell = pkgs.zsh;
   };
@@ -82,6 +93,7 @@
     gcc
     pulseaudio
     gnupg
+    toolbox
   ];
 
   # Beware, proprietary garbage here.
@@ -108,6 +120,9 @@
 
   # Query and manipulate storage devices
   services.udisks2.enable = true;
+
+  # Update firmware
+  services.fwupd.enable = true;
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -160,11 +175,21 @@
     };
   };
 
-  # Required for docker to work correctly
-  virtualisation.docker.enable = true;
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+
 
   services.mullvad-vpn.enable = true;
   nixpkgs.config.rocmSupport = true;
+
+
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
