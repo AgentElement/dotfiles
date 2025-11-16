@@ -9,13 +9,26 @@
         isDefault = true;
 
         search = {
-          default = "leta.mullvad.net";
+          default = "startpage.com";
           force = true;
           engines = {
             "leta.mullvad.net" = {
               urls = [
                 {
                   template = "https://leta.mullvad.net/search";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+            };
+            "startpage.com" = {
+              urls = [
+                {
+                  template = "https://www.startpage.com/sp/search";
                   params = [
                     {
                       name = "q";
