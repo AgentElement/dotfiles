@@ -65,9 +65,6 @@ require("lazy").setup({
     -- Search jumping
     'https://github.com/ggandor/leap.nvim',
 
-    -- Language model completion
-    'https://github.com/milanglacier/minuet-ai.nvim',
-
     -- Neovim org-mode
     {
         "nvim-neorg/neorg",
