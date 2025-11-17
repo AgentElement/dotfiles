@@ -103,7 +103,7 @@ local server_opts = {
                 build_on_save = false,
                 all_features = true,
             },
-            checkOnSave = {
+            check = {
                 allFeatures = true,
                 command = "clippy",
                 extraArgs = {
