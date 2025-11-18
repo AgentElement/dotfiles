@@ -8,8 +8,6 @@ require('onedark').load()
 
 require('nvim-highlight-colors').setup {}
 
-require('leap').create_default_mappings()
-
 -- Status line
 require('lualine').setup {
     options = {
@@ -38,6 +36,7 @@ require('lualine').setup {
     },
 }
 
+-- Fuzzy finder over lists, files, etc
 require('telescope').setup {
     defaults = {
         borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
@@ -49,7 +48,7 @@ require('telescope').setup {
     }
 }
 
--- nvim-tree
+-- File explorer
 require('nvim-tree').setup {
     renderer = {
         indent_markers = {
@@ -63,7 +62,7 @@ require('nvim-tree').setup {
 
 }
 
--- git
+-- Git
 require('gitsigns').setup {
     on_attach = keybindings.gitsigns_keybindings
 }
@@ -97,8 +96,8 @@ require('nvim-treesitter.configs').setup {
     -- Don't automatically install parsers
     auto_install = false,
 
-    -- Really, don't ignore anything. I want ALL the parsers.
-    ignore_install = {},
+    -- Broken parsers
+    ignore_install = { "ipkg" },
 
     -- I don't know what this is, but lua-ls complains if it isn't here.
     modules = {},
@@ -110,7 +109,7 @@ require('nvim-treesitter.configs').setup {
     }
 }
 
--- toggleterm
+-- Popup terminal
 require('toggleterm').setup {
     -- terminal size is 0.4 * window height
     size = vim.o.lines * 0.4,
@@ -122,4 +121,3 @@ require('toggleterm').setup {
 -- OpenSCAD
 require('openscad')
 vim.g.openscad_load_snippets = true
-

@@ -56,18 +56,12 @@ require("lazy").setup({
     -- Improved tab bar
     'https://github.com/romgrk/barbar.nvim',
 
-    -- Autoformatting
-    -- 'https://github.com/Chiel92/vim-autoformat',
-
     -- ASCII diagrams in vim
     'https://github.com/jbyuki/venn.nvim',
 
-    -- Search jumping
-    'https://github.com/ggandor/leap.nvim',
-
     -- Neovim org-mode
     {
-        "nvim-neorg/neorg",
+        "https://github.com/nvim-neorg/neorg",
         lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
         version = "*", -- Pin Neorg to the latest stable release
         config = true,
