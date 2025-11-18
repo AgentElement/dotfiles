@@ -72,20 +72,6 @@ require('gitsigns').setup {
 -- Theorem prover
 require('lean').setup {
     mappings = true,
-    lsp = {
-        init_options = {
-            -- See Lean.Lsp.InitializationOptions for details and further options.
-
-            -- Time (in milliseconds) which must pass since latest edit until elaboration begins.
-            -- Lower values may make editing feel faster at the cost of higher CPU usage.
-            -- Note that lean.nvim changes the Lean default for this value!
-            editDelay = 0,
-
-            -- Whether to signal that widgets are supported.
-            hasWidgets = true,
-        }
-    },
-
     stderr = {
         enable = true,
         -- Height of the window

@@ -12,8 +12,6 @@ local lsp_list = {
     "tinymist"
 }
 
-require('lspconfig')
-
 vim.diagnostic.config({
     virtual_text = true -- don't show diagnostics as inline virtual text
 })
@@ -155,6 +153,19 @@ local server_opts = {
             exportPdf = "onType",
             semanticTokens = "disable"
         }
+    end,
+
+    ["leanls"] = function(opts)
+        opts.init_options = {
+            -- Time (in milliseconds) which must pass since latest edit until
+            -- elaboration begins. Lower values may make editing feel faster at
+            -- the cost of higher CPU usage. Note that lean.nvim changes the
+            -- Lean default for this value!
+            editDelay = 0,
+
+            -- Whether to signal that widgets are supported.
+            hasWidgets = true,
+        }
     end
 }
 
@@ -169,7 +180,8 @@ for _, server in pairs(lsp_list) do
         server_opts[server](opts)
     end
 
-    require('lspconfig')[server].setup(opts)
+    vim.lsp.config[server] = opts
+    vim.lsp.enable(server)
 end
 
 require("clangd_extensions").setup {
