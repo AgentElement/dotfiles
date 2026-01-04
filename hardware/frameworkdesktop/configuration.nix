@@ -5,10 +5,11 @@
 { pkgs, lib, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./homelab.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;
@@ -29,11 +30,15 @@
     "amdgpu.gttsize=108000"
     "ttm.pages_limit=33554432"
   ];
-  boot.kernelPackages = lib.recurseIntoAttrs (pkgs.linuxPackagesFor (pkgs.buildLinux {
-    version = "6.18-rc5";
-    modDirVersion = "6.18.0-rc5";
-    src = lib.cleanSource "/storage/proj/clone/linux/";
-  }));
+  boot.kernelPackages = lib.recurseIntoAttrs (
+    pkgs.linuxPackagesFor (
+      pkgs.buildLinux {
+        version = "6.18-rc5";
+        modDirVersion = "6.18.0-rc5";
+        src = lib.cleanSource "/storage/proj/clone/linux/";
+      }
+    )
+  );
 
   networking.hostName = "theta";
   networking.networkmanager.enable = true;
@@ -57,7 +62,6 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
 
   users.groups.storage = { };
   users.groups.uinput = { };
@@ -88,7 +92,8 @@
     gcc
     pulseaudio
     gnupg
-    toolbox
+    podman
+    podman-compose
   ];
 
   # Beware, proprietary garbage here.
@@ -103,7 +108,6 @@
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
-
 
   programs.gnupg.agent = {
     enable = true;
@@ -136,7 +140,6 @@
     binPath = "/run/current-system/sw/bin/Hyprland";
   };
 
-
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
@@ -165,10 +168,8 @@
     };
   };
 
-
   services.mullvad-vpn.enable = true;
   nixpkgs.config.rocmSupport = true;
-
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
@@ -190,4 +191,3 @@
   system.stateVersion = "25.05"; # Did you read the comment?
 
 }
-
