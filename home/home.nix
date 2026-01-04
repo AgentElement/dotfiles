@@ -50,6 +50,8 @@
     playerctl           # Manage media players implementing the MPRIS dbus spec
     android-file-transfer# Transfer files from android devices.
     macchanger          # Spoof MACs
+    aider-chat-full     # LLM helper util
+    smartmontools       # smartctl
 
     # Environment
     kitty               # Terminal emulator
@@ -102,8 +104,11 @@
     typst                                       # Is LaTeX really that bad?
     hugo                                        # Site generator
     gnumake                                     # Good ol' make
-    llama-cpp                                   # Bleh
+    (llama-cpp.override {
+        rocmSupport = true;
+    })
     gdb                                         # good debugger
+    nixfmt-rfc-style                            # nix formatter
 
     # Language servers
     texlab                                      # LaTeX lsp

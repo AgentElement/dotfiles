@@ -143,40 +143,40 @@
   };
 
   textfox = {
-      enable = false;
-      profile = "default";
-      config = {
-        background = {
-          color = "#232326";
+    enable = false;
+    profile = "default";
+    config = {
+      background = {
+        color = "#232326";
+      };
+      border = {
+        color = "#37383d";
+        width = "1.5px";
+        transition = "";
+        radius = "0px";
+      };
+      tabs = {
+        vertical = {
+          enable = true;
+          margin = "0rem";
         };
-        border = {
-          color = "#37383d";
-          width = "1.5px";
-          transition = "";
-          radius = "0px";
-        };
-        tabs = {
-          vertical = {
-            enable = true;
-            margin = "0rem";
-          };
-          horizontal = {
-            enable = false;
-          };
-        };
-        icons.toolbar.extensions.enable = true;
-        icons.context.extensions.enable = true;
-        icons.context.firefox.enable = true;
-        displayWindowControls = true;
-        displayNavButtons = true;
-        displayUrlbarIcons = true;
-        displaySidebarTools = false;
-        displayTitles = false;
-        font = {
-          family = "inconsolata";
-          size = "13px";
-          accent = "#57a5e5";
+        horizontal = {
+          enable = false;
         };
       };
+      icons.toolbar.extensions.enable = true;
+      icons.context.extensions.enable = true;
+      icons.context.firefox.enable = true;
+      displayWindowControls = true;
+      displayNavButtons = true;
+      displayUrlbarIcons = true;
+      displaySidebarTools = false;
+      displayTitles = false;
+      font = {
+        family = "inconsolata";
+        size = "13px";
+        accent = "#57a5e5";
+      };
+    };
   };
 }
