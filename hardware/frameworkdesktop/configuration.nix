@@ -30,16 +30,7 @@
     "amdgpu.gttsize=108000"
     "ttm.pages_limit=33554432"
   ];
-  boot.kernelPackages = lib.recurseIntoAttrs (
-    pkgs.linuxPackagesFor (
-      pkgs.buildLinux {
-        version = "6.18-rc5";
-        modDirVersion = "6.18.0-rc5";
-        src = lib.cleanSource "/storage/proj/clone/linux/";
-      }
-    )
-  );
-
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   networking.hostName = "theta";
   networking.networkmanager.enable = true;
 
@@ -137,36 +128,8 @@
   programs.uwsm.waylandCompositors.hyprland = {
     prettyName = "Hyprland";
     comment = "Hyprland compositor managed by UWSM";
-    binPath = "/run/current-system/sw/bin/Hyprland";
   };
 
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    ports = [ 22 ];
-    settings = {
-      PasswordAuthentication = true;
-      AllowUsers = [ "agentelement" ];
-      UseDns = true;
-      X11Forwarding = false;
-      PermitRootLogin = "no";
-    };
-    knownHosts = {
-      delta = {
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHgiDj6ZFvu7Ta/4ZQ+c3JZlw/lTj5j3dmVqr11YksFz agentelement@delta";
-      };
-    };
-  };
-
-  virtualisation = {
-    containers.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.settings.dns_enabled = true;
-    };
-  };
 
   services.mullvad-vpn.enable = true;
   nixpkgs.config.rocmSupport = true;
