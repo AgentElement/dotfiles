@@ -50,8 +50,9 @@
     playerctl           # Manage media players implementing the MPRIS dbus spec
     android-file-transfer# Transfer files from android devices.
     macchanger          # Spoof MACs
-    aider-chat-full     # LLM helper util
     smartmontools       # smartctl
+    beancount           # accounting software
+    opencode            # LLM programming agent
 
     # Environment
     kitty               # Terminal emulator
@@ -118,6 +119,7 @@
     # pylyzer                                   # python lsp
     ruff                                        # python linter
     tinymist                                    # typst lsp
+    beancount-language-server                   # beancount lsp
 
     # Fonts
     inconsolata
@@ -133,7 +135,7 @@
     #   repeat 36 [repeat 360 [forward 1 right 1] right 10]
     #
     # If you are reading this, try it out yourself!
-    ucblogo
+    # ucblogo
   ];
 
 
