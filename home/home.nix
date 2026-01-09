@@ -109,7 +109,7 @@
         rocmSupport = true;
     })
     gdb                                         # good debugger
-    nixfmt-rfc-style                            # nix formatter
+    nixfmt                                      # nix formatter
 
     # Language servers
     texlab                                      # LaTeX lsp
@@ -195,7 +195,7 @@
 
   # Enable zsh and source the original .zshrc
   programs.zsh = {
-    initExtra = ''
+    initContent = ''
       source ~/.old_zshrc
     '';
     enable = true;

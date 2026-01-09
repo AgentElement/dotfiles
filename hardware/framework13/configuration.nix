@@ -57,12 +57,10 @@
 
   # Make the lid switch suspend instead of shut down, suspend after 10 minutes
   # of inactivity
-  services.logind = {
-    lidSwitch = "suspend";
-    extraConfig = ''
-      IdleAction=suspend
-      IdleActionSec=10m
-    '';
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend";
+    IdleAction = "suspend;";
+    IdleActionSec = "10m";
   };
 
   # Enable sound
@@ -158,7 +156,7 @@
     enable = true;
     settings = {
       default_session.command = ''
-        ${pkgs.greetd.tuigreet}/bin/tuigreet \
+        ${pkgs.tuigreet}/bin/tuigreet \
           --time \
           --theme 'border=blue;text=cyan;prompt=blue;time=red;action=blue;button=yellow;container=black;input=red'
           --asterisks \
@@ -185,12 +183,12 @@
 
   services.mullvad-vpn.enable = true;
 
-  programs.uwsm.enable = true;
-  programs.uwsm.waylandCompositors.hyprland = {
-    prettyName = "Hyprland";
-    comment = "Hyprland compositor managed by UWSM";
-    binPath = "/run/current-system/sw/bin/Hyprland";
-  };
+  # programs.uwsm.enable = true;
+  # programs.uwsm.waylandCompositors.hyprland = {
+  #   prettyName = "Hyprland";
+  #   comment = "Hyprland compositor managed by UWSM";
+  #   binPath = "/run/current-system/sw/bin/Hyprland";
+  # };
 
 
   environment.etc."greetd/environments".text = ''
