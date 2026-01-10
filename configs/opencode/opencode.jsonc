@@ -12,6 +12,12 @@
         "Qwen3-VL-30B-A3B-Thinking-BF16": {
           "name": "Qwen3-VL-30B-A3B-Thinking-BF16"
         },
+        "Qwen3-VL-30B-A3B-Instruct-UD-Q8_K_XL": {
+            "name": "Qwen3-VL-30B-A3B-Instruct-UD-Q8_K_XL",
+        },
+        "Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL": {
+            "name": "Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL",
+        },
         "Qwen3-Next-80B-A3B-Thinking-UD-Q6_K_XL": {
           "name": "Qwen3-Next-80B-A3B-Thinking-UD-Q6_K_XL"
         },
