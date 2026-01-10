@@ -1,0 +1,24 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "opencode",
+    "provider": {
+    "myprovider": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "llama-cpp",
+      "options": {
+        "baseURL": "http://localhost:8080/v1"
+      },
+      "models": {
+        "Qwen3-VL-30B-A3B-Thinking-BF16": {
+          "name": "Qwen3-VL-30B-A3B-Thinking-BF16"
+        },
+        "Qwen3-Next-80B-A3B-Thinking-UD-Q6_K_XL": {
+          "name": "Qwen3-Next-80B-A3B-Thinking-UD-Q6_K_XL"
+        },
+        "gpt-oss-120b-Q4_K_S": {
+          "name": "gpt-oss-120b-Q4_K_S"
+        },
+      }
+    }
+  }
+}

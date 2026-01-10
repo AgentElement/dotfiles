@@ -178,6 +178,7 @@
         ".config/waybar/config.jsonc"               = "waybar/config.jsonc";
         ".config/waybar/style.css"                  = "waybar/style.css";
         ".config/dunst/dunstrc"                     = "dunst/dunstrc";
+        ".config/opencode/opencode.jsonc"           = "opencode/opencode.jsonc";
       };
 
   # Launcher
