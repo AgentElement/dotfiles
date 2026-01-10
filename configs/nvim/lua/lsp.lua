@@ -1,8 +1,8 @@
 local lsp_list = {
     "texlab",
     "rust_analyzer", -- rustaceanvim takes care of rust-analyzer for us
-    "pyright",       -- TODO: change this to pylyzer once they figure out how to resolve local imports
     "ruff",
+    "ty",
     "cmake",
     "lua_ls",
     "openscad_lsp",

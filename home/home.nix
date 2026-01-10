@@ -115,9 +115,8 @@
     texlab                                      # LaTeX lsp
     lua-language-server                         # lua lsp
     nixd                                        # nix-lang lsp
-    pyright                                     # python lsp
-    # pylyzer                                   # python lsp
     ruff                                        # python linter
+    ty                                          # python type checker + lsp
     tinymist                                    # typst lsp
     beancount-language-server                   # beancount lsp
 
