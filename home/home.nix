@@ -53,6 +53,7 @@
     smartmontools       # smartctl
     beancount           # accounting software
     opencode            # LLM programming agent
+    wireguard-tools     # wg and wg-quick
 
     # Environment
     kitty               # Terminal emulator
