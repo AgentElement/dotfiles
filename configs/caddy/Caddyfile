@@ -1,5 +1,11 @@
-local.agentelement.net {
-    handle_path /llm* {
+llm.theta.local {
+    handle {
+        reverse_proxy localhost:8080
+    }
+}
+
+llm.agentelement.net {
+    handle {
         reverse_proxy localhost:8080
     }
 }
