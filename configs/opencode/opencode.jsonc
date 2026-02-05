@@ -1,7 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "theme": "opencode",
-    "provider": {
+  "provider": {
     "myprovider": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "llama-cpp",
@@ -13,10 +13,10 @@
           "name": "Qwen3-VL-30B-A3B-Thinking-BF16"
         },
         "Qwen3-VL-30B-A3B-Instruct-UD-Q8_K_XL": {
-            "name": "Qwen3-VL-30B-A3B-Instruct-UD-Q8_K_XL",
+          "name": "Qwen3-VL-30B-A3B-Instruct-UD-Q8_K_XL"
         },
         "Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL": {
-            "name": "Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL",
+          "name": "Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL"
         },
         "Qwen3-Next-80B-A3B-Thinking-UD-Q6_K_XL": {
           "name": "Qwen3-Next-80B-A3B-Thinking-UD-Q6_K_XL"
@@ -24,16 +24,25 @@
         "gpt-oss-120b-Q4_K_S": {
           "name": "gpt-oss-120b-Q4_K_S"
         },
+        "Qwen3-Coder-Next-Q4_K_M": {
+          "name": "Qwen3-Coder-Next-Q4_K_M"
+        }
       }
     }
   },
   "lsp": {
-      "pyright": {
-          "disabled": true
-      },
-      "ty": {
-          "command": ["ty",  "server"],
-          "extensions": [".py", ".pyi"]
-      }
+    "pyright": {
+      "disabled": true
+    },
+    "ty": {
+      "command": [
+        "ty",
+        "server"
+      ],
+      "extensions": [
+        ".py",
+        ".pyi"
+      ]
+    }
   }
 }
