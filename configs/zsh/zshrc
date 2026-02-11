@@ -48,8 +48,6 @@ alias vim=nvim
 
 alias icat="kitty +kitten icat" # image cat
 
-alias find="fd"
-
 alias notemk="touch `date -I`.txt"
 alias enote='nvim `ls -1 | grep -P \"\d{4}-[01]\d-[0-3]\d\.txt\" | tail -1`'
 
