@@ -26,11 +26,12 @@
   };
 
   boot.kernelParams = [
-    # "amd_iommu=off"
-    # "amdgpu.gttsize=108000"
-    # "ttm.pages_limit=33554432"
+    "ttm.page_pool_size=29696000"
+    "ttm.pages_limit=29696000"
     "amdgpu.runpm=0"
-    # "pcie_aspm=off"
+    "pcie_aspm=off"
+    "pcie_port_pm=off"
+    "nvme_core.default_ps_max_latency_us=0"
   ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   networking.hostName = "theta";
