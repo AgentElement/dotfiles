@@ -2,7 +2,7 @@
   description = "AgentElement's configuration files";
 
   inputs = {
-    nixpkgs.url = "github:AgentElement/nixpkgs/llama-cpp-models-dir";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
 
     nur.url = "github:nix-community/nur";
     nur.inputs.nixpkgs.follows = "nixpkgs";
