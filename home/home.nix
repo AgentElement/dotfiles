@@ -42,7 +42,7 @@
     usbutils            # lsusb
     fd                  # Fuzzy find
     ripgrep             # Fuzzy grep
-    yq                  # YAML/JSON/XML/CSV/TOML processor
+    jq                  # JSON processor
     calcurse            # Calendar
     pdftk               # PDF toolkit
     pandoc              # Document converter
@@ -54,6 +54,7 @@
     beancount           # accounting software
     opencode            # LLM programming agent
     wireguard-tools     # wg and wg-quick
+    nvme-cli            # nvme
 
     # Environment
     kitty               # Terminal emulator
