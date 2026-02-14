@@ -22,5 +22,8 @@
     #       substituteInPlace $out/share/applications/signal-desktop.desktop --replace-fail "/opt/Signal/signal-desktop" "/opt/Signal/signal-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland"
     #     '';
     # });
+
+    rocmPackages = inputs.nixpkgs-stable.legacyPackages.${prev.system}.rocmPackages;
+    llama-cpp = inputs.nixpkgs-stable.legacyPackages.${prev.system}.llama-cpp;
   };
 }

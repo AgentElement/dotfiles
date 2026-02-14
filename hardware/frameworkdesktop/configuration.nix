@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, lib, ... }:
+{ pkgs, lib, outputs, ... }:
 
 {
   imports = [
@@ -10,6 +10,13 @@
     ./hardware-configuration.nix
     ./homelab.nix
   ];
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+    ];
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;
@@ -131,6 +138,7 @@
   programs.uwsm.waylandCompositors.hyprland = {
     prettyName = "Hyprland";
     comment = "Hyprland compositor managed by UWSM";
+    binPath = "/run/current-system/sw/bin/Hyprland";
   };
 
 
