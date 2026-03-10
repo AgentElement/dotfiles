@@ -23,7 +23,7 @@
     #     '';
     # });
 
-    rocmPackages = inputs.nixpkgs-stable.legacyPackages.${prev.system}.rocmPackages;
-    llama-cpp = inputs.nixpkgs-stable.legacyPackages.${prev.system}.llama-cpp;
+    # rocmPackages = inputs.nixpkgs-stable.legacyPackages.${prev.system}.rocmPackages;
+    # llama-cpp = inputs.nixpkgs-stable.legacyPackages.${prev.system}.llama-cpp;
   };
 }
