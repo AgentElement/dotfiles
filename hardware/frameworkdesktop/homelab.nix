@@ -24,6 +24,7 @@
       "--ctx-size"
       "0"
     ];
+    port = 8080;
   };
 
   environment.systemPackages = with pkgs; [
@@ -58,6 +59,16 @@
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;
     };
+  };
+
+  services.immich = {
+    enable = true;
+    port = 2283;
+  };
+
+  services.invidious = {
+    enable = true;
+    port = 3000;
   };
 
   services.caddy = {
