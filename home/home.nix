@@ -70,11 +70,13 @@
 
     # GUI tools
     kdePackages.okular  # PDF viewer
-    prusa-slicer        # STL slicer
+    kdePackages.gwenview# Image viewer
+    kdePackages.kdenlive # Video editor
+    orca-slicer         # STL slicer
+    meshlab             # Swiss army knife for meshes
     thunderbird         # Email client
     signal-desktop      # Messenger
     vlc                 # Media player
-    kdePackages.gwenview# Image viewer
     inkscape            # Vector graphics editor
     qalculate-gtk       # Calculator
     krita               # Raster graphics editor
@@ -88,7 +90,6 @@
     swappy              # Snapshot editor tool
     pavucontrol         # Volume control
     blueman             # Bluetooth control
-    kdePackages.kdenlive # Video editor
 
     # Devtools
     rustup                                      # rust
