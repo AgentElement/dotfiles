@@ -1,0 +1,35 @@
+{
+  "providers": {
+    "llama-cpp": {
+      "baseUrl": "http://localhost:8080/v1",
+      "api": "openai-completions",
+      "apiKey": "dummy",
+      "models": [
+        {
+          "id": "Qwen3-VL-30B-A3B-Thinking-BF16",
+          "name": "Qwen3-VL-30B-A3B-Thinking-BF16"
+        },
+        {
+          "id": "Qwen3-VL-30B-A3B-Instruct-UD-Q8_K_XL",
+          "name": "Qwen3-VL-30B-A3B-Instruct-UD-Q8_K_XL"
+        },
+        {
+          "id": "Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL",
+          "name": "Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL"
+        },
+        {
+          "id": "Qwen3-Next-80B-A3B-Thinking-UD-Q6_K_XL",
+          "name": "Qwen3-Next-80B-A3B-Thinking-UD-Q6_K_XL"
+        },
+        {
+          "id": "gpt-oss-120b-Q4_K_S",
+          "name": "gpt-oss-120b-Q4_K_S"
+        },
+        {
+          "id": "Qwen3-Coder-Next-Q4_K_M",
+          "name": "Qwen3-Coder-Next-Q4_K_M"
+        }
+      ]
+    }
+  }
+}

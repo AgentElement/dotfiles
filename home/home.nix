@@ -54,6 +54,7 @@
     beancount           # accounting software
     wireguard-tools     # wg and wg-quick
     nvme-cli            # nvme
+    pi-coding-agent     # LLM programming assistant
 
     # Environment
     kitty               # Terminal emulator
@@ -180,6 +181,7 @@
         ".config/waybar/config.jsonc"               = "waybar/config.jsonc";
         ".config/waybar/style.css"                  = "waybar/style.css";
         ".config/dunst/dunstrc"                     = "dunst/dunstrc";
+        ".pi/agent/settings.json"                   = "pi/agent/settings.json";
       };
 
   # Launcher
