@@ -60,6 +60,8 @@ alias nix-rust="nix flake init --template templates#rust"
 alias exifdump="identify -format '%[EXIF:*]'"
 alias airplane-mode="nmcli radio all off && bluetoothctl power off"
 
+alias pi="jai pi" # always run the pi coding agent within jai
+
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey vicmd edit-command-line # Use vicmd to edit the current line in vim

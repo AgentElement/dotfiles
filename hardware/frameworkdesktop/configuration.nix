@@ -135,6 +135,7 @@
   };
 
   programs.uwsm.enable = true;
+  programs.jai-jail.enable = true;
   programs.uwsm.waylandCompositors.hyprland = {
     prettyName = "Hyprland";
     comment = "Hyprland compositor managed by UWSM";
