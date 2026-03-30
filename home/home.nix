@@ -52,7 +52,6 @@
     macchanger          # Spoof MACs
     smartmontools       # smartctl
     beancount           # accounting software
-    opencode            # LLM programming agent
     wireguard-tools     # wg and wg-quick
     nvme-cli            # nvme
 
@@ -181,7 +180,6 @@
         ".config/waybar/config.jsonc"               = "waybar/config.jsonc";
         ".config/waybar/style.css"                  = "waybar/style.css";
         ".config/dunst/dunstrc"                     = "dunst/dunstrc";
-        ".config/opencode/opencode.jsonc"           = "opencode/opencode.jsonc";
       };
 
   # Launcher
