@@ -156,6 +156,7 @@ zinit light romkatv/powerlevel10k
 
 zinit light "wfxr/forgit"
 zinit light "jeffreytse/zsh-vi-mode"
+ZVM_SYSTEM_CLIPBOARD_ENABLED=true # Enable copying from buffer to system clipboard in vi mode. Broken as of 2026-04-03
 # fzf-tab must be the last plugin to bind ^I, but must be loaded before plugins
 # which will wrap widgets
 zinit light "Aloxaf/fzf-tab"

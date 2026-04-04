@@ -2,7 +2,12 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, lib, outputs, ... }:
+{
+  pkgs,
+  lib,
+  outputs,
+  ...
+}:
 
 {
   imports = [
@@ -134,6 +139,32 @@
     withUWSM = true;
   };
 
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    user = "agentelement";
+    dataDir = "/home/agentelement";
+    settings = {
+      gui.theme = "dark";
+      devices = {
+        theta = {
+          id = "SP3F5G7-GLBUP26-NHLTJOC-SCWUAAE-YHMTFEN-NUCRNND-BABSMEE-3E7HGQE";
+        };
+        delta = {
+          id = "T66RJ7T-UPYCABI-7CWJ7H2-YF2LWSZ-YZGQUBC-D2DAIVL-Y5K5AZQ-P5UGPQN";
+        };
+      };
+      folders = {
+        "/storage/archive/" = {
+          devices = [
+            "theta"
+            "delta"
+          ];
+        };
+      };
+    };
+  };
+
   programs.uwsm.enable = true;
   programs.jai-jail.enable = true;
   programs.uwsm.waylandCompositors.hyprland = {
@@ -141,7 +172,6 @@
     comment = "Hyprland compositor managed by UWSM";
     binPath = "/run/current-system/sw/bin/Hyprland";
   };
-
 
   services.mullvad-vpn.enable = true;
   nixpkgs.config.rocmSupport = true;
