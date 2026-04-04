@@ -142,6 +142,32 @@
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
 
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    user = "agentelement";
+    dataDir = "/home/agentelement";
+    settings = {
+      gui.theme = "dark";
+      devices = {
+        theta = {
+          id = "SP3F5G7-GLBUP26-NHLTJOC-SCWUAAE-YHMTFEN-NUCRNND-BABSMEE-3E7HGQE";
+        };
+        delta = {
+          id = "T66RJ7T-UPYCABI-7CWJ7H2-YF2LWSZ-YZGQUBC-D2DAIVL-Y5K5AZQ-P5UGPQN";
+        };
+      };
+      folders = {
+        "/storage/archive/" = {
+          devices = [
+            "theta"
+            "delta"
+          ];
+        };
+      };
+    };
+  };
+
   # GPG with ssh support
   programs.gnupg.agent = {
     enable = true;
@@ -189,7 +215,6 @@
   #   comment = "Hyprland compositor managed by UWSM";
   #   binPath = "/run/current-system/sw/bin/Hyprland";
   # };
-
 
   environment.etc."greetd/environments".text = ''
     hyprland
