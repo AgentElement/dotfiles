@@ -151,7 +151,7 @@
       gui.theme = "dark";
       devices = {
         theta = {
-          id = "SP3F5G7-GLBUP26-NHLTJOC-SCWUAAE-YHMTFEN-NUCRNND-BABSMEE-3E7HGQE";
+          id = "3TZ7W43-DE6UJV2-CVZIB5P-NYRJB4D-6EH4Q7N-ELYXI4X-VSPOSZS-BWED7QS";
         };
         delta = {
           id = "T66RJ7T-UPYCABI-7CWJ7H2-YF2LWSZ-YZGQUBC-D2DAIVL-Y5K5AZQ-P5UGPQN";
