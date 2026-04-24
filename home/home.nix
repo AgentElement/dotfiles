@@ -55,6 +55,9 @@
     wireguard-tools     # wg and wg-quick
     nvme-cli            # nvme
     pi-coding-agent     # LLM programming assistant
+    ffmpeg              # godlike media tool
+    neovim              # best editor
+    ethtool             # ethtool
 
     # Environment
     kitty               # Terminal emulator
@@ -194,7 +197,7 @@
   programs.fzf.enable = true;
 
   # Best editor
-  programs.neovim.enable = true;
+  # programs.neovim.enable = true;
 
   # Enable zsh and source the original .zshrc
   programs.zsh = {
