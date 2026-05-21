@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:agentelement/nixpkgs/jai-package";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     nur.url = "github:nix-community/nur";
     nur.inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +18,6 @@
     {
       self,
       nixpkgs,
-      nixpkgs-stable,
       nur,
       home-manager,
       textfox,
