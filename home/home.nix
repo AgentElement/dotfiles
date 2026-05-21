@@ -184,7 +184,7 @@
         ".config/waybar/config.jsonc"               = "waybar/config.jsonc";
         ".config/waybar/style.css"                  = "waybar/style.css";
         ".config/dunst/dunstrc"                     = "dunst/dunstrc";
-        ".pi/agent/settings.json"                   = "pi/agent/settings.json";
+        ".pi/agent/models.json"                     = "pi/agent/models.json";
       };
 
   # Launcher
