@@ -1,23 +1,19 @@
 local lsp_list = {
     "texlab",
-    "rust_analyzer", -- rustaceanvim takes care of rust-analyzer for us
+    "rust_analyzer",
     "ruff",
     "ty",
     "cmake",
     "lua_ls",
     "openscad_lsp",
     "bashls",
-    "clangd",
+    -- "clangd", -- clangd-extensions takes care of clangd for us
     "nixd",
     "tinymist"
 }
 
 vim.diagnostic.config({
-    virtual_text = true -- don't show diagnostics as inline virtual text
-})
-
-vim.diagnostic.config({
-    virtual_lines = false
+    underline = true,
 })
 
 local keybindings = require('keybindings')
@@ -30,12 +26,6 @@ local on_attach = function(_client, bufnr)
     for _, binding in pairs(lsp_attach_keybindings) do
         binding[4].buffer = bufnr
         vim.keymap.set(binding[1], binding[2], binding[3], binding[4])
-    end
-
-    -- Change vertical ruler width to 100 on rust files when rust-lsp is active
-    local filetype = vim.bo.filetype;
-    if vim.tbl_contains({ "rust" }, filetype) then
-        vim.opt.colorcolumn = "100"
     end
 
     -- Show line diagnostics automatically in hover window
@@ -94,23 +84,23 @@ local server_opts = {
         }
     end,
 
-    ['rust-analyzer'] = function(opts)
+    ['rust_analyzer'] = function(opts)
         opts.settings = {
-            rust = {
-                unstable_features = true,
-                build_on_save = false,
-                all_features = true,
-            },
-            check = {
-                allFeatures = true,
-                command = "clippy",
-                extraArgs = {
-                    "--",
-                    "--no-deps",
-                    "-Dclippy::correctness",
-                    "-Dclippy::complexity",
-                    "-Wclippy::perf",
-                    "-Wclippy::pedantic",
+            ['rust-analyzer'] = {
+                cargo = {
+                    allFeatures = true,
+                },
+                check = {
+                    allFeatures = true,
+                    command = "clippy",
+                    extraArgs = {
+                        "--",
+                        "--no-deps",
+                        "-Dclippy::correctness",
+                        "-Dclippy::complexity",
+                        "-Wclippy::perf",
+                        "-Wclippy::pedantic",
+                    },
                 },
             },
         }
@@ -128,10 +118,7 @@ local server_opts = {
                     globals = { 'vim' },
                 },
                 workspace = {
-                    library = vim.api.nvim_get_runtime_file("", true),
-                },
-                telemetry = {
-                    enable = false,
+                    library = vim.api.nvim_get_runtime_file("lua", true),
                 },
             }
         }
@@ -148,10 +135,12 @@ local server_opts = {
 
     ["tinymist"] = function(opts)
         opts.settings = {
-            formatterMode = "typstyle",
-            formatterTabSpaces = 4,
-            exportPdf = "onType",
-            semanticTokens = "disable"
+            tinymist = {
+                formatterMode = "typstyle",
+                formatterTabSpaces = 4,
+                exportPdf = "onType",
+                semanticTokens = "disable"
+            }
         }
     end,
 
@@ -180,7 +169,7 @@ for _, server in pairs(lsp_list) do
         server_opts[server](opts)
     end
 
-    vim.lsp.config[server] = opts
+    vim.lsp.config(server, opts)
     vim.lsp.enable(server)
 end
 
