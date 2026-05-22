@@ -13,7 +13,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./homelab.nix
+    ../common.nix
     ../syncthing.nix
   ];
 
@@ -48,60 +48,6 @@
   ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   networking.hostName = "theta";
-  networking.networkmanager.enable = true;
-
-  time.timeZone = "America/Phoenix";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    # keyMap = "us";
-    useXkbConfig = true; # use xkb.options in tty.
-  };
-
-  # Enable sound
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  users.groups.storage = { };
-  users.groups.uinput = { };
-
-  hardware.uinput.enable = true;
-
-  programs.zsh.enable = true;
-
-  users.users.agentelement = {
-    isNormalUser = true;
-    extraGroups = [
-      "dialout"
-      "wheel"
-      "video"
-      "storage"
-      "networkmanager"
-      "input"
-      "uinput"
-      "podman"
-    ];
-    shell = pkgs.zsh;
-  };
-
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    gcc
-    pulseaudio
-    gnupg
-    podman
-    podman-compose
-  ];
 
   # Beware, proprietary garbage here.
   nixpkgs.config.allowUnfreePredicate =
@@ -116,40 +62,12 @@
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-tty;
-  };
-
   # Thunderbolt daemon
   services.hardware.bolt.enable = true;
-
-  # Query and manipulate storage devices
-  services.udisks2.enable = true;
 
   # Update firmware
   services.fwupd.enable = true;
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-  };
-
-  programs.uwsm.enable = true;
-  programs.jai-jail.enable = true;
-  programs.uwsm.waylandCompositors.hyprland = {
-    prettyName = "Hyprland";
-    comment = "Hyprland compositor managed by UWSM";
-    binPath = "/run/current-system/sw/bin/Hyprland";
-  };
-
-  services.mullvad-vpn.enable = true;
   nixpkgs.config.rocmSupport = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
@@ -170,5 +88,4 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }

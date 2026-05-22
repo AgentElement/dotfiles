@@ -6,6 +6,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../common.nix
     ../syncthing.nix
   ];
 
@@ -35,23 +36,9 @@
   hardware.framework.laptop13.audioEnhancement.enable = false;
 
   networking.hostName = "delta";
-  networking.networkmanager.enable = true;
-
-  time.timeZone = "America/Phoenix";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    # keyMap = "us";
-    useXkbConfig = true; # use xkb.options in tty.
-  };
 
   # Better power management
   services.power-profiles-daemon.enable = true;
-
-  # Query and manipulate storage devices
-  services.udisks2.enable = true;
 
   # Update firmware
   services.fwupd.enable = true;
@@ -64,24 +51,6 @@
     IdleActionSec = "10m";
   };
 
-  # Enable sound
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  # Give users access to /storage
-  users.groups.storage = { };
-
-  # Give users access to the uinput group. Required for kanata
-  users.groups.uinput = { };
-
-  # Give users access to the plugdev group. Required for crazyradio
-  users.groups.uinput = { };
 
   # Udev rules for
   # * Bitcraze crazyfile
@@ -98,37 +67,6 @@
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
-
-  # Install + enable zsh
-  programs.zsh.enable = true;
-
-  # The agentelement user (hey, that's me!)
-  users.users.agentelement = {
-    isNormalUser = true;
-    extraGroups = [
-      "dialout"
-      "wheel"
-      "video"
-      "storage"
-      "networkmanager"
-      "docker"
-      "input"
-      "uinput"
-      "plugdev"
-    ];
-    shell = pkgs.zsh;
-  };
-
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    gcc
-    brightnessctl
-    pulseaudio
-    gnupg
-    bluez
-  ];
 
   # Beware, proprietary garbage here.
   nixpkgs.config.allowUnfreePredicate =
@@ -166,31 +104,6 @@
       '';
     };
   };
-
-  # Enable nix flakes
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
-
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-  };
-
-  services.mullvad-vpn.enable = true;
-
-  # programs.uwsm.enable = true;
-  # programs.uwsm.waylandCompositors.hyprland = {
-  #   prettyName = "Hyprland";
-  #   comment = "Hyprland compositor managed by UWSM";
-  #   binPath = "/run/current-system/sw/bin/Hyprland";
-  # };
 
   environment.etc."greetd/environments".text = ''
     hyprland
