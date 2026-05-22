@@ -81,13 +81,6 @@
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
 
-  # GPG with ssh support
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-tty;
-  };
-
   # Thunderbolt daemon
   services.hardware.bolt.enable = true;
 
