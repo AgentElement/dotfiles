@@ -115,4 +115,7 @@
     };
   };
 
+  # Ban hosts that cause multiple authentication errors
+  services.fail2ban.enable = true;
+
 }
