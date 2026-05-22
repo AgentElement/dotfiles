@@ -56,6 +56,14 @@
             ./hardware/frameworkdesktop/configuration.nix
           ];
         };
+        lambda = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [
+            ./hardware/frameworkserver/configuration.nix
+          ];
+        };
       };
 
       homeConfigurations = {
