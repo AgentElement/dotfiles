@@ -54,9 +54,9 @@
     ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHgiDj6ZFvu7Ta/4ZQ+c3JZlw/lTj5j3dmVqr11YksFz agentelement@delta"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFIOJHOJ0FejO0oZEyoXgz61DX98GRmC67PO+xDM0wop agentelement@lambda"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINE4PMpl0z5J6kPkua+40DUqPwYF5wvYKdHbod6xOn7r agentelement@theta"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHgiDj6ZFvu7Ta/4ZQ+c3JZlw/lTj5j3dmVqr11YksFz agentelement@delta"             # delta
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFIOJHOJ0FejO0oZEyoXgz61DX98GRmC67PO+xDM0wop agentelement@agentelement.net"  # lambda
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINE4PMpl0z5J6kPkua+40DUqPwYF5wvYKdHbod6xOn7r agentelement@agentelement.net"  # theta
     ];
   };
 
