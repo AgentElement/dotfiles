@@ -1,7 +1,7 @@
 {
   "providers": {
     "llama-cpp": {
-      "baseUrl": "http://localhost:8080/v1",
+      "baseUrl": "https://llm.local.agentelement.net/v1",
       "api": "openai-completions",
       "apiKey": "dummy",
       "models": [
