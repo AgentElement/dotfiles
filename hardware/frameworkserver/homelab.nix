@@ -11,10 +11,10 @@
     listenPort = 51820;
     privateKeyFile = "/home/agentelement/secrets/private.key";
     peers = [
-      # {
-      #   publicKey = "";
-      #   allowedIPs = [ "10.10.10.2/24" ];
-      # }
+      {
+        publicKey = "Kaf4oYavBUD+k/L/RiADIuXPxwZxNoSs83LS5p84gQY=";
+        allowedIPs = [ "10.10.10.2/24" ];
+      }
       {
         publicKey = "E6cFkFFML8KzFy7TIHolpp6w2MDu2B12JLbkFY79FRg=";
         allowedIPs = [ "10.10.10.3/24" ];
