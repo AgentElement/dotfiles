@@ -10,5 +10,16 @@
         # Disable local pre-checks to avoid caching NXDOMAIN
         propagation_timeout -1
     }
+}
+
+llm.local.agentelement.net {
     reverse_proxy localhost:8080
+}
+
+invidious.local.agentelement.net {
+    reverse_proxy localhost:3000
+}
+
+immich.local.agentelement.net {
+    reverse_proxy localhost:2283
 }
