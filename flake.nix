@@ -12,6 +12,9 @@
 
     textfox.url = "github:adriankarlen/textfox";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -22,6 +25,7 @@
       home-manager,
       textfox,
       nixos-hardware,
+      sops-nix,
       ...
     } @ inputs:
     let
@@ -46,6 +50,7 @@
           modules = [
             nixos-hardware.nixosModules.framework-13-7040-amd
             ./hardware/framework13/configuration.nix
+            sops-nix.nixosModules.sops
           ];
         };
         theta = nixpkgs.lib.nixosSystem {
@@ -54,6 +59,7 @@
           };
           modules = [
             ./hardware/frameworkdesktop/configuration.nix
+            sops-nix.nixosModules.sops
           ];
         };
         lambda = nixpkgs.lib.nixosSystem {
@@ -62,6 +68,7 @@
           };
           modules = [
             ./hardware/frameworkserver/configuration.nix
+            sops-nix.nixosModules.sops
           ];
         };
       };
@@ -76,6 +83,7 @@
             # use `pkgs.nur` to access nur packages.
             nur.modules.homeManager.default
             textfox.homeManagerModules.default
+            inputs.sops-nix.homeManagerModules.sops
             ./home/home.nix
           ];
         };
