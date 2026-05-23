@@ -47,7 +47,24 @@
     "nvme_core.default_ps_max_latency_us=0"
   ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking.hostName = "theta";
+
+  networking.wg-quick.interfaces = {
+    wg-homelab = {
+      address = ["10.10.10.2/32"];
+      privateKeyFile = "/home/agentelement/secrets/secret.key";
+      mtu = 1280;
+      peers = [
+        {
+          publicKey = "EnorLZmNE+jA2WuXS36hrHnejgEDQdbYVAMkD9G1rT4=";
+          allowedIPs = [ "10.10.10.1/24" ];
+          endpoint = "local.agentelement.net:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+  };
 
   # Beware, proprietary garbage here.
   nixpkgs.config.allowUnfreePredicate =

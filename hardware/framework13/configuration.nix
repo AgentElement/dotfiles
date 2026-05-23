@@ -37,6 +37,22 @@
 
   networking.hostName = "delta";
 
+  networking.wg-quick.interfaces = {
+    wg-homelab = {
+      address = ["10.10.10.3/32"];
+      privateKeyFile = "/home/agentelement/secrets/secret.key";
+      mtu = 1280;
+      peers = [
+        {
+          publicKey = "EnorLZmNE+jA2WuXS36hrHnejgEDQdbYVAMkD9G1rT4=";
+          allowedIPs = [ "10.10.10.1/24" ];
+          endpoint = "local.agentelement.net:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+  };
+
   # Better power management
   services.power-profiles-daemon.enable = true;
 
