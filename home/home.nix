@@ -58,6 +58,8 @@
     ffmpeg              # godlike media tool
     neovim              # best editor
     ethtool             # ethtool
+    sops
+    age
 
     # Environment
     kitty               # Terminal emulator

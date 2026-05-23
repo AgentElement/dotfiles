@@ -80,7 +80,10 @@
     };
   };
 
-  systemd.services.caddy.serviceConfig.EnvironmentFile = "/home/agentelement/secrets/namecheap.env";
+  sops = {
+    age.keyFile = "/home/agentelement/.config/sops/age/keys.txt";
+    defaultSopsFile = "../configs/secrets/secrets.yaml";
+  };
 
   networking.firewall.interfaces."wg-homelab".allowedTCPPorts = [
     80
