@@ -1,5 +1,14 @@
-llm.local.agentelement.net {
-    handle {
-        reverse_proxy localhost:8080
+*.local.agentelement.net {
+    tls {
+        dns namecheap {
+            api_key {env.NAMECHEAP_API_KEY}
+            user {env.NAMECHEAP_API_USER}
+            client_ip {env.NAMECHEAP_CLIENT_IP}
+        }
+        # Tell Caddy to wait 60s for Namecheap to update
+        propagation_delay 60s
+        # Disable local pre-checks to avoid caching NXDOMAIN
+        propagation_timeout -1
     }
+    reverse_proxy localhost:8080
 }
