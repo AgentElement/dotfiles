@@ -100,7 +100,7 @@
 
   systemd.services.caddy.serviceConfig.EnvironmentFile = config.sops.templates."namecheap.env".path;
 
-  networking.firewall.interfaces."wg-homelab".allowedTCPPorts = [
+  networking.firewall.allowedTCPPorts = [
     80
     443
   ];
