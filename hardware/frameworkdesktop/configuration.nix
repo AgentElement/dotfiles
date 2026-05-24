@@ -59,7 +59,7 @@
         {
           publicKey = "EnorLZmNE+jA2WuXS36hrHnejgEDQdbYVAMkD9G1rT4=";
           allowedIPs = [ "10.10.10.1/24" ];
-          endpoint = "local.agentelement.net:51820";
+          endpoint = "lambda.lan:51820";
           persistentKeepalive = 25;
         }
       ];
