@@ -1,3 +1,6 @@
+# Tell gpg which tty to use. Must be before p10k instant prompt
+export GPG_TTY=$TTY
+
 ###############################################################################
 # POWERLINE
 ###############################################################################
@@ -104,8 +107,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=info:#8fb573,prompt:#57a5e5,pointer:#de5d68,marker:#dbb671,spinner:#57a5e5,header:#57a5e5
 '
 
-# Tell gpg which tty to use
-export GPG_TTY=$(tty)
+###############################################################################
 # COMPLETION
 ###############################################################################
 

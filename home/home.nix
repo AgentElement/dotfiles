@@ -58,8 +58,9 @@
     ffmpeg              # godlike media tool
     neovim              # best editor
     ethtool             # ethtool
-    sops
-    age
+    sops                # secrets management
+    age                 # encryption tool
+    tree-sitter         # grammars
 
     # Environment
     kitty               # Terminal emulator
@@ -118,6 +119,7 @@
     })
     gdb                                         # good debugger
     nixfmt                                      # nix formatter
+    nodejs-slim_latest                          # hideous, used mostly for treesitter parsers
 
     # Language servers
     texlab                                      # LaTeX lsp

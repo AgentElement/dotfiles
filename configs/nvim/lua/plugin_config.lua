@@ -85,29 +85,9 @@ require('lean').setup {
     },
 }
 
--- treesitter
-require('nvim-treesitter.configs').setup {
-    -- Ensure all treesitter parsers are installed
+require("tree-sitter-manager").setup({
     ensure_installed = "all",
-
-    -- Install parsers synchronously
-    sync_install = false,
-
-    -- Don't automatically install parsers
-    auto_install = false,
-
-    -- Broken parsers
-    ignore_install = { "ipkg" },
-
-    -- I don't know what this is, but lua-ls complains if it isn't here.
-    modules = {},
-
-    -- enable highlighting and disable vim's default regex-based highlighting
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-    }
-}
+})
 
 -- Popup terminal
 require('toggleterm').setup {

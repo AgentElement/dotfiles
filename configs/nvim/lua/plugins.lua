@@ -59,31 +59,14 @@ require("lazy").setup({
     -- ASCII diagrams in vim
     'https://github.com/jbyuki/venn.nvim',
 
-    -- Neovim org-mode
-    {
-        "https://github.com/nvim-neorg/neorg",
-        lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-        version = "*", -- Pin Neorg to the latest stable release
-        config = true,
-    },
-
     ---------------------------------------------------------------------------
     -- LANGUAGE
 
     -- Treesitter
-    {
-        'https://github.com/nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate'
-    },
+    'https://github.com/agentelement/tree-sitter-manager.nvim',
 
     -- LSP configuration
     'https://github.com/neovim/nvim-lspconfig',
-
-    -- Formatter
-    "https://github.com/mhartington/formatter.nvim",
-
-    -- virtual text for warnings
-    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
 
     -- Completion
     'https://github.com/hrsh7th/cmp-nvim-lsp',
