@@ -12,19 +12,6 @@
           default = "startpage.com";
           force = true;
           engines = {
-            "leta.mullvad.net" = {
-              urls = [
-                {
-                  template = "https://leta.mullvad.net/search";
-                  params = [
-                    {
-                      name = "q";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-            };
             "startpage.com" = {
               urls = [
                 {
@@ -114,11 +101,15 @@
             color = "red";
             icon = "fruit";
           };
-
           music = {
             id = 3;
             color = "purple";
             icon = "chill";
+          };
+          corpo = {
+            id = 4;
+            color = "blue";
+            icon = "briefcase";
           };
         };
       };
