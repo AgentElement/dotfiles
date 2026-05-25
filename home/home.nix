@@ -176,6 +176,7 @@
         ".config/nvim/lua/plugin_config.lua"        = "nvim/lua/plugin_config.lua";
         ".config/nvim/lua/plugins.lua"              = "nvim/lua/plugins.lua";
         ".config/nvim/ftplugin/rust.lua"            = "nvim/ftplugin/rust.lua";
+        ".config/nvim/lazy-lock.json"               = "nvim/lazy-lock.json";
         ".config/kitty/kitty.conf"                  = "kitty/kitty.conf";
         ".config/i3status-rust/config.toml"         = "i3status-rust/config.toml";
         ".config/i3status-rust/icons/icon.toml"     = "i3status-rust/icons/icon.toml";
