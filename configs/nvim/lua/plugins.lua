@@ -63,7 +63,7 @@ require("lazy").setup({
     -- LANGUAGE
 
     -- Treesitter
-    'https://github.com/agentelement/tree-sitter-manager.nvim',
+    'https://github.com/romus204/tree-sitter-manager.nvim',
 
     -- LSP configuration
     'https://github.com/neovim/nvim-lspconfig',
