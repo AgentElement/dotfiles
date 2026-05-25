@@ -6,6 +6,7 @@
   ...
 }:
 {
+  # Wireguard tunnel
   networking.wg-quick.interfaces.wg-homelab = {
     address = [ "10.10.10.1/24" ];
     listenPort = 51820;
@@ -23,6 +24,13 @@
   };
 
   networking.firewall.allowedUDPPorts = [ 51820 ];
+
+  # Llama.cpp sits outside a container
+  environment.systemPackages = with pkgs; [
+    (llama-cpp.override {
+      rocmSupport = true;
+    })
+  ];
 
   services.llama-cpp = {
     enable = true;
@@ -45,32 +53,12 @@
     port = 8080;
   };
 
-  environment.systemPackages = with pkgs; [
-    (llama-cpp.override {
-      rocmSupport = true;
-    })
-  ];
-
-  virtualisation = {
-    containers.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.settings.dns_enabled = true;
-    };
+  sops = {
+    age.keyFile = "/home/agentelement/.config/sops/age/keys.txt";
+    defaultSopsFile = ../../configs/secrets/secrets.yaml;
   };
 
-  services.immich = {
-    enable = true;
-    port = 2283;
-  };
-
-  services.invidious = {
-    enable = true;
-    port = 3000;
-  };
-
+  # Enable caddy with namecheap api plugin for SSL certs
   services.caddy = {
     enable = true;
     configFile = ../../configs/caddy/Caddyfile;
@@ -80,11 +68,7 @@
     };
   };
 
-  sops = {
-    age.keyFile = "/home/agentelement/.config/sops/age/keys.txt";
-    defaultSopsFile = ../../configs/secrets/secrets.yaml;
-  };
-
+  # Construct namecheap.env for caddy to read
   sops.secrets."namecheap/api_key" = {};
   sops.secrets."namecheap/api_user" = {};
   sops.secrets."namecheap/client_ip" = {};
@@ -97,11 +81,68 @@
     owner = config.services.caddy.user;
     group = config.services.caddy.group;
   };
-
   systemd.services.caddy.serviceConfig.EnvironmentFile = config.sops.templates."namecheap.env".path;
 
   networking.firewall.allowedTCPPorts = [
     80
     443
   ];
+
+  # Containerized services
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+
+  sops.secrets."searxng" = {};
+  sops.templates."searxng.env" = {
+    content = ''
+      SEARXNG_SECRET=${config.sops.placeholder."searxng"}
+    '';
+    owner = "root";
+    group = "root";
+  };
+
+
+  virtualisation.oci-containers.containers.valkey = {
+    image = "docker.io/valkey/valkey:9-alpine";
+    cmd = [ "valkey-server" "--save" "30" "1" "--loglevel" "warning" ];
+    volumes = [
+      "searxng-valkey-data:/data"
+    ];
+    autoStart = true;
+  };
+
+  virtualisation.oci-containers.containers.searxng = {
+    image = "ghcr.io/searxng/searxng:latest";
+    ports = [ "127.0.0.1:8888:8080" ];
+    volumes = [
+      "${../../configs/searxng/settings.yml}:/etc/searxng/settings.yml:ro"
+      "searxng-core-data:/var/cache/searxng"
+    ];
+    environmentFiles = [ config.sops.templates."searxng.env".path ];
+    environment = {
+      SEARXNG_BASE_URL = "https://searxng.local.agentelement.net";
+    };
+    dependsOn = [ "valkey" ];
+    autoStart = true;
+  };
+
+  # Uncontainerized services
+  services.immich = {
+    enable = true;
+    port = 2283;
+  };
+
+  services.invidious = {
+    enable = true;
+    port = 3000;
+  };
+
+
 }

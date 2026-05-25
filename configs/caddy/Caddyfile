@@ -23,3 +23,7 @@ invidious.local.agentelement.net {
 immich.local.agentelement.net {
     reverse_proxy localhost:2283
 }
+
+searxng.local.agentelement.net {
+    reverse_proxy localhost:8888
+}
