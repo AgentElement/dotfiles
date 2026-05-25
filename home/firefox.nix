@@ -16,7 +16,7 @@
             "searxng.local.agentelement.net" = {
               urls = [
                 {
-                  template = "searxng.local.agentelement.net/search.";
+                  template = "https://searxng.local.agentelement.net/search";
                   params = [
                     {
                       name = "q";
