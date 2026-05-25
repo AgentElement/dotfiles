@@ -21,3 +21,7 @@ search:
 
 valkey:
   url: valkey://valkey:6379/0
+
+engines:
+  - name: google
+    disabled: true

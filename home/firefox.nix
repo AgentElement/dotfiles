@@ -9,9 +9,23 @@
         isDefault = true;
 
         search = {
-          default = "startpage.com";
+          default = "searxng.local.agentelement.net";
           force = true;
           engines = {
+            # locally hosted searxng
+            "searxng.local.agentelement.net" = {
+              urls = [
+                {
+                  template = "searxng.local.agentelement.net/search.";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+            };
             "startpage.com" = {
               urls = [
                 {
@@ -20,40 +34,6 @@
                     {
                       name = "q";
                       value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-            };
-            "disroot.org" = {
-              urls = [
-                {
-                  template = "https://search.disroot.org";
-                  params = [
-                    {
-                      name = "q";
-                      value = "{searchTerms}";
-                    }
-                    {
-                      name = "safesearch";
-                      value = "0";
-                    }
-                  ];
-                }
-              ];
-            };
-            "opnxng.com" = {
-              urls = [
-                {
-                  template = "https://opnxng.com";
-                  params = [
-                    {
-                      name = "q";
-                      value = "{searchTerms}";
-                    }
-                    {
-                      name = "safesearch";
-                      value = "0";
                     }
                   ];
                 }
