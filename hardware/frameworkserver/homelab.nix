@@ -133,6 +133,17 @@
     autoStart = true;
   };
 
+  virtualisation.oci-containers.containers.searxng-mcp = {
+    image = "docker.io/isokoliuk/mcp-searxng:latest";
+    ports = [ "127.0.0.1:8889:8080" ];
+    environment = {
+      SEARXNG_URL = "https://searxng.local.agentelement.net";
+      MCP_HTTP_PORT = "8080";
+    };
+    dependsOn = [ "searxng" ];
+    autoStart = true;
+  };
+
   # Uncontainerized services
   services.immich = {
     enable = true;

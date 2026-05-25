@@ -27,3 +27,7 @@ immich.local.agentelement.net {
 searxng.local.agentelement.net {
     reverse_proxy localhost:8888
 }
+
+searxngmcp.local.agentelement.net {
+    reverse_proxy localhost:8889
+}
