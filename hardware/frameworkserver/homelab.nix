@@ -7,7 +7,7 @@
 }:
 {
   imports = [
-    ../../configs/invidious/docker-compose.nix
+    ../../hosted/invidious/docker-compose.nix
   ];
   # Wireguard tunnel
   networking.wg-quick.interfaces.wg-homelab = {
@@ -58,13 +58,13 @@
 
   sops = {
     age.keyFile = "/home/agentelement/.config/sops/age/keys.txt";
-    defaultSopsFile = ../../configs/secrets/secrets.yaml;
+    defaultSopsFile = ../../hosted/secrets/secrets.yaml;
   };
 
   # Enable caddy with namecheap api plugin for SSL certs
   services.caddy = {
     enable = true;
-    configFile = ../../configs/caddy/Caddyfile;
+    configFile = ../../hosted/caddy/Caddyfile;
     package = pkgs.caddy.withPlugins {
       plugins = [ "github.com/caddy-dns/namecheap@v1.0.0" ];
       hash = "sha256-DVztkrHE8+nxYgtjXzEIOW3GRBQN/btINcfFvY5X3lQ=";
@@ -125,7 +125,7 @@
     image = "ghcr.io/searxng/searxng:latest";
     ports = [ "127.0.0.1:8888:8080" ];
     volumes = [
-      "${../../configs/searxng/settings.yml}:/etc/searxng/settings.yml:ro"
+      "${../../hosted/searxng/settings.yml}:/etc/searxng/settings.yml:ro"
       "searxng-core-data:/var/cache/searxng"
     ];
     environmentFiles = [ config.sops.templates."searxng.env".path ];
