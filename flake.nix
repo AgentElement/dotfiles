@@ -4,15 +4,18 @@
   inputs = {
     nixpkgs.url = "github:agentelement/nixpkgs/jai-package";
 
+    # Nix user repository, mostly for firefox extensions
     nur.url = "github:nix-community/nur";
     nur.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Home-manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    textfox.url = "github:adriankarlen/textfox";
+    # Community hardware-specific configs
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    # Secrets management
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -23,7 +26,6 @@
       nixpkgs,
       nur,
       home-manager,
-      textfox,
       nixos-hardware,
       sops-nix,
       ...
@@ -82,7 +84,6 @@
           modules = [
             # use `pkgs.nur` to access nur packages.
             nur.modules.homeManager.default
-            textfox.homeManagerModules.default
             inputs.sops-nix.homeManagerModules.sops
             ./home/home.nix
           ];
