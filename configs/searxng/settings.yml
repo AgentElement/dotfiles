@@ -18,6 +18,9 @@ search:
   formats:
     - html
     - json
+  suspended_times:
+    # Engine suspension time after error (in seconds)
+    SearxEngineAccessDenied: 60
 
 valkey:
   url: valkey://valkey:6379/0
