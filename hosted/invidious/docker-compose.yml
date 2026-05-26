@@ -1,3 +1,6 @@
+# This file does not describe the state of the running configuration.
+# That is described in docker-compose.nix. This file was run through
+# compose2nix to generate an initial docker-compose.nix.
 services:
   invidious:
     image: quay.io/invidious/invidious:latest
