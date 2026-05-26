@@ -9,6 +9,7 @@
   imports = [
     ../../hosted/invidious/docker-compose.nix
     ../../hosted/searxng/docker-compose.nix
+    ../../hosted/immich/docker-compose.nix
   ];
   # Wireguard tunnel
   networking.wg-quick.interfaces.wg-homelab = {
@@ -92,7 +93,6 @@
     443
   ];
 
-  # Containerized services
   virtualisation = {
     containers.enable = true;
     podman = {
@@ -101,11 +101,5 @@
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;
     };
-  };
-
-  # Uncontainerized services
-  services.immich = {
-    enable = true;
-    port = 2283;
   };
 }
