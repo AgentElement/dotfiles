@@ -8,6 +8,7 @@
 {
   imports = [
     ../../hosted/invidious/docker-compose.nix
+    ../../hosted/searxng/docker-compose.nix
   ];
   # Wireguard tunnel
   networking.wg-quick.interfaces.wg-homelab = {
@@ -100,51 +101,6 @@
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;
     };
-  };
-
-  sops.secrets."searxng" = {};
-  sops.templates."searxng.env" = {
-    content = ''
-      SEARXNG_SECRET=${config.sops.placeholder."searxng"}
-    '';
-    owner = "root";
-    group = "root";
-  };
-
-
-  virtualisation.oci-containers.containers.valkey = {
-    image = "docker.io/valkey/valkey:9-alpine";
-    cmd = [ "valkey-server" "--save" "30" "1" "--loglevel" "warning" ];
-    volumes = [
-      "searxng-valkey-data:/data"
-    ];
-    autoStart = true;
-  };
-
-  virtualisation.oci-containers.containers.searxng = {
-    image = "ghcr.io/searxng/searxng:latest";
-    ports = [ "127.0.0.1:8888:8080" ];
-    volumes = [
-      "${../../hosted/searxng/settings.yml}:/etc/searxng/settings.yml:ro"
-      "searxng-core-data:/var/cache/searxng"
-    ];
-    environmentFiles = [ config.sops.templates."searxng.env".path ];
-    environment = {
-      SEARXNG_BASE_URL = "https://searxng.local.agentelement.net";
-    };
-    dependsOn = [ "valkey" ];
-    autoStart = true;
-  };
-
-  virtualisation.oci-containers.containers.searxng-mcp = {
-    image = "docker.io/isokoliuk/mcp-searxng:latest";
-    ports = [ "127.0.0.1:8889:8080" ];
-    environment = {
-      SEARXNG_URL = "https://searxng.local.agentelement.net";
-      MCP_HTTP_PORT = "8080";
-    };
-    dependsOn = [ "searxng" ];
-    autoStart = true;
   };
 
   # Uncontainerized services
