@@ -66,6 +66,7 @@
     git
     gcc
     pulseaudio
+    brightnessctl
     gnupg
     podman
     podman-compose
