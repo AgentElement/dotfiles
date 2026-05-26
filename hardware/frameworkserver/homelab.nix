@@ -6,6 +6,9 @@
   ...
 }:
 {
+  imports = [
+    ../../configs/invidious/docker-compose.nix
+  ];
   # Wireguard tunnel
   networking.wg-quick.interfaces.wg-homelab = {
     address = [ "10.10.10.1/24" ];
@@ -149,11 +152,4 @@
     enable = true;
     port = 2283;
   };
-
-  services.invidious = {
-    enable = true;
-    port = 3000;
-  };
-
-
 }
