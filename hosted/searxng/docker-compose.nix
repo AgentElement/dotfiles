@@ -19,7 +19,7 @@
   };
 
   # Database service
-  virtualisation.oci-containers.containers.valkey = {
+  virtualisation.oci-containers.containers.searxng_valkey = {
     image = "docker.io/valkey/valkey:9-alpine";
     cmd = [
       "valkey-server"
@@ -47,7 +47,7 @@
     environment = {
       SEARXNG_BASE_URL = "https://searxng.local.agentelement.net";
     };
-    dependsOn = [ "valkey" ];
+    dependsOn = [ "searxng_valkey" ];
     autoStart = true;
   };
 
