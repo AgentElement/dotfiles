@@ -107,6 +107,7 @@
   services.openssh = {
     enable = true;
     ports = [ 22 ];
+    openFirewall = false;
     settings = {
       PasswordAuthentication = false;
       AllowUsers = [ "agentelement" ];
@@ -115,6 +116,21 @@
       PermitRootLogin = "no";
     };
   };
+
+    networking.firewall.extraInputRules = ''
+    # Allow SSH from localhost
+    iptables -A nixos-fw -p tcp --dport 22 -s 127.0.0.0/8 -j ACCEPT
+
+    # Allow SSH from LAN
+    iptables -A nixos-fw -p tcp --dport 22 -s 10.2.71.0/24 -j ACCEPT
+
+    # Allow SSH from trusted peers
+    iptables -A nixos-fw -p tcp --dport 22 -s 10.10.10.1/32 -j ACCEPT
+    iptables -A nixos-fw -p tcp --dport 22 -s 10.10.10.2/32 -j ACCEPT
+    iptables -A nixos-fw -p tcp --dport 22 -s 10.10.10.3/32 -j ACCEPT
+
+    # Everything else will bypass these input rules and drop.
+  '';
 
   # Ban hosts that cause multiple authentication errors
   services.fail2ban.enable = true;
