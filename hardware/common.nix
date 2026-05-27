@@ -117,17 +117,10 @@
     };
   };
 
-    networking.firewall.extraInputRules = ''
-    # Allow SSH from localhost
-    iptables -A nixos-fw -p tcp --dport 22 -s 127.0.0.0/8 -j ACCEPT
-
-    # Allow SSH from LAN
-    iptables -A nixos-fw -p tcp --dport 22 -s 10.2.71.0/24 -j ACCEPT
-
-    # Allow SSH from trusted peers
-    iptables -A nixos-fw -p tcp --dport 22 -s 10.10.10.1/32 -j ACCEPT
-    iptables -A nixos-fw -p tcp --dport 22 -s 10.10.10.2/32 -j ACCEPT
-    iptables -A nixos-fw -p tcp --dport 22 -s 10.10.10.3/32 -j ACCEPT
+  networking.nftables.enable = true;
+  networking.firewall.extraInputRules = ''
+    # Allow SSH from localhost, LAN, and trusted wireguard peers
+    ip saddr { 127.0.0.0/8, 10.2.71.0/24, 10.10.10.1, 10.10.10.2, 10.10.10.3 } tcp dport 22 accept
 
     # Everything else will bypass these input rules and drop.
   '';
