@@ -30,8 +30,16 @@
         allowedIPs = [ "10.10.10.16/32" ];
       }
       {
+        publicKey = "Jcr1BMMAWVQyZOKE3ibCrwIuiMOg9sd1dkS+ZXVXHQg=";
+        allowedIPs = [ "10.10.10.17/32" ];
+      }
+      {
         publicKey = "9Bgn2BSQ3lZtb2PzgBOaGKX0z0u9G7T02xKW7A+YPn0=";
         allowedIPs = [ "10.10.10.128/32" ];
+      }
+      {
+        publicKey = "9FiGGFQ6iNK7LpwyOrNzDffMBsXfeExwoXIWUtNjwh0=";
+        allowedIPs = [ "10.10.10.129/32" ];
       }
     ];
   };

@@ -3,7 +3,7 @@
 
 (media_and_services) {
     @blocklist {
-        not remote_ip 127.0.0.0/8 ::1 10.2.71.0/24 10.10.10.0/28
+        not remote_ip 127.0.0.0/8 ::1 10.2.71.0/24 10.10.10.0/25
     }
     respond @blocklist "Forbidden" 403
 }
