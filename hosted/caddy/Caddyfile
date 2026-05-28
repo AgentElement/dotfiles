@@ -1,3 +1,20 @@
+# Wireguard peers with last bit < 128 are allowed access media hosting and services.
+# Peers with last bit >= 128 access only services.
+
+(media_and_services) {
+    @blocklist {
+        not remote_ip 127.0.0.0/8 ::1 10.2.71.0/24 10.10.10.0/28
+    }
+    respond @blocklist "Forbidden" 403
+}
+
+(services) {
+    @blocklist {
+        not remote_ip 127.0.0.0/8 ::1 10.2.71.0/24 10.10.10.0/24
+    }
+    respond @blocklist "Forbidden" 403
+}
+
 *.local.agentelement.net {
     tls {
         dns namecheap {
@@ -12,22 +29,29 @@
     }
 }
 
-llm.local.agentelement.net {
-    reverse_proxy localhost:8080
-}
-
-invidious.local.agentelement.net {
-    reverse_proxy localhost:3000
-}
-
+# Media
 immich.local.agentelement.net {
+    import media_and_services
     reverse_proxy localhost:2283
 }
 
+invidious.local.agentelement.net {
+    import media_and_services
+    reverse_proxy localhost:3000
+}
+
+# Services
+llm.local.agentelement.net {
+    import services
+    reverse_proxy localhost:8080
+}
+
 searxng.local.agentelement.net {
+    import services
     reverse_proxy localhost:8888
 }
 
 searxngmcp.local.agentelement.net {
+    import services
     reverse_proxy localhost:8889
 }
