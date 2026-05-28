@@ -25,6 +25,14 @@
         publicKey = "E6cFkFFML8KzFy7TIHolpp6w2MDu2B12JLbkFY79FRg=";
         allowedIPs = [ "10.10.10.3/32" ];
       }
+      {
+        publicKey = "78dssx0YhmMHoHnpiFu6Q1pa+Bg7YXqfJvPRMjgckEE=";
+        allowedIPs = [ "10.10.10.16/32" ];
+      }
+      {
+        publicKey = "9Bgn2BSQ3lZtb2PzgBOaGKX0z0u9G7T02xKW7A+YPn0=";
+        allowedIPs = [ "10.10.10.128/32" ];
+      }
     ];
   };
 
