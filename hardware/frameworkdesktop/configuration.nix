@@ -45,8 +45,21 @@
     "pcie_aspm=off"
     "pcie_port_pm=off"
     "nvme_core.default_ps_max_latency_us=0"
+    "iommu=pt"
   ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.kernel.sysctl = {
+    "net.core.rmem_max" = 16777216;
+    "net.core.wmem_max" = 16777216;
+    "net.core.rmem_default" = 1048576;
+    "net.core.wmem_default" = 1048576;
+    "net.ipv4.tcp_rmem" = "4096 1048576 16777216";
+    "net.ipv4.tcp_wmem" = "4096 1048576 16777216";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+    "net.ipv4.tcp_window_scaling" = 1;
+    "net.core.netdev_max_backlog" = 5000;
+  };
 
   networking.hostName = "theta";
 
@@ -65,6 +78,18 @@
       ];
     };
   };
+
+  networking.interfaces.thunderbolt0 = {
+    ipv4.addresses = [
+      {
+        address = "10.0.0.2";
+        prefixLength = 24;
+      }
+    ];
+    mtu = 65520;
+  };
+
+  networking.firewall.trustedInterfaces = [ "thunderbolt0" ];
 
   # Beware, proprietary garbage here.
   nixpkgs.config.allowUnfreePredicate =
