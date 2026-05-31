@@ -65,14 +65,14 @@
 
   networking.wg-quick.interfaces = {
     wg-homelab = {
-      address = ["10.10.10.2/32"];
+      address = [ "10.10.10.2/32" ];
       privateKeyFile = "/home/agentelement/secrets/secret.key";
       mtu = 1280;
       peers = [
         {
           publicKey = "EnorLZmNE+jA2WuXS36hrHnejgEDQdbYVAMkD9G1rT4=";
           allowedIPs = [ "10.10.10.1/24" ];
-          endpoint = "lambda.lan:51820";
+          endpoint = "local.agentelement.net:51820";
           persistentKeepalive = 25;
         }
       ];
