@@ -46,6 +46,18 @@
 
   networking.firewall.allowedUDPPorts = [ 51820 ];
 
+  networking.firewall.trustedInterfaces = [ "thunderbolt0" ];
+  networking.interfaces.thunderbolt0 = {
+    ipv4.addresses = [
+      {
+        address = "10.0.0.1";
+        prefixLength = 24;
+      }
+    ];
+    # Thunderbolt supports huge MTUs.
+    mtu = 65520;
+  };
+
   # Llama.cpp sits outside a container
   environment.systemPackages = with pkgs; [
     (llama-cpp.override {
