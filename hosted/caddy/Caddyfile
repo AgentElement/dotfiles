@@ -46,12 +46,11 @@ llm.local.agentelement.net {
     reverse_proxy localhost:8080
 }
 
+# Open to all
 searxng.local.agentelement.net {
-    import services
     reverse_proxy localhost:8888
 }
 
 searxngmcp.local.agentelement.net {
-    import services
     reverse_proxy localhost:8889
 }
