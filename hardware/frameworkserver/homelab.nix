@@ -75,14 +75,36 @@
     host = "127.0.0.1";
     modelsDir = "/storage/models/";
     extraFlags = [
-      "--no-mmap"
-      "-ngl"
+      "--no-mmap" # mmap broken on strix halo
+      "-ngl" # Offload all layers to the gpu
       "999"
-      "-fa"
+      "-fa" # Enable flash attention
       "1"
-      "--ctx-size"
+      "--ctx-size" # Maximum context size
       "0"
     ];
+
+    modelsPreset = {
+      "Qwen3.6-27B-Q8_0" = {
+        spec-type = "draft-mtp";
+        spec-draft-n-max = 3;
+        temp = "1.0";
+        top-p = "0.95";
+        min-p = "0.01";
+        top-k = "40";
+        jinja = "on";
+      };
+      "Qwen3.6-35B-A3B-Q8_0" = {
+        spec-type = "draft-mtp";
+        spec-draft-n-max = 3;
+        temp = "1.0";
+        top-p = "0.95";
+        min-p = "0.01";
+        top-k = "40";
+        jinja = "on";
+      };
+    };
+
     port = 8080;
   };
 
@@ -97,14 +119,14 @@
     configFile = ../../hosted/caddy/Caddyfile;
     package = pkgs.caddy.withPlugins {
       plugins = [ "github.com/caddy-dns/namecheap@v1.0.0" ];
-      hash = "sha256-DVztkrHE8+nxYgtjXzEIOW3GRBQN/btINcfFvY5X3lQ=";
+      hash = "sha256-GuYIhDlUThYXTG02O4W0lTc5fnramYbtYnpCwx9v4rE=";
     };
   };
 
   # Construct namecheap.env for caddy to read
-  sops.secrets."namecheap/api_key" = {};
-  sops.secrets."namecheap/api_user" = {};
-  sops.secrets."namecheap/client_ip" = {};
+  sops.secrets."namecheap/api_key" = { };
+  sops.secrets."namecheap/api_user" = { };
+  sops.secrets."namecheap/client_ip" = { };
   sops.templates."namecheap.env" = {
     content = ''
       NAMECHEAP_API_KEY=${config.sops.placeholder."namecheap/api_key"}
