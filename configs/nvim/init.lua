@@ -88,6 +88,9 @@ vim.g.maplocalleader = '\\'
 -- window border color to comment color
 vim.opt.winhighlight="Normal:None,Pmenu:None,FloatBorder:Comment"
 
+-- Butoread buffers when files are changed on disk
+vim.opt.autoread=true
+
 require('plugins')
 require('plugin_config')
 require('cmp_config')
