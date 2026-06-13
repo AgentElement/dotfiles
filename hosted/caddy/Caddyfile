@@ -40,6 +40,11 @@ invidious.local.agentelement.net {
     reverse_proxy localhost:3000
 }
 
+jellyfin.local.agentelement.net {
+    import media_and_services
+    reverse_proxy localhost:8096
+}
+
 # Services
 llm.local.agentelement.net {
     import services

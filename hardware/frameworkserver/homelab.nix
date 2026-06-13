@@ -10,6 +10,7 @@
     ../../hosted/invidious/docker-compose.nix
     ../../hosted/searxng/docker-compose.nix
     ../../hosted/immich/docker-compose.nix
+    ../../hosted/jellyfin/docker-compose.nix
   ];
   # Wireguard tunnel
   networking.wg-quick.interfaces.wg-homelab = {
@@ -148,8 +149,31 @@
     podman = {
       enable = true;
       dockerCompat = true;
+      # extraPackages = with pkgs; [ podman-compose ];
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;
     };
   };
+
+  # environment.etc =
+  #   builtins.mapAttrs
+  #     (key: value: {
+  #       # symlink ~/dotfiles/configs/{value} to ~/{key}
+  #       source = "/home/agentelement/dotfiles/hosted/${value}";
+  #     })
+  #     {
+  #       "hosted/jellyfin/docker-compose.yml" = "jellyfin/docker-compose.yml";
+  #     };
+  #
+  # systemd.services.jellyfin = {
+  #   wantedBy = [ "multi-user.target" ];
+  #   after = [ "podman.service" ];
+  #   path = [ pkgs.podman pkgs.podman-compose ];
+  #   script = ''
+  #     podman compose -f /etc/hosted/jellyfin/docker-compose.yml up
+  #   '';
+  #   restartTriggers = [
+  #     config.environment.etc."hosted/jellyfin/docker-compose.yml".source
+  #   ];
+  # };
 }

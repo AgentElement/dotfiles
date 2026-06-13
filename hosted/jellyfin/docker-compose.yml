@@ -1,0 +1,17 @@
+services:
+  jellyfin:
+    image: ghcr.io/jellyfin/jellyfin
+    container_name: jellyfin
+    ports:
+      - 8096:8096/tcp
+      - 7359:7359/udp
+    volumes:
+      - /home/agentelement/serve/jellyfin/config:/config
+      - /home/agentelement/serve/jellyfin/cache:/cache
+      - type: bind
+        source: /storage/media/Videos/
+        target: /media
+        read_only: true
+    restart: 'unless-stopped'
+    environment:
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.local.agentelement.net
