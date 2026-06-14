@@ -19,27 +19,35 @@
     privateKeyFile = "/home/agentelement/secrets/private.key";
     peers = [
       {
-        publicKey = "Kaf4oYavBUD+k/L/RiADIuXPxwZxNoSs83LS5p84gQY=";
+        publicKey = "Kaf4oYavBUD+k/L/RiADIuXPxwZxNoSs83LS5p84gQY="; # theta
         allowedIPs = [ "10.10.10.2/32" ];
       }
       {
-        publicKey = "E6cFkFFML8KzFy7TIHolpp6w2MDu2B12JLbkFY79FRg=";
+        publicKey = "E6cFkFFML8KzFy7TIHolpp6w2MDu2B12JLbkFY79FRg="; # delta
         allowedIPs = [ "10.10.10.3/32" ];
       }
       {
-        publicKey = "78dssx0YhmMHoHnpiFu6Q1pa+Bg7YXqfJvPRMjgckEE=";
+        publicKey = "78dssx0YhmMHoHnpiFu6Q1pa+Bg7YXqfJvPRMjgckEE="; # dmp
         allowedIPs = [ "10.10.10.16/32" ];
       }
       {
-        publicKey = "Jcr1BMMAWVQyZOKE3ibCrwIuiMOg9sd1dkS+ZXVXHQg=";
+        publicKey = "Jcr1BMMAWVQyZOKE3ibCrwIuiMOg9sd1dkS+ZXVXHQg="; # vmz
         allowedIPs = [ "10.10.10.17/32" ];
       }
       {
-        publicKey = "9Bgn2BSQ3lZtb2PzgBOaGKX0z0u9G7T02xKW7A+YPn0=";
+        publicKey = "bRJJBW+cxxqVw7X1+NdiM+FQNmkkpBZCq26PMA4ol3Q="; # gamma
+        allowedIPs = [ "10.10.10.18/32" ];
+      }
+      {
+        publicKey = "XMBshQj8JevLxthgYuXax6MJIiT7mpUTwVavuLuvpS8="; # vsz
+        allowedIPs = [ "10.10.10.19/32" ];
+      }
+      {
+        publicKey = "9Bgn2BSQ3lZtb2PzgBOaGKX0z0u9G7T02xKW7A+YPn0="; # var
         allowedIPs = [ "10.10.10.128/32" ];
       }
       {
-        publicKey = "9FiGGFQ6iNK7LpwyOrNzDffMBsXfeExwoXIWUtNjwh0=";
+        publicKey = "9FiGGFQ6iNK7LpwyOrNzDffMBsXfeExwoXIWUtNjwh0="; # kpc
         allowedIPs = [ "10.10.10.129/32" ];
       }
     ];
