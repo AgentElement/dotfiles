@@ -153,15 +153,14 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 zinit ice depth=1;
-zinit light romkatv/powerlevel10k
+zinit light "romkatv/powerlevel10k"
 
-zinit light "wfxr/forgit"
-zinit light "jeffreytse/zsh-vi-mode"
 ZVM_SYSTEM_CLIPBOARD_ENABLED=true # Enable copying from buffer to system clipboard in vi mode. Broken as of 2026-04-03
+zinit light "jeffreytse/zsh-vi-mode"
+
 # fzf-tab must be the last plugin to bind ^I, but must be loaded before plugins
 # which will wrap widgets
 zinit light "Aloxaf/fzf-tab"
-zinit light "MikeDacre/tmux-zsh-vim-titles"
 zinit light "zsh-users/zsh-autosuggestions"
-zinit light "hlissner/zsh-autopair"
+zinit light "zsh-users/zsh-completions"
 zinit light "zdharma-continuum/fast-syntax-highlighting"
