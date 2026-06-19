@@ -2,7 +2,7 @@
   description = "AgentElement's configuration files";
 
   inputs = {
-    nixpkgs.url = "github:agentelement/nixpkgs/jai-package";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
 
     # Nix user repository, mostly for firefox extensions
     nur.url = "github:nix-community/nur";
