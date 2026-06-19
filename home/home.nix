@@ -129,6 +129,8 @@
     ty                                          # python type checker + lsp
     tinymist                                    # typst lsp
     beancount-language-server                   # beancount lsp
+    typescript-language-server                  # typescript lsp
+    superhtml                                   # html lsp
 
     # Fonts
     inconsolata

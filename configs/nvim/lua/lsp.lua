@@ -9,7 +9,9 @@ local lsp_list = {
     "bashls",
     -- "clangd", -- clangd-extensions takes care of clangd for us
     "nixd",
-    "tinymist"
+    "tinymist",
+    "typescript-language-server",
+    "superhtml"
 }
 
 vim.diagnostic.config({
