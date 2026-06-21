@@ -1,3 +1,4 @@
+-- this list must contain lspconfig names, not executable names.
 local lsp_list = {
     "texlab",
     "rust_analyzer",
@@ -10,7 +11,8 @@ local lsp_list = {
     -- "clangd", -- clangd-extensions takes care of clangd for us
     "nixd",
     "tinymist",
-    "typescript-language-server",
+    "ts_ls",
+    "tailwindcss",
     "superhtml"
 }
 

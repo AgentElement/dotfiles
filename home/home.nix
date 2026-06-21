@@ -127,6 +127,7 @@
     tinymist                                    # typst lsp
     beancount-language-server                   # beancount lsp
     typescript-language-server                  # typescript lsp
+    tailwindcss-language-server                 # tailwind lsp
     superhtml                                   # html lsp
 
     # Fonts
