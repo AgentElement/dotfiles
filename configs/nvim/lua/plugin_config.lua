@@ -69,7 +69,7 @@ require('gitsigns').setup {
 
 
 -- Theorem prover
-require('lean').setup {
+vim.g.lean_config = {
     mappings = true,
     stderr = {
         enable = true,
