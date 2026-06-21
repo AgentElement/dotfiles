@@ -39,7 +39,7 @@
 
   networking.wg-quick.interfaces = {
     wg-homelab = {
-      address = ["10.10.10.3/32"];
+      address = [ "10.10.10.3/32" ];
       privateKeyFile = "/home/agentelement/secrets/secret.key";
       mtu = 1280;
       peers = [
@@ -66,7 +66,6 @@
     IdleAction = "suspend;";
     IdleActionSec = "10m";
   };
-
 
   # Udev rules for
   # * Bitcraze crazyfile
@@ -100,24 +99,6 @@
   # Thunderbolt daemon
   services.hardware.bolt.enable = true;
 
-  # login screen
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session.command = ''
-        ${pkgs.tuigreet}/bin/tuigreet \
-          --time \
-          --theme 'border=blue;text=cyan;prompt=blue;time=red;action=blue;button=yellow;container=black;input=red'
-          --asterisks \
-          --user-menu
-      '';
-    };
-  };
-
-  environment.etc."greetd/environments".text = ''
-    hyprland
-  '';
-
   # Required for docker to work correctly
   virtualisation.docker.enable = true;
 
@@ -125,6 +106,43 @@
   services.colord.enable = true;
 
   nixpkgs.config.rocmSupport = true;
+
+  # Cap off nix build memory at 90% or else delta will fail to build
+  # hipblas/firefox
+  systemd.services.nix-daemon.serviceConfig = {
+    MemoryAccounting = true;
+    MemoryMax = "90%";
+    OOMScoreAdjust = 500;
+  };
+
+  # Delta is a bit wimpy, so use theta+lambda to build for it.
+  nix.distributedBuilds = true;
+  nix.settings.builders-use-substitutes = true;
+
+  nix.buildMachines = [
+    {
+      hostName = "10.10.10.1";
+      sshUser = "remotebuild";
+      sshKey = "/root/.ssh/remotebuild";
+      system = pkgs.stdenv.hostPlatform.system;
+      supportedFeatures = [
+        "nixos-test"
+        "big-parallel"
+        "kvm"
+      ];
+    }
+    {
+      hostName = "10.10.10.2";
+      sshUser = "remotebuild";
+      sshKey = "/root/.ssh/remotebuild";
+      system = pkgs.stdenv.hostPlatform.system;
+      supportedFeatures = [
+        "nixos-test"
+        "big-parallel"
+        "kvm"
+      ];
+    }
+  ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
