@@ -14,6 +14,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common.nix
+    ./homelab.nix
     ../syncthing.nix
   ];
 
@@ -111,27 +112,6 @@
   services.fwupd.enable = true;
 
   nixpkgs.config.rocmSupport = true;
-
-  environment.systemPackages = [
-    (pkgs.llama-cpp.override {
-      rocmSupport = true;
-      rpcSupport = true;
-    })
-  ];
-
-  systemd.services.llama-rpc-server = {
-    enable = true;
-    description = "llama.cpp rpc";
-    after = [ "network.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "/run/current-system/sw/bin/llama-rpc-server --host 10.0.0.2 -c -p 50052";
-    };
-  };
-
-  networking.firewall.allowedTCPPorts = [
-    50052
-  ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
