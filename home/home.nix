@@ -191,6 +191,9 @@
         ".config/waybar/style.css"                  = "waybar/style.css";
         ".config/dunst/dunstrc"                     = "dunst/dunstrc";
         ".pi/agent/models.json"                     = "pi/agent/models.json";
+      } // {
+        # jai's default config strips *_API_KEY, so re-export it
+        ".jai/pi.conf".text = "conf .defaults\nsetenv OPENROUTER_API_KEY=\${OPENROUTER_API_KEY}\n";
       };
 
   # Launcher
@@ -209,6 +212,13 @@
   programs.zsh = {
     initContent = ''
       source ~/.old_zshrc
+
+      # Run pi inside a jai jail and inject the OpenRouter
+      # API key from sops-nix as an environment variable. 
+      pi() {
+        OPENROUTER_API_KEY="$(cat ${config.sops.secrets."openrouter_api_key".path})" \
+          command jai pi "$@"
+      }
     '';
     enable = true;
   };
@@ -243,4 +253,11 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  sops = {
+    age.keyFile = "/home/agentelement/.config/sops/age/keys.txt"; # must have no password!
+    defaultSopsFile = ../configs/secrets/secrets.yaml;
+  };
+
+  sops.secrets."openrouter_api_key" = { };
 }
