@@ -114,9 +114,6 @@
     typst                                       # Is LaTeX really that bad?
     hugo                                        # Site generator
     gnumake                                     # Good ol' make
-    (llama-cpp.override {
-        rocmSupport = true;
-    })
     gdb                                         # good debugger
     nixfmt                                      # nix formatter
     nodejs-slim_latest                          # hideous, used mostly for treesitter parsers

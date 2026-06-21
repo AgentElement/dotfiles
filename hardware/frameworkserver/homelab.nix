@@ -71,6 +71,7 @@
   environment.systemPackages = with pkgs; [
     (llama-cpp.override {
       rocmSupport = true;
+      rpcSupport = true;
     })
   ];
 
@@ -79,42 +80,15 @@
     package = (
       pkgs.llama-cpp.override {
         rocmSupport = true;
+        rpcSupport = true;
       }
     );
-    host = "127.0.0.1";
-    modelsDir = "/storage/models/";
-    extraFlags = [
-      "--no-mmap" # mmap broken on strix halo
-      "-ngl" # Offload all layers to the gpu
-      "999"
-      "-fa" # Enable flash attention
-      "1"
-      "--ctx-size" # Maximum context size
-      "0"
-    ];
-
-    modelsPreset = {
-      "Qwen3.6-27B-Q8_0" = {
-        spec-type = "draft-mtp";
-        spec-draft-n-max = 3;
-        temp = "1.0";
-        top-p = "0.95";
-        min-p = "0.01";
-        top-k = "40";
-        jinja = "on";
-      };
-      "Qwen3.6-35B-A3B-Q8_0" = {
-        spec-type = "draft-mtp";
-        spec-draft-n-max = 3;
-        temp = "1.0";
-        top-p = "0.95";
-        min-p = "0.01";
-        top-k = "40";
-        jinja = "on";
-      };
+    settings = {
+      host = "127.0.0.1";
+      port = 8080;
+      models-preset = "/etc/llama.cpp/preset.ini";
+      models-dir = "/storage/models/";
     };
-
-    port = 8080;
   };
 
   sops = {
@@ -163,15 +137,14 @@
     };
   };
 
-  # environment.etc =
-  #   builtins.mapAttrs
-  #     (key: value: {
-  #       # symlink ~/dotfiles/configs/{value} to ~/{key}
-  #       source = "/home/agentelement/dotfiles/hosted/${value}";
-  #     })
-  #     {
-  #       "hosted/jellyfin/docker-compose.yml" = "jellyfin/docker-compose.yml";
-  #     };
+  environment.etc =
+    builtins.mapAttrs
+      (key: value: {
+        source = ../../hosted + "/${value}";
+      })
+      {
+        "llama.cpp/preset.ini" = "llama.cpp/preset.ini";
+      };
   #
   # systemd.services.jellyfin = {
   #   wantedBy = [ "multi-user.target" ];
