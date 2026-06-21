@@ -145,6 +145,22 @@
       {
         "llama.cpp/preset.ini" = "llama.cpp/preset.ini";
       };
+
+  # remotebuild user
+  users.users.remotebuild = {
+    isSystemUser = true;
+    group = "remotebuild";
+    useDefaultShell = true;
+
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFWIeSdwVs2pHSyZuVUNZG/zhW97VrVaQAp5ZYZMDjx8 root@delta"
+    ];
+  };
+
+  users.groups.remotebuild = { };
+
+  nix.settings.trusted-users = [ "remotebuild" ];
+
   #
   # systemd.services.jellyfin = {
   #   wantedBy = [ "multi-user.target" ];

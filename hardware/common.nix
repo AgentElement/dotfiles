@@ -110,7 +110,7 @@
     openFirewall = false;
     settings = {
       PasswordAuthentication = false;
-      AllowUsers = [ "agentelement" ];
+      AllowUsers = [ "agentelement" "remotebuild" ];
       UseDns = true;
       X11Forwarding = false;
       PermitRootLogin = "no";
