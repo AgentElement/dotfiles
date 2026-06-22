@@ -101,8 +101,6 @@
     binPath = "/run/current-system/sw/bin/Hyprland";
   };
 
-  services.mullvad-vpn.enable = true;
-
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
