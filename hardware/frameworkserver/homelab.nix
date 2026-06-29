@@ -11,6 +11,7 @@
     ../../hosted/searxng/docker-compose.nix
     ../../hosted/immich/docker-compose.nix
     ../../hosted/jellyfin/docker-compose.nix
+    ../../hosted/navidrome/docker-compose.nix
   ];
   # Wireguard tunnel
   networking.wg-quick.interfaces.wg-homelab = {
