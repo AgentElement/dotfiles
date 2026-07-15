@@ -51,6 +51,7 @@
       "input"
       "uinput"
       "podman"
+      "docker"
     ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
