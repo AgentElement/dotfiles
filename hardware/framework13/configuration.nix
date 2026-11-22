@@ -18,14 +18,6 @@
   boot.loader.grub.enableCryptodisk = true;
   boot.loader.grub.efiSupport = true;
 
-  # LUKS on LVM encryption
-  boot.initrd.luks.devices = {
-    root = {
-      device = "/dev/disk/by-uuid/24e1e6e4-5c97-46d1-81af-35f075673d3c";
-      preLVM = true;
-    };
-  };
-
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [
     "abmlevel=3"
