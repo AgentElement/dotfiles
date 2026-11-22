@@ -46,10 +46,10 @@
         "on-click": "tz_down",
     },
     "timezones" : [
-        "America/Phoenix",
-        "UTC",
-        "America/New_York",
         "America/Los_Angeles",
+        "UTC",
+        "America/Phoenix",
+        "America/New_York",
         "Asia/Kolkata",
     ]
   },
